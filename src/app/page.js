@@ -1,49 +1,3 @@
-// export default function Home() {
-//   return (
-//     <main className="container mx-auto px-4 py-12">
-//       <div className="max-w-4xl mx-auto text-center">
-//         <h1 className="text-5xl font-bold mb-6">AI-Powered Resume Builder</h1>
-        
-//         <p className="text-xl mb-8">
-//           Create professional resumes with AI assistance, custom templates, and easy image uploads.
-//         </p>
-        
-//         <div className="flex flex-wrap justify-center gap-4">
-//           <a 
-//             href="/builder" 
-//             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold text-lg transition-colors"
-//           >
-//             Build Your Resume
-//           </a>
-          
-//           <a 
-//             href="/templates" 
-//             className="border border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg font-semibold text-lg transition-colors"
-//           >
-//             View Templates
-//           </a>
-//         </div>
-        
-//         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-//           <div className="bg-white p-6 rounded-xl shadow-lg">
-//             <h3 className="text-xl font-bold mb-3">AI Suggestions</h3>
-//             <p>Get intelligent content suggestions to improve your resume&#39;s impact and effectiveness.</p>
-//           </div>
-          
-//           <div className="bg-white p-6 rounded-xl shadow-lg">
-//             <h3 className="text-xl font-bold mb-3">Professional Templates</h3>
-//             <p>Choose from multiple professionally designed templates to showcase your skills.</p>
-//           </div>
-          
-//           <div className="bg-white p-6 rounded-xl shadow-lg">
-//             <h3 className="text-xl font-bold mb-3">Image Upload</h3>
-//             <p>Add your professional photo to make your resume stand out and more personal.</p>
-//           </div>
-//         </div>
-//       </div>
-//     </main>
-//   );
-// }
 
 
 "use client";
@@ -62,25 +16,37 @@ export default function HomePage() {
       id: 'professional', 
       name: 'Professional', 
       description: 'Clean and professional design suitable for corporate roles',
-      image: '/template-previews/professional.png'
+      image: '/templates-previews/professional.png'
     },
     { 
       id: 'modern', 
       name: 'Modern', 
       description: 'Contemporary layout with creative touches',
-      image: '/template-previews/modern.png'
+      image: '/templates-previews/modern.png'
     },
     { 
       id: 'creative', 
       name: 'Creative', 
       description: 'Unique design for creative industries and roles',
-      image: '/template-previews/creative.png'
+      image: '/templates-previews/creative.png'
     },
     { 
       id: 'elegant', 
       name: 'Elegant', 
       description: 'Sophisticated design with elegant typography',
-      image: '/template-previews/elegant.png'
+      image: '/templates-previews/elegant.png'
+    },
+    { 
+      id: 'classic', 
+      name: 'Classic', 
+      description: 'Timeless design with a traditional layout',
+      image: '/templates-previews/classic.png'
+    },
+    { 
+      id: 'best', 
+      name: 'Best', 
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
     },
   ];
   
@@ -138,12 +104,12 @@ export default function HomePage() {
                 }
               `}
             >
-              <div className="relative h-64 bg-gray-100">
+              <div className="relative h-96 bg-gray-100">
                 <Image 
                   src={template.image} 
                   alt={template.name}
                   fill
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: 'contain' }}
                 />
               </div>
               <div className="p-4">

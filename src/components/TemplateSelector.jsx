@@ -1,89 +1,3 @@
-// "use client";
-
-// import { useState } from 'react';
-// import Image from 'next/image';
-
-// export default function TemplateSelector({ selectedTemplate, setSelectedTemplate }) {
-//   const [showTemplates, setShowTemplates] = useState(false);
-  
-//   const templates = [
-//     {
-//       id: 'modern',
-//       name: 'Modern',
-//       description: 'Clean and professional with a touch of color',
-//       image: '/template-previews/modern.png'
-//     },
-//     {
-//       id: 'professional',
-//       name: 'Professional',
-//       description: 'Traditional format ideal for corporate roles',
-//       image: '/template-previews/professional.png'
-//     },
-//     {
-//       id: 'creative',
-//       name: 'Creative',
-//       description: 'Bold design for creative industries',
-//       image: '/template-previews/creative.png'
-//     },
-//     {
-//       id: 'elegant',
-//       name: 'Elegant',
-//       description: 'Sophisticated design with serif fonts for executive roles',
-//       image: '/template-previews/elegant.png'
-//     }
-//   ];
-  
-//   // Find the currently selected template
-//   const currentTemplate = templates.find(t => t.id === selectedTemplate) || templates[0];
-  
-//   return (
-//     <div className="relative">
-//       <button 
-//         onClick={() => setShowTemplates(!showTemplates)}
-//         className="flex items-center bg-white border border-gray-300 rounded-lg p-3 hover:bg-gray-50 transition-colors"
-//       >
-//         <span className="font-medium mr-3">{currentTemplate.name} Template</span>
-//         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-//           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-//         </svg>
-//       </button>
-      
-//       {showTemplates && (
-//         <div className="absolute top-full left-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-gray-200 z-10">
-//           {templates.map((template) => (
-//             <div 
-//               key={template.id}
-//               className={`flex p-3 hover:bg-blue-50 cursor-pointer ${selectedTemplate === template.id ? 'bg-blue-50' : ''}`}
-//               onClick={() => {
-//                 setSelectedTemplate(template.id);
-//                 setShowTemplates(false);
-//               }}
-//             >
-//               <div className="w-20 h-24 bg-gray-100 mr-3 flex-shrink-0 rounded-md overflow-hidden border border-gray-200">
-//                 {/* You can add template preview images later */}
-//                 <div className="w-full h-full flex items-center justify-center text-xs text-gray-500">
-//                   Preview
-//                 </div>
-//               </div>
-//               <div>
-//                 <h3 className="font-medium mb-1">{template.name}</h3>
-//                 <p className="text-sm text-gray-600">{template.description}</p>
-//               </div>
-//             </div>
-//           ))}
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-
-
-
-
-
-
-
-
 
 
 "use client";
@@ -95,34 +9,82 @@ export default function TemplateSelector({ selectedTemplate, setSelectedTemplate
     {
       id: 'modern',
       name: 'Modern',
-      description: 'Clean and professional with a touch of color'
+      description: 'Clean and professional with a touch of color',
+
+      color: '#3b82f6' // blue-500
     },
     {
       id: 'professional',
       name: 'Professional',
-      description: 'Traditional format ideal for corporate roles'
+      description: 'Traditional format ideal for corporate roles',
+    
+      color: '#1e3a8a' // blue-900
     },
     {
       id: 'creative',
       name: 'Creative',
-      description: 'Bold design for creative industries'
+      description: 'Bold design for creative industries',
+    
+      color: '#ec4899' // pink-500
     },
     {
       id: 'elegant',
       name: 'Elegant',
-      description: 'Sophisticated design with serif fonts for executive roles'
+      description: 'Sophisticated design with serif fonts for executive roles',
+     
+      color: '#713f12' // yellow-900
+    },
+    {
+      id: 'classic',
+      name: 'Classic',
+      description: 'Timeless design with a traditional layout',
+
+     
+      color: '#1e3a8a' // blue-900
+    },
+    {
+      id: 'best',
+      name: 'Best',
+      description: 'Best design for all industries',
+
+     
+      color: '#0000' // black
     }
   ];
+
+  // Get current template
+  const currentTemplate = templates.find(t => t.id === selectedTemplate) || templates[0];
 
   return (
     <div className="w-64">
       <label className="block text-sm font-medium text-gray-700 mb-2">
         Select Template
       </label>
+      
+      {/* Preview of current template */}
+      <div className="mb-3 border rounded-md overflow-hidden shadow-sm">
+        <div 
+          style={{ 
+            backgroundColor: currentTemplate.color,
+            height: '8px'
+          }} 
+        />
+        <div className="p-3">
+          <div className="flex items-center">
+            <div 
+              className="w-4 h-4 rounded-full mr-2"
+              style={{ backgroundColor: currentTemplate.color }}
+            />
+            <strong className="text-sm">{currentTemplate.name}</strong>
+          </div>
+          <p className="text-xs text-gray-500 mt-1">{currentTemplate.description}</p>
+        </div>
+      </div>
+      
       <select
         value={selectedTemplate}
         onChange={(e) => setSelectedTemplate(e.target.value)}
-        className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
+        className="mt-1 block w-full pl-3 pr-10 py-2 text-base border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
       >
         {templates.map((template) => (
           <option key={template.id} value={template.id}>

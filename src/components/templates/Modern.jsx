@@ -1,72 +1,196 @@
 "use client";
 
-import { useState } from 'react';
-import Image from 'next/image';
+import {
+  FaEnvelope,
+  FaPhone,
+  FaMapMarkerAlt,
+  FaGithub,
+  FaLinkedin,
+} from "react-icons/fa";
 
-export default function TemplateSelector({ selectedTemplate, setSelectedTemplate }) {
-  const [showTemplates, setShowTemplates] = useState(false);
-  
-  const templates = [
-    {
-      id: 'modern',
-      name: 'Modern',
-      description: 'Clean and professional with a touch of color',
-      image: '/template-previews/modern.png'
-    },
-    {
-      id: 'professional',
-      name: 'Professional',
-      description: 'Traditional format ideal for corporate roles',
-      image: '/template-previews/professional.png'
-    },
-    {
-      id: 'creative',
-      name: 'Creative',
-      description: 'Bold design for creative industries',
-      image: '/template-previews/creative.png'
-    }
-  ];
-  
-  // Find the currently selected template
-  const currentTemplate = templates.find(t => t.id === selectedTemplate) || templates[0];
-  
+export default function Modern({ resumeData }) {
+  const { personalInfo, experience, education, skills, projects } = resumeData;
+
   return (
-    <div className="relative">
-      <button 
-        onClick={() => setShowTemplates(!showTemplates)}
-        className="flex items-center bg-white border border-gray-300 rounded-lg p-3 hover:bg-gray-50 transition-colors"
-      >
-        <span className="font-medium mr-3">{currentTemplate.name} Template</span>
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
-      
-      {showTemplates && (
-        <div className="absolute top-full left-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-gray-200 z-10">
-          {templates.map((template) => (
-            <div 
-              key={template.id}
-              className={`flex p-3 hover:bg-blue-50 cursor-pointer ${selectedTemplate === template.id ? 'bg-blue-50' : ''}`}
-              onClick={() => {
-                setSelectedTemplate(template.id);
-                setShowTemplates(false);
-              }}
-            >
-              <div className="w-20 h-24 bg-gray-100 mr-3 flex-shrink-0 rounded-md overflow-hidden border border-gray-200">
-                {/* You can add template preview images later */}
-                <div className="w-full h-full flex items-center justify-center text-xs text-gray-500">
-                  Preview
-                </div>
-              </div>
-              <div>
-                <h3 className="font-medium mb-1">{template.name}</h3>
-                <p className="text-sm text-gray-600">{template.description}</p>
-              </div>
+    <div className="w-full h-full bg-white text-gray-800 flex flex-col">
+      {/* Header with accent color */}
+      <header className="bg-blue-600 text-white px-8 py-6">
+        <h1 className="text-3xl font-bold">
+          {personalInfo.name || "Your Name"}
+        </h1>
+        <h2 className="text-xl mt-1">
+          {personalInfo.title || "Professional Title"}
+        </h2>
+
+        <div className="mt-4 flex flex-wrap gap-4 text-sm">
+          {personalInfo.email && (
+            <div className="flex items-center">
+              <FaEnvelope className="mr-2" />
+              {personalInfo.email}
             </div>
-          ))}
+          )}
+          {personalInfo?.linkedin && (
+            <a
+              href={
+                personalInfo.linkedin.startsWith("http")
+                  ? personalInfo.linkedin
+                  : `https://${personalInfo.linkedin}`
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center hover:text-gray-800 transition-colors"
+            >
+              <FaLinkedin className="mr-2 text-gray-500" />
+              <span className="text-gray-600">{personalInfo.linkedin}</span>
+            </a>
+          )}
+
+          {personalInfo?.github && (
+            <a
+              href={
+                personalInfo.github.startsWith("http")
+                  ? personalInfo.github
+                  : `https://${personalInfo.github}`
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center hover:text-gray-800 transition-colors"
+            >
+              <FaGithub className="mr-2 text-gray-500" />
+              <span className="text-gray-600">{personalInfo.github}</span>
+            </a>
+          )}
+
+          {personalInfo.phone && (
+            <div className="flex items-center">
+              <FaPhone className="mr-2" />
+              {personalInfo.phone}
+            </div>
+          )}
+
+          {personalInfo.location && (
+            <div className="flex items-center">
+              <FaMapMarkerAlt className="mr-2" />
+              {personalInfo.location}
+            </div>
+          )}
         </div>
-      )}
+      </header>
+
+      {/* Main content */}
+      <div className="flex flex-col p-8 flex-grow">
+        {/* Summary */}
+        {personalInfo.summary && (
+          <section className="mb-6">
+            <h2 className="text-lg font-bold text-blue-600 border-b border-blue-200 pb-1 mb-3">
+              PROFESSIONAL SUMMARY
+            </h2>
+            <p>{personalInfo.summary}</p>
+          </section>
+        )}
+
+        {/* Experience */}
+        {experience && experience.length > 0 && (
+          <section className="mb-6">
+            <h2 className="text-lg font-bold text-blue-600 border-b border-blue-200 pb-1 mb-3">
+              EXPERIENCE
+            </h2>
+
+            {experience.map((exp, index) => (
+              <div key={index} className="mb-4">
+                <div className="flex justify-between items-start">
+                  <h3 className="font-bold">{exp.position}</h3>
+                  <span className="text-gray-600 text-sm">
+                    {exp.startDate} - {exp.endDate || "Present"}
+                  </span>
+                </div>
+                <h4 className="text-gray-700 italic mb-1">
+                  {exp.company}, {exp.location}
+                </h4>
+                <p className="text-sm">{exp.description}</p>
+              </div>
+            ))}
+          </section>
+        )}
+
+        {/* Education */}
+        {education && education.length > 0 && (
+          <section className="mb-6">
+            <h2 className="text-lg font-bold text-blue-600 border-b border-blue-200 pb-1 mb-3">
+              EDUCATION
+            </h2>
+
+            {education.map((edu, index) => (
+              <div key={index} className="mb-3">
+                <div className="flex justify-between items-start">
+                  <h3 className="font-bold">{edu.degree}</h3>
+                  <span className="text-gray-600 text-sm">
+                    {edu.startDate} - {edu.endDate || "Present"}
+                  </span>
+                </div>
+                <h4 className="text-gray-700 italic">
+                  {edu.school}, {edu.location}
+                </h4>
+                {edu.description && (
+                  <p className="text-sm mt-1">{edu.description}</p>
+                )}
+              </div>
+            ))}
+          </section>
+        )}
+
+        <div className="flex flex-wrap gap-6">
+          {/* Skills */}
+          {skills && skills.length > 0 && (
+            <section className="mb-6 flex-1 min-w-[200px]">
+              <h2 className="text-lg font-bold text-blue-600 border-b border-blue-200 pb-1 mb-3">
+                SKILLS
+              </h2>
+              <div className="flex flex-wrap gap-2">
+                {skills.map((skill, index) => (
+                  <span
+                    key={index}
+                    className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Projects */}
+          {projects && projects.length > 0 && (
+            <section className="mb-6 flex-1 min-w-[200px]">
+              <h2 className="text-lg font-bold text-blue-600 border-b border-blue-200 pb-1 mb-3">
+                PROJECTS
+              </h2>
+
+              {projects.map((project, index) => (
+                <div key={index} className="mb-3">
+                  <h3 className="font-bold">{project.title}</h3>
+                  {project.technologies && (
+                    <p className="text-sm text-blue-600 mb-1">
+                      {project.technologies.join(" • ")}
+                    </p>
+                  )}
+                  <p className="text-sm">{project.description}</p>
+                  {project.link && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-blue-600 hover:underline"
+                    >
+                      View Project
+                    </a>
+                  )}
+                </div>
+              ))}
+            </section>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

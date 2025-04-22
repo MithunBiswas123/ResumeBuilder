@@ -1,5 +1,7 @@
 "use client";
 
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin } from 'react-icons/fa';
+
 export default function Professional({ resumeData }) {
   const { personalInfo, experience, education, skills, projects } = resumeData || {};
   
@@ -12,10 +14,47 @@ export default function Professional({ resumeData }) {
         </h1>
         {personalInfo?.title && <p className="text-xl mt-1">{personalInfo.title}</p>}
         
-        <div className="flex justify-center gap-4 mt-3 text-sm">
+        {/* <div className="flex justify-center gap-4 mt-3 text-sm">
           {personalInfo?.email && <span>{personalInfo.email}</span>}
           {personalInfo?.phone && <span>{personalInfo.phone}</span>}
+          {personalInfo?.linkedin && <p>{personalInfo.linkedin}</p>}
+          {personalInfo?.github && <p>{personalInfo.github}</p>}
           {personalInfo?.location && <span>{personalInfo.location}</span>}
+        </div> */}
+
+<div className="mt-4 flex flex-wrap gap-4 text-sm">
+          {personalInfo.email && (
+            <div className="flex items-center">
+              <FaEnvelope className="mr-2" />
+              {personalInfo.email}
+            </div>
+          )}
+          {personalInfo.linkedin && (
+            <div className="flex items-center">
+              <FaLinkedin className="mr-2" />
+              {personalInfo.linkedin}
+            </div>
+          )}
+          {personalInfo.github && (
+            <div className="flex items-center">
+              <FaGithub className="mr-2" />
+              {personalInfo.github}
+            </div>
+          )}
+          
+          {personalInfo.phone && (
+            <div className="flex items-center">
+              <FaPhone className="mr-2" />
+              {personalInfo.phone}
+            </div>
+          )}
+          
+          {personalInfo.location && (
+            <div className="flex items-center">
+              <FaMapMarkerAlt className="mr-2" />
+              {personalInfo.location}
+            </div>
+          )}
         </div>
       </header>
       
