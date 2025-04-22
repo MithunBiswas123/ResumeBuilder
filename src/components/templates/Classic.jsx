@@ -10,6 +10,11 @@ import {
   FaGithub,
 } from "react-icons/fa";
 
+const ensureHttps = (url) => {
+  if (!url) return "";
+  return url.startsWith("http") ? url : `https://${url}`;
+};
+
 export default function Classic({ resumeData }) {
   const { personalInfo, experience, education, skills, projects } =
     resumeData || {};
@@ -59,35 +64,32 @@ export default function Classic({ resumeData }) {
             </div>
           )}
 
-          {personalInfo?.linkedin && (
-            <a
-              href={personalInfo.linkedin.startsWith("http")
-                ? personalInfo.linkedin
-                : `https://${personalInfo.linkedin}`
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center text-gray-600 hover:text-gray-800"
-            >
-              <FaLinkedin className="mr-2 text-gray-500" />
-              <span>LinkedIn</span>
-            </a>
-          )}
+         {personalInfo?.linkedin && (
+                         <a
+                           href={ensureHttps(personalInfo.linkedin)}
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           className="flex items-center text-gray-600 hover:text-gray-900"
+                         >
+                           <FaLinkedin className="mr-3 text-gray-400" />
+                           <span>LinkedIn</span>
+                         </a>
+                       )}
+         
+                       {/* GitHub link with proper icon */}
+                       {personalInfo?.github && (
+                         <a
+                           href={ensureHttps(personalInfo.github)}
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           className="flex items-center text-gray-600 hover:text-gray-900"
+                         >
+                           <FaGithub className="mr-3 text-gray-400" />
+                           <span>GitHub</span>
+                         </a>
+                       )}
 
-          {personalInfo?.github && (
-            <a
-              href={personalInfo.github.startsWith("http")
-                ? personalInfo.github
-                : `https://${personalInfo.github}`
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center text-gray-600 hover:text-gray-800"
-            >
-              <FaGithub className="mr-2 text-gray-500" />
-              <span>GitHub</span>
-            </a>
-          )}
+
         </div>
       </header>
 
@@ -155,15 +157,15 @@ export default function Classic({ resumeData }) {
                         </h3>
 
                         {project.link && (
-                          <a
-                            href={project.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-gray-600 text-sm italic hover:underline"
-                          >
-                            View Project
-                          </a>
-                        )}
+                      <a
+                        href={ensureHttps(project.link)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-500 text-sm hover:text-gray-800"
+                      >
+                        View →
+                      </a>
+                    )}
                       </div>
 
                       {project.technologies && (

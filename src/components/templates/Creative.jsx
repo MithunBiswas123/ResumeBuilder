@@ -193,6 +193,11 @@ export default function Creative({ resumeData }) {
     aiHighlights,
   } = resumeData || {};
 
+  const ensureHttps = (url) => {
+    if (!url) return "";
+    return url.startsWith("http") ? url : `https://${url}`;
+  };
+
   return (
     <div className="bg-white w-full h-full font-sans text-gray-800 flex">
       {/* Sidebar */}
@@ -222,39 +227,30 @@ export default function Creative({ resumeData }) {
           <div className="space-y-2">
             {personalInfo?.email && <p>{personalInfo.email}</p>}
             {personalInfo?.phone && <p>{personalInfo.phone}</p>}
-            {/* LinkedIn */}
             {personalInfo?.linkedin && (
-              <a
-                href={
-                  personalInfo.linkedin.startsWith("http")
-                    ? personalInfo.linkedin
-                    : `https://${personalInfo.linkedin}`
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center hover:text-purple-300 transition-colors"
-              >
-                <FaLinkedin className="mr-2 text-white color-purple-300" />
-                <span>LinkedIn Profile</span>
-              </a>
-            )}
-
-            {/* GitHub */}
-            {personalInfo?.github && (
-              <a
-                href={
-                  personalInfo.github.startsWith("http")
-                    ? personalInfo.github
-                    : `https://${personalInfo.github}`
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center hover:text-purple-300 transition-colors"
-              >
-                <FaGithub className="mr-2 text-white color-purple-300" />
-                <span>GitHub Profile</span>
-              </a>
-            )}
+                            <a
+                              href={ensureHttps(personalInfo.linkedin)}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center text-gray-600 hover:text-gray-900"
+                            >
+                              <FaLinkedin className="mr-3 text-gray-400" />
+                              <span>LinkedIn</span>
+                            </a>
+                          )}
+            
+                          {/* GitHub link with proper icon */}
+                          {personalInfo?.github && (
+                            <a
+                              href={ensureHttps(personalInfo.github)}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center text-gray-600 hover:text-gray-900"
+                            >
+                              <FaGithub className="mr-3 text-gray-400" />
+                              <span>GitHub</span>
+                            </a>
+                          )}
             {personalInfo?.location && <p>{personalInfo.location}</p>}
           </div>
         </div>
@@ -432,17 +428,15 @@ export default function Creative({ resumeData }) {
 
                 {/* Project links */}
                 {project.link && (
-                  <div className="mt-3">
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-purple-600 hover:text-purple-800 font-medium flex items-center"
-                    >
-                      View Project <span className="ml-1">→</span>
-                    </a>
-                  </div>
-                )}
+                      <a
+                        href={ensureHttps(project.link)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-500 text-sm hover:text-gray-800"
+                      >
+                        View →
+                      </a>
+                    )}
               </div>
             ))}
           </section>

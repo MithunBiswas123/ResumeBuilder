@@ -143,65 +143,68 @@ export default function ResumePreview({ resumeData, selectedTemplate }) {
   };
   
   // New function to add clickable links to the PDF
-  const addClickableLinks = async (pdf, resumeData) => {
-    try {
-      // Get link positions from DOM elements
-      const getLinkPosition = (selector) => {
-        const element = document.querySelector(selector);
-        if (!element) return null;
+  // Enhanced link detection and positioning for PDFs
+const addClickableLinks = async (pdf, resumeData) => {
+  try {
+    const element = resumeRef.current;
+    
+    // Get all links in the resume
+    const links = element.querySelectorAll('a[href]');
+    
+    // Calculate the scale factors between screen and PDF
+    const elementRect = element.getBoundingClientRect();
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+    const scaleX = pdfWidth / elementRect.width;
+    const scaleY = pdfHeight / elementRect.height;
+    
+    // Process each link
+    links.forEach(link => {
+      // Skip links without href
+      if (!link.href) return;
+      
+      // Get link position relative to the resume container
+      const linkRect = link.getBoundingClientRect();
+      const offsetX = linkRect.left - elementRect.left;
+      const offsetY = linkRect.top - elementRect.top;
+      
+      // Convert to PDF coordinates
+      const x = offsetX * scaleX;
+      const y = offsetY * scaleY;
+      const width = linkRect.width * scaleX;
+      const height = linkRect.height * scaleY;
+      
+      // Add clickable area to PDF
+      const url = ensureHttps(link.href);
+      pdf.link(x, y, width, height, { url });
+      
+      console.log(`Added link to PDF: ${url} at position [${x}, ${y}, ${width}, ${height}]`);
+    });
+    
+    console.log(`Total links added: ${links.length}`);
+  } catch (error) {
+    console.error('Error adding clickable links:', error);
+  }
+};
+
+// Updated helper to ensure URLs have http/https
+const ensureHttps = (url) => {
+  if (!url) return '';
   
-        const rect = element.getBoundingClientRect();
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = pdf.internal.pageSize.getHeight();
-        
-        // Convert viewport coordinates to PDF coordinates (mm)
-        const x = (rect.left / window.innerWidth) * pdfWidth;
-        const y = (rect.top / window.innerHeight) * pdfHeight;
-        const width = (rect.width / window.innerWidth) * pdfWidth;
-        const height = (rect.height / window.innerHeight) * pdfHeight;
-        
-        return { x, y, width, height };
-      };
-  
-      // Add personal links (LinkedIn, GitHub)
-      if (resumeData.personalInfo?.linkedin) {
-        const linkedinPos = getLinkPosition('.linkedin-link');
-        if (linkedinPos) {
-          pdf.link(linkedinPos.x, linkedinPos.y, linkedinPos.width, linkedinPos.height, 
-            { url: ensureHttps(resumeData.personalInfo.linkedin) });
-        }
-      }
-  
-      if (resumeData.personalInfo?.github) {
-        const githubPos = getLinkPosition('.github-link');
-        if (githubPos) {
-          pdf.link(githubPos.x, githubPos.y, githubPos.width, githubPos.height, 
-            { url: ensureHttps(resumeData.personalInfo.github) });
-        }
-      }
-  
-      // Add project links
-      if (resumeData.projects?.length > 0) {
-        resumeData.projects.forEach((project, index) => {
-          if (project.link) {
-            const projectLinkPos = getLinkPosition(`.project-link-${index}`);
-            if (projectLinkPos) {
-              pdf.link(projectLinkPos.x, projectLinkPos.y, projectLinkPos.width, projectLinkPos.height, 
-                { url: ensureHttps(project.link) });
-            }
-          }
-        });
-      }
-    } catch (error) {
-      console.error('Error adding clickable links:', error);
+  try {
+    // Check if it's a valid URL
+    new URL(url); 
+    return url; // If it's valid, return as is
+  } catch (e) {
+    // If not valid, might be missing protocol - add https://
+    if (!url.startsWith('http')) {
+      return `https://${url}`;
     }
-  };
+    return url;
+  }
+};
   
-  // Helper to ensure URLs have http/https
-  const ensureHttps = (url) => {
-    if (!url) return '';
-    return url.startsWith('http') ? url : `https://${url}`;
-  };
+ 
  
  
   const renderTemplate = () => {

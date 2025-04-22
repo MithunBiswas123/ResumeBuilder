@@ -2,6 +2,11 @@
 
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin } from 'react-icons/fa';
 
+const ensureHttps = (url) => {
+  if (!url) return "";
+  return url.startsWith("http") ? url : `https://${url}`;
+};
+
 export default function Professional({ resumeData }) {
   const { personalInfo, experience, education, skills, projects } = resumeData || {};
   
@@ -29,18 +34,30 @@ export default function Professional({ resumeData }) {
               {personalInfo.email}
             </div>
           )}
-          {personalInfo.linkedin && (
-            <div className="flex items-center">
-              <FaLinkedin className="mr-2" />
-              {personalInfo.linkedin}
-            </div>
-          )}
-          {personalInfo.github && (
-            <div className="flex items-center">
-              <FaGithub className="mr-2" />
-              {personalInfo.github}
-            </div>
-          )}
+         {personalInfo?.linkedin && (
+                         <a
+                           href={ensureHttps(personalInfo.linkedin)}
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           className="flex items-center text-gray-600 hover:text-gray-900"
+                         >
+                           <FaLinkedin className="mr-3 text-gray-400" />
+                           <span>LinkedIn</span>
+                         </a>
+                       )}
+         
+                       {/* GitHub link with proper icon */}
+                       {personalInfo?.github && (
+                         <a
+                           href={ensureHttps(personalInfo.github)}
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           className="flex items-center text-gray-600 hover:text-gray-900"
+                         >
+                           <FaGithub className="mr-3 text-gray-400" />
+                           <span>GitHub</span>
+                         </a>
+                       )}
           
           {personalInfo.phone && (
             <div className="flex items-center">
@@ -120,17 +137,35 @@ export default function Professional({ resumeData }) {
       )}
       
       {/* Projects */}
-      {projects?.length > 0 && (
-        <section className="mb-6">
-          <h2 className="text-xl font-bold uppercase border-b border-gray-300 mb-3">Projects</h2>
-          {projects.map((project, index) => (
-            <div key={index} className="mb-4">
-              <h3 className="font-bold">{project.title}</h3>
-              <p className="mt-2">{project.description}</p>
-            </div>
-          ))}
-        </section>
-      )}
+      {projects && projects.length > 0 && (
+            <section className="mb-6 flex-1 min-w-[200px]">
+              <h2 className="text-lg font-bold text-blue-600 border-b border-blue-200 pb-1 mb-3">
+                PROJECTS
+              </h2>
+
+              {projects.map((project, index) => (
+                <div key={index} className="mb-3">
+                  <h3 className="font-bold">{project.title}</h3>
+                  {project.technologies && (
+                    <p className="text-sm text-blue-600 mb-1">
+                      {project.technologies.join(" • ")}
+                    </p>
+                  )}
+                  <p className="text-sm">{project.description}</p>
+                  {project.link && (
+                      <a
+                        href={ensureHttps(project.link)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-500 text-sm hover:text-gray-800"
+                      >
+                        View →
+                      </a>
+                    )}
+                </div>
+              ))}
+            </section>
+          )}
     </div>
   );
 }

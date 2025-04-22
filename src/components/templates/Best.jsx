@@ -11,14 +11,14 @@
 //         <h1 className="text-4xl font-light tracking-tight">
 //           {personalInfo?.name || "Your Name"}
 //         </h1>
-        
+
 //         {personalInfo?.title && (
 //           <p className="text-xl text-gray-600 mt-1">
 //             {personalInfo.title}
 //           </p>
 //         )}
 //       </header>
-      
+
 //       {/* Two column layout */}
 //       <div className="flex flex-col md:flex-row gap-10">
 //         {/* Left sidebar */}
@@ -28,10 +28,10 @@
 //             <h2 className="text-sm uppercase tracking-widest mb-4 text-gray-500 font-medium">
 //               Contact
 //             </h2>
-            
+
 //             <div className="space-y-3">
 //               {personalInfo?.email && (
-//                 <a 
+//                 <a
 //                   href={`mailto:${personalInfo.email}`}
 //                   className="flex items-center text-gray-600 hover:text-gray-900"
 //                 >
@@ -39,9 +39,9 @@
 //                   <span>{personalInfo.email}</span>
 //                 </a>
 //               )}
-              
+
 //               {personalInfo?.phone && (
-//                 <a 
+//                 <a
 //                   href={`tel:${personalInfo.phone}`}
 //                   className="flex items-center text-gray-600 hover:text-gray-900"
 //                 >
@@ -49,18 +49,18 @@
 //                   <span>{personalInfo.phone}</span>
 //                 </a>
 //               )}
-              
+
 //               {personalInfo?.location && (
 //                 <div className="flex items-center text-gray-600">
 //                   <FaMapMarkerAlt className="mr-3 text-gray-400" />
 //                   <span>{personalInfo.location}</span>
 //                 </div>
 //               )}
-              
+
 //               {personalInfo?.linkedin && (
 //                 <a
-//                   href={personalInfo.linkedin.startsWith("http") 
-//                     ? personalInfo.linkedin 
+//                   href={personalInfo.linkedin.startsWith("http")
+//                     ? personalInfo.linkedin
 //                     : `https://${personalInfo.linkedin}`}
 //                   target="_blank"
 //                   rel="noopener noreferrer"
@@ -70,11 +70,11 @@
 //                   <span>LinkedIn</span>
 //                 </a>
 //               )}
-              
+
 //               {personalInfo?.github && (
 //                 <a
-//                   href={personalInfo.github.startsWith("http") 
-//                     ? personalInfo.github 
+//                   href={personalInfo.github.startsWith("http")
+//                     ? personalInfo.github
 //                     : `https://${personalInfo.github}`}
 //                   target="_blank"
 //                   rel="noopener noreferrer"
@@ -86,18 +86,18 @@
 //               )}
 //             </div>
 //           </section>
-          
+
 //           {/* Skills section */}
 //           {skills?.length > 0 && (
 //             <section className="mb-8">
 //               <h2 className="text-sm uppercase tracking-widest mb-4 text-gray-500 font-medium">
 //                 Skills
 //               </h2>
-              
+
 //               <div className="flex flex-wrap gap-2">
 //                 {skills.map((skill, index) => (
-//                   <span 
-//                     key={index} 
+//                   <span
+//                     key={index}
 //                     className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-sm"
 //                   >
 //                     {skill}
@@ -106,14 +106,14 @@
 //               </div>
 //             </section>
 //           )}
-          
+
 //           {/* Education section */}
 //           {education?.length > 0 && (
 //             <section>
 //               <h2 className="text-sm uppercase tracking-widest mb-4 text-gray-500 font-medium">
 //                 Education
 //               </h2>
-              
+
 //               <div className="space-y-4">
 //                 {education.map((edu, index) => (
 //                   <div key={index} className="mb-3">
@@ -124,7 +124,7 @@
 //                     <p className="text-gray-500 text-sm">
 //                       {edu.startDate} — {edu.endDate || "Present"}
 //                     </p>
-                    
+
 //                     {edu.description && (
 //                       <p className="text-gray-600 text-sm mt-1">
 //                         {edu.description}
@@ -136,7 +136,7 @@
 //             </section>
 //           )}
 //         </div>
-        
+
 //         {/* Main content area */}
 //         <div className="md:w-2/3">
 //           {/* Summary */}
@@ -150,14 +150,14 @@
 //               </p>
 //             </section>
 //           )}
-          
+
 //           {/* Experience */}
 //           {experience?.length > 0 && (
 //             <section className="mb-8">
 //               <h2 className="text-sm uppercase tracking-widest mb-4 text-gray-500 font-medium">
 //                 Experience
 //               </h2>
-              
+
 //               {experience.map((job, index) => (
 //                 <div key={index} className="mb-6 pb-6 border-b border-gray-100">
 //                   <div className="flex flex-col md:flex-row md:justify-between">
@@ -180,21 +180,21 @@
 //               ))}
 //             </section>
 //           )}
-          
+
 //           {/* Projects */}
 //           {projects?.length > 0 && (
 //             <section>
 //               <h2 className="text-sm uppercase tracking-widest mb-4 text-gray-500 font-medium">
 //                 Projects
 //               </h2>
-              
+
 //               {projects.map((project, index) => (
 //                 <div key={index} className="mb-6">
 //                   <div className="flex justify-between items-baseline mb-2">
 //                     <h3 className="text-lg font-medium text-gray-900">
 //                       {project.title}
 //                     </h3>
-                    
+
 //                     {project.link && (
 //                       <a
 //                         href={project.link}
@@ -206,7 +206,7 @@
 //                       </a>
 //                     )}
 //                   </div>
-                  
+
 //                   {project.technologies && (
 //                     <div className="mb-2 flex flex-wrap gap-1">
 //                       {project.technologies.map((tech, idx) => (
@@ -216,7 +216,7 @@
 //                       ))}
 //                     </div>
 //                   )}
-                  
+
 //                   <p className="text-gray-600">
 //                     {project.description}
 //                   </p>
@@ -230,13 +230,24 @@
 //   );
 // }
 
-
-
 import React from "react";
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaPhone,
+  FaMapMarkerAlt,
+  FaLinkedin,
+  FaGithub,
+} from "react-icons/fa";
 
 export default function Best({ resumeData }) {
-  const { personalInfo, experience, education, skills, projects } = resumeData || {};
+  const { personalInfo, experience, education, skills, projects } =
+    resumeData || {};
+
+  // Helper function to ensure URLs are properly formatted
+  const ensureHttps = (url) => {
+    if (!url) return "";
+    return url.startsWith("http") ? url : `https://${url}`;
+  };
 
   return (
     <div className="bg-white w-full h-full p-8 font-sans text-gray-800">
@@ -245,14 +256,12 @@ export default function Best({ resumeData }) {
         <h1 className="text-4xl font-light tracking-tight">
           {personalInfo?.name || "Your Name"}
         </h1>
-        
+
         {personalInfo?.title && (
-          <p className="text-xl text-gray-600 mt-1">
-            {personalInfo.title}
-          </p>
+          <p className="text-xl text-gray-600 mt-1">{personalInfo.title}</p>
         )}
       </header>
-      
+
       {/* Two column layout */}
       <div className="flex flex-col md:flex-row gap-10">
         {/* Left sidebar */}
@@ -262,10 +271,10 @@ export default function Best({ resumeData }) {
             <h2 className="text-sm uppercase tracking-widest mb-4 text-gray-500 font-medium">
               Contact
             </h2>
-            
+
             <div className="space-y-3">
               {personalInfo?.email && (
-                <a 
+                <a
                   href={`mailto:${personalInfo.email}`}
                   className="flex items-center text-gray-600 hover:text-gray-900"
                 >
@@ -273,9 +282,9 @@ export default function Best({ resumeData }) {
                   <span>{personalInfo.email}</span>
                 </a>
               )}
-              
+
               {personalInfo?.phone && (
-                <a 
+                <a
                   href={`tel:${personalInfo.phone}`}
                   className="flex items-center text-gray-600 hover:text-gray-900"
                 >
@@ -283,19 +292,20 @@ export default function Best({ resumeData }) {
                   <span>{personalInfo.phone}</span>
                 </a>
               )}
-              
+
               {personalInfo?.location && (
                 <div className="flex items-center text-gray-600">
                   <FaMapMarkerAlt className="mr-3 text-gray-400" />
                   <span>{personalInfo.location}</span>
                 </div>
               )}
-              
+
+            
+
+              {/* LinkedIn link with proper icon */}
               {personalInfo?.linkedin && (
                 <a
-                  href={personalInfo.linkedin.startsWith("http") 
-                    ? personalInfo.linkedin 
-                    : `https://${personalInfo.linkedin}`}
+                  href={ensureHttps(personalInfo.linkedin)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center text-gray-600 hover:text-gray-900"
@@ -304,12 +314,11 @@ export default function Best({ resumeData }) {
                   <span>LinkedIn</span>
                 </a>
               )}
-              
+
+              {/* GitHub link with proper icon */}
               {personalInfo?.github && (
                 <a
-                  href={personalInfo.github.startsWith("http") 
-                    ? personalInfo.github 
-                    : `https://${personalInfo.github}`}
+                  href={ensureHttps(personalInfo.github)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center text-gray-600 hover:text-gray-900"
@@ -320,25 +329,23 @@ export default function Best({ resumeData }) {
               )}
             </div>
           </section>
-          
+
           {/* Education section */}
           {education?.length > 0 && (
             <section>
               <h2 className="text-sm uppercase tracking-widest mb-4 text-gray-500 font-medium">
                 Education
               </h2>
-              
+
               <div className="space-y-4">
                 {education.map((edu, index) => (
                   <div key={index} className="mb-3">
-                    <h3 className="font-medium text-gray-800">
-                      {edu.degree}
-                    </h3>
+                    <h3 className="font-medium text-gray-800">{edu.degree}</h3>
                     <p className="text-gray-700">{edu.school}</p>
                     <p className="text-gray-500 text-sm">
                       {edu.startDate} — {edu.endDate || "Present"}
                     </p>
-                    
+
                     {edu.description && (
                       <p className="text-gray-600 text-sm mt-1">
                         {edu.description}
@@ -350,7 +357,7 @@ export default function Best({ resumeData }) {
             </section>
           )}
         </div>
-        
+
         {/* Main content area */}
         <div className="md:w-2/3">
           {/* Summary */}
@@ -364,14 +371,14 @@ export default function Best({ resumeData }) {
               </p>
             </section>
           )}
-          
+
           {/* Experience */}
           {experience?.length > 0 && (
             <section className="mb-8">
               <h2 className="text-sm uppercase tracking-widest mb-4 text-gray-500 font-medium">
                 Experience
               </h2>
-              
+
               {experience.map((job, index) => (
                 <div key={index} className="mb-6 pb-6 border-b border-gray-100">
                   <div className="flex flex-col md:flex-row md:justify-between">
@@ -380,36 +387,35 @@ export default function Best({ resumeData }) {
                         {job.position || job.title}
                       </h3>
                       <p className="text-gray-700 mb-2">
-                        {job.company}{job.location ? `, ${job.location}` : ""}
+                        {job.company}
+                        {job.location ? `, ${job.location}` : ""}
                       </p>
                     </div>
                     <p className="text-gray-500 whitespace-nowrap">
                       {job.startDate} — {job.endDate || "Present"}
                     </p>
                   </div>
-                  <p className="text-gray-600 mt-2">
-                    {job.description}
-                  </p>
+                  <p className="text-gray-600 mt-2">{job.description}</p>
                 </div>
               ))}
             </section>
           )}
-          
+
           {/* Projects */}
           {projects?.length > 0 && (
             <section className="mb-8">
               <h2 className="text-sm uppercase tracking-widest mb-4 text-gray-500 font-medium">
                 Projects
               </h2>
-              
+
               {projects.map((project, index) => (
                 <div key={index} className="mb-6">
                   <div className="flex justify-between items-baseline mb-2">
                     <h3 className="text-lg font-medium text-gray-900">
                       {project.title}
                     </h3>
-                    
-                    {project.link && (
+
+                    {/* {project.link && (
                       <a
                         href={project.link}
                         target="_blank"
@@ -418,81 +424,90 @@ export default function Best({ resumeData }) {
                       >
                         View →
                       </a>
+                    )} */}
+                    {project.link && (
+                      <a
+                        href={ensureHttps(project.link)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-500 text-sm hover:text-gray-800"
+                      >
+                        View →
+                      </a>
                     )}
                   </div>
-                  
+
                   {project.technologies && (
                     <div className="mb-2 flex flex-wrap gap-1">
                       {project.technologies.map((tech, idx) => (
                         <span key={idx} className="text-xs text-gray-500">
-                          {tech}{idx < project.technologies.length - 1 ? " • " : ""}
+                          {tech}
+                          {idx < project.technologies.length - 1 ? " • " : ""}
                         </span>
                       ))}
                     </div>
                   )}
-                  
-                  <p className="text-gray-600">
-                    {project.description}
-                  </p>
+
+                  <p className="text-gray-600">{project.description}</p>
                 </div>
               ))}
             </section>
           )}
-          
-       
 
-    {/* Skills section with categories */}
-{resumeData.skillCategories?.length > 0 && (
-  <section className="mb-8">
-    <h2 className="text-lg font-semibold text-gray-800 mb-4 tracking-wide uppercase border-b border-gray-300 pb-1">
-      Skills
-    </h2>
-    
-    <div className="space-y-4 ">
-      {resumeData.skillCategories.map((category, index) => (
-        category.skills.length > 0 && (
-          <div key={index} className="mb-3 flex flex-row">
-            <h3 className="font-medium text-gray-900 mb-2">
-              {category.name || "General Skills"}
-            </h3>
-            
-            <div className="flex flex-wrap gap-2">
-              {category.skills.map((skill, idx) => (
-                <span 
-                  key={idx} 
-                  className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </div>
-        )
-      ))}
-    </div>
-  </section>
-)}
+          {/* Skills section with categories */}
+          {resumeData.skillCategories?.length > 0 && (
+            <section className="mb-8">
+              <h2 className="text-lg font-semibold text-gray-800 mb-4 tracking-wide uppercase border-b border-gray-300 pb-1">
+                Skills
+              </h2>
 
-{/* Fallback for older resumes without categories */}
-{(!resumeData.skillCategories || resumeData.skillCategories.length === 0) && resumeData.skills?.length > 0 && (
-  <section className="mb-8">
-    <h2 className="text-lg font-semibold text-gray-800 mb-4 tracking-wide uppercase border-b border-gray-300 pb-1">
-      Skills
-    </h2>
-    
-    <div className="flex flex-wrap gap-2">
-      {resumeData.skills.map((skill, index) => (
-        <span
-          key={index}
-          className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full"
-        >
-          {skill}
-        </span>
-      ))}
-    </div>
-  </section>
-)}
+              <div className="space-y-4 ">
+                {resumeData.skillCategories.map(
+                  (category, index) =>
+                    category.skills.length > 0 && (
+                      <div key={index} className="mb-3 flex flex-row">
+                        <h3 className="font-medium text-gray-900 mb-2">
+                          {category.name || "General Skills"}
+                        </h3>
 
+                        <div className="flex flex-wrap gap-2">
+                          {category.skills.map((skill, idx) => (
+                            <span
+                              key={idx}
+                              className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full"
+                            >
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )
+                )}
+              </div>
+            </section>
+          )}
+
+          {/* Fallback for older resumes without categories */}
+          {(!resumeData.skillCategories ||
+            resumeData.skillCategories.length === 0) &&
+            resumeData.skills?.length > 0 && (
+              <section className="mb-8">
+                <h2 className="text-lg font-semibold text-gray-800 mb-4 tracking-wide uppercase border-b border-gray-300 pb-1">
+                  Skills
+                </h2>
+
+                <div className="flex flex-wrap gap-2">
+                  {resumeData.skills.map((skill, index) => (
+                    <span
+                      key={index}
+                      className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </section>
+            )}
         </div>
       </div>
     </div>

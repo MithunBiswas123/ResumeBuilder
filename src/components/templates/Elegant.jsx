@@ -225,6 +225,11 @@ export default function Elegant({ resumeData }) {
     aiHighlights,
   } = resumeData || {};
 
+  const ensureHttps = (url) => {
+    if (!url) return "";
+    return url.startsWith("http") ? url : `https://${url}`;
+  };
+
   return (
     <div className="bg-white w-full h-full font-serif text-gray-800 flex flex-col">
       {/* Header Section */}
@@ -268,33 +273,26 @@ export default function Elegant({ resumeData }) {
 
             {personalInfo?.linkedin && (
               <a
-                href={
-                  personalInfo.linkedin.startsWith("http")
-                    ? personalInfo.linkedin
-                    : `https://${personalInfo.linkedin}`
-                }
+                href={ensureHttps(personalInfo.linkedin)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center hover:text-gray-800 transition-colors"
+                className="flex items-center text-gray-600 hover:text-gray-900"
               >
-                <FaLinkedin className="mr-2 text-gray-500" />
-                <span className="text-gray-600">{personalInfo.linkedin}</span>
+                <FaLinkedin className="mr-3 text-gray-400" />
+                <span>LinkedIn</span>
               </a>
             )}
 
+            {/* GitHub link with proper icon */}
             {personalInfo?.github && (
               <a
-                href={
-                  personalInfo.github.startsWith("http")
-                    ? personalInfo.github
-                    : `https://${personalInfo.github}`
-                }
+                href={ensureHttps(personalInfo.github)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center hover:text-gray-800 transition-colors"
+                className="flex items-center text-gray-600 hover:text-gray-900"
               >
-                <FaGithub className="mr-2 text-gray-500" />
-                <span className="text-gray-600">{personalInfo.github}</span>
+                <FaGithub className="mr-3 text-gray-400" />
+                <span>GitHub</span>
               </a>
             )}
 
@@ -508,12 +506,12 @@ export default function Elegant({ resumeData }) {
 
                   {project.link && (
                     <a
-                      href={project.link}
+                      href={ensureHttps(project.link)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-blue-600 hover:underline flex items-center"
+                      className="text-gray-500 text-sm hover:text-gray-800"
                     >
-                      View Project <span className="ml-1">→</span>
+                      View →
                     </a>
                   )}
                 </div>
