@@ -16,7 +16,7 @@ const ensureHttps = (url) => {
 };
 
 export default function Classic({ resumeData }) {
-  const { personalInfo, experience, education, skills, projects } =
+  const { personalInfo, experience, education, skills, projects ,achievements } =
     resumeData || {};
 
   return (
@@ -140,6 +140,45 @@ export default function Classic({ resumeData }) {
                 </div>
               </section>
             )}
+
+
+                {/* Achievements */}
+                {achievements?.length > 0 && (
+              <section className="mb-8">
+                <h2 className="text-lg font-semibold text-gray-800 mb-4 tracking-wide uppercase border-b border-gray-300 pb-1">
+                  Achievements
+                </h2>
+
+                <div className="space-y-6">
+                  {achievements.map((achievement, index) => (
+                    <div key={index} className="mb-4">
+                      <div className="flex flex-col md:flex-row md:justify-between mb-1">
+                        <h3 className="font-semibold text-gray-900 text-lg">
+                          {achievement.title}
+                        </h3>
+                        {achievement.date && (
+                          <p className="text-gray-600 italic">
+                            {achievement.date}
+                          </p>
+                        )}
+                      </div>
+
+                      {achievement.organization && (
+                        <p className="font-medium text-gray-700 mb-2">
+                          {achievement.organization}
+                        </p>
+                      )}
+
+                      {achievement.description && (
+                        <p className="text-gray-700 text-sm">{achievement.description}</p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+
 
             {/* Projects */}
             {projects?.length > 0 && (

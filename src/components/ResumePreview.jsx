@@ -16,67 +16,13 @@ import Creative from './templates/Creative';
 import Elegant from './templates/Elegant';
 import Classic from './templates/Classic';
 import Best from './templates/Best';
+import Traditional from './templates/Traditional';
+import Formal from './templates/Formal';
 
 export default function ResumePreview({ resumeData, selectedTemplate }) {
   const resumeRef = useRef(null);
   
-  // const downloadPDF = async () => {
-  //   try {
-  //     const { toCanvas } = await import('html-to-image');
-  //     const { jsPDF } = await import('jspdf');
-      
-  //     const element = resumeRef.current;
-      
-  //     // Show loading state
-  //     const downloadBtn = document.getElementById('download-btn');
-  //     const originalText = downloadBtn.innerText;
-  //     downloadBtn.innerText = 'Generating...';
-  //     downloadBtn.disabled = true;
-      
-  //     // Using toCanvas for higher quality rendering
-  //     const canvas = await toCanvas(element, { 
-  //       quality: 1,
-  //       pixelRatio: 4, // Increased further for even sharper text
-  //       backgroundColor: '#ffffff',
-  //       fontEmbedCSS: document.styleSheets,
-  //       skipFonts: false
-  //     });
-      
-  //     const imgData = canvas.toDataURL('image/jpeg', 1.0);
-      
-  //     // Create PDF with higher DPI
-  //     const pdf = new jsPDF({
-  //       orientation: 'portrait',
-  //       unit: 'mm',
-  //       format: 'a4',
-  //       compress: true,
-  //       hotfixes: ["px_scaling"]
-  //     });
-      
-  //     const pdfWidth = pdf.internal.pageSize.getWidth();
-  //     const pdfHeight = pdf.internal.pageSize.getHeight();
-      
-  //     // Add image to PDF with better quality settings
-  //     pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight, undefined, 'FAST');
-      
-  //     // Save the PDF
-  //     pdf.save(`${resumeData?.personalInfo?.name || 'resume'}.pdf`);
-      
-  //     // Reset button state
-  //     downloadBtn.innerText = originalText;
-  //     downloadBtn.disabled = false;
-  //   } catch (error) {
-  //     console.error('Error generating PDF:', error);
-  //     alert('Failed to generate PDF. Please try again.');
-      
-  //     // Reset button on error
-  //     const downloadBtn = document.getElementById('download-btn');
-  //     if (downloadBtn) {
-  //       downloadBtn.innerText = 'Download PDF';
-  //       downloadBtn.disabled = false;
-  //     }
-  //   }
-  // };
+
 
 
   // This function determines which template to render based on selection
@@ -221,6 +167,10 @@ const ensureHttps = (url) => {
         return <Classic resumeData={resumeData} />;
       case 'best':
         return <Best resumeData={resumeData} />;
+      case 'traditional':
+        return <Traditional resumeData={resumeData} />;
+      case 'formal':
+        return <Formal resumeData={resumeData} />;
       default:
         return <Modern resumeData={resumeData} />;
     }

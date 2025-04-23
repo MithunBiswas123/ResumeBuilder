@@ -49,6 +49,22 @@ export default function TemplateSelector({ selectedTemplate, setSelectedTemplate
 
      
       color: '#0000' // black
+    },
+    {
+      id: 'traditional',
+      name: 'Traditional',
+      description: 'Best design for all industries',
+
+     
+      color: '#0000' // black
+    },
+    {
+      id: 'formal',
+      name: 'Formal',
+      description: 'Best design for all industries',
+
+     
+      color: '#0000' // black
     }
   ];
 

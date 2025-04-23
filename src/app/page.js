@@ -48,6 +48,18 @@ export default function HomePage() {
       description: 'Best design for all industries',
       image: '/templates-previews/classic.png'
     },
+    { 
+      id: 'traditional', 
+      name: 'Traditional', 
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
+    },
+    { 
+      id: 'formal', 
+      name: 'Formal', 
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
+    },
   ];
   
   const startBuilding = () => {

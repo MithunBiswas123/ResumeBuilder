@@ -1,3 +1,7 @@
+
+
+
+
 "use client";
 
 import {
@@ -6,6 +10,7 @@ import {
   FaMapMarkerAlt,
   FaGithub,
   FaLinkedin,
+  FaTrophy
 } from "react-icons/fa";
 
 const ensureHttps = (url) => {
@@ -14,7 +19,7 @@ const ensureHttps = (url) => {
 };
 
 export default function Modern({ resumeData }) {
-  const { personalInfo, experience, education, skills, projects } = resumeData;
+  const { personalInfo, experience, education, skills, projects, achievements } = resumeData;
 
   return (
     <div className="w-full h-full bg-white text-gray-800 flex flex-col">
@@ -34,30 +39,29 @@ export default function Modern({ resumeData }) {
               {personalInfo.email}
             </div>
           )}
-         {personalInfo?.linkedin && (
-                         <a
-                           href={ensureHttps(personalInfo.linkedin)}
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           className="flex items-center text-gray-600 hover:text-gray-900"
-                         >
-                           <FaLinkedin className="mr-3 text-gray-400" />
-                           <span>LinkedIn</span>
-                         </a>
-                       )}
-         
-                       {/* GitHub link with proper icon */}
-                       {personalInfo?.github && (
-                         <a
-                           href={ensureHttps(personalInfo.github)}
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           className="flex items-center text-gray-600 hover:text-gray-900"
-                         >
-                           <FaGithub className="mr-3 text-gray-400" />
-                           <span>GitHub</span>
-                         </a>
-                       )}
+          {personalInfo?.linkedin && (
+            <a
+              href={ensureHttps(personalInfo.linkedin)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center text-white hover:text-gray-200"
+            >
+              <FaLinkedin className="mr-2" />
+              <span>LinkedIn</span>
+            </a>
+          )}
+          
+          {personalInfo?.github && (
+            <a
+              href={ensureHttps(personalInfo.github)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center text-white hover:text-gray-200"
+            >
+              <FaGithub className="mr-2" />
+              <span>GitHub</span>
+            </a>
+          )}
 
           {personalInfo.phone && (
             <div className="flex items-center">
@@ -137,6 +141,34 @@ export default function Modern({ resumeData }) {
           </section>
         )}
 
+        {/* Achievements Section */}
+        {achievements && achievements.length > 0 && (
+          <section className="mb-6">
+            <h2 className="text-lg font-bold text-blue-600 border-b border-blue-200 pb-1 mb-3">
+              ACHIEVEMENTS
+            </h2>
+
+            {achievements.map((achievement, index) => (
+              <div key={index} className="mb-3">
+                <div className="flex justify-between items-start">
+                  <h3 className="font-bold">{achievement.title}</h3>
+                  {achievement.date && (
+                    <span className="text-gray-600 text-sm">{achievement.date}</span>
+                  )}
+                </div>
+                {achievement.organization && (
+                  <h4 className="text-gray-700 italic mb-1">
+                    {achievement.organization}
+                  </h4>
+                )}
+                {achievement.description && (
+                  <p className="text-sm">{achievement.description}</p>
+                )}
+              </div>
+            ))}
+          </section>
+        )}
+
         <div className="flex flex-wrap gap-6">
           {/* Skills */}
           {skills && skills.length > 0 && (
@@ -174,15 +206,15 @@ export default function Modern({ resumeData }) {
                   )}
                   <p className="text-sm">{project.description}</p>
                   {project.link && (
-                      <a
-                        href={ensureHttps(project.link)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-gray-500 text-sm hover:text-gray-800"
-                      >
-                        View →
-                      </a>
-                    )}
+                    <a
+                      href={ensureHttps(project.link)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-500 text-sm hover:text-gray-800"
+                    >
+                      View →
+                    </a>
+                  )}
                 </div>
               ))}
             </section>
