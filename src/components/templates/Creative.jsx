@@ -11,6 +11,7 @@ export default function Creative({ resumeData }) {
     skills,
     projects,
     achievements,
+    certificates,
     aiHighlights,
   } = resumeData || {};
 
@@ -237,6 +238,58 @@ export default function Creative({ resumeData }) {
                 </span>
               ))}
             </div>
+          </section>
+        )}
+
+
+         {/* Certificates Section - Add after skills and before projects */}
+         {certificates?.length > 0 && (
+          <section className="mb-8">
+            <h2 className="text-2xl font-bold text-purple-700 mb-4">Certifications</h2>
+            
+            {certificates.map((cert, index) => (
+              <div 
+                key={index} 
+                className="mb-6 p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div className="flex justify-between items-baseline">
+                  <h3 className="text-xl font-semibold text-purple-800">
+                    {cert.name}
+                  </h3>
+                  <span className="text-gray-600 text-sm">
+                    {cert.date}
+                    {cert.expiration && ` — Valid until ${cert.expiration}`}
+                  </span>
+                </div>
+                
+                <p className="text-purple-600 font-medium">
+                  {cert.issuer}
+                  {cert.credentialID && (
+                    <span className="text-gray-500 text-sm ml-2">
+                      ID: {cert.credentialID}
+                    </span>
+                  )}
+                </p>
+                
+                {cert.description && (
+                  <p className="mt-2 text-gray-700">{cert.description}</p>
+                )}
+                
+                {cert.url && (
+                  <div className="mt-3">
+                    <a
+                      href={ensureHttps(cert.url)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center text-purple-600 hover:text-purple-800 text-sm"
+                    >
+                         <FaCertificate className="mr-1" />
+                      <span>View Certificate</span>
+                    </a>
+                  </div>
+                )}
+              </div>
+            ))}
           </section>
         )}
 

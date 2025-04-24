@@ -65,7 +65,47 @@ export default function TemplateSelector({ selectedTemplate, setSelectedTemplate
 
      
       color: '#0000' // black
-    }
+    },
+    {
+      id: 'toronto',
+      name: 'Toronto',
+      description: 'Best design for all industries',
+
+     
+      color: '#0000' // black
+    },
+    {
+      id: 'functional',
+      name: 'Functional',
+      description: 'Best design for all industries',
+
+     
+      color: '#0000' // black
+    },
+    {
+      id: 'simple',
+      name: 'Simple',
+      description: 'Best design for all industries',
+
+     
+      color: '#0000' // black
+    },
+    {
+      id: 'stylish',
+      name: 'Stylish',
+      description: 'Best design for all industries',
+
+     
+      color: '#0000' // black
+    },
+    {
+      id: 'iconic',
+      name: 'Iconic',
+      description: 'Best design for all industries',
+
+     
+      color: '#0000' // black
+    },
   ];
 
   // Get current template

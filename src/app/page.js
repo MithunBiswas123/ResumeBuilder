@@ -60,6 +60,36 @@ export default function HomePage() {
       description: 'Best design for all industries',
       image: '/templates-previews/classic.png'
     },
+    { 
+      id: 'toronto', 
+      name: 'Toronto', 
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
+    },
+    { 
+      id: 'functional', 
+      name: 'Functional', 
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
+    },
+    { 
+      id: 'simple', 
+      name: 'Simple', 
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
+    },
+    { 
+      id: 'stylish', 
+      name: 'Stylish', 
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
+    },
+    { 
+      id: 'iconic', 
+      name: 'Iconic', 
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
+    },
   ];
   
   const startBuilding = () => {

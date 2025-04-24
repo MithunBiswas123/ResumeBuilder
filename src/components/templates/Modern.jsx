@@ -1,7 +1,3 @@
-
-
-
-
 "use client";
 
 import {
@@ -10,7 +6,8 @@ import {
   FaMapMarkerAlt,
   FaGithub,
   FaLinkedin,
-  FaTrophy
+  FaTrophy,
+  FaCertificate,
 } from "react-icons/fa";
 
 const ensureHttps = (url) => {
@@ -19,7 +16,15 @@ const ensureHttps = (url) => {
 };
 
 export default function Modern({ resumeData }) {
-  const { personalInfo, experience, education, skills, projects, achievements } = resumeData;
+  const {
+    personalInfo,
+    experience,
+    education,
+    skills,
+    projects,
+    achievements,
+    certificates,
+  } = resumeData;
 
   return (
     <div className="w-full h-full bg-white text-gray-800 flex flex-col">
@@ -50,7 +55,7 @@ export default function Modern({ resumeData }) {
               <span>LinkedIn</span>
             </a>
           )}
-          
+
           {personalInfo?.github && (
             <a
               href={ensureHttps(personalInfo.github)}
@@ -141,6 +146,59 @@ export default function Modern({ resumeData }) {
           </section>
         )}
 
+        {/* certificate */}
+
+        {certificates?.length > 0 && (
+          <section className="mb-8 bg-blue-50 p-6 rounded-lg">
+            <h2 className="text-xl font-bold text-gray-800 mb-4 border-b-2 border-blue-200 pb-2 flex items-center">
+              <FaCertificate className="mr-3 text-blue-500" />
+              Certifications
+            </h2>
+
+            <div className="space-y-4">
+              {certificates.map((cert, index) => (
+                <div key={index} className="mb-4">
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    {cert.name}
+                  </h3>
+
+                  <p className="text-blue-700 font-medium">
+                    {cert.issuer}
+                    {cert.credentialID && (
+                      <span className="text-gray-500 text-sm ml-2">
+                        ID: {cert.credentialID}
+                      </span>
+                    )}
+                  </p>
+
+                  <p className="text-gray-600 text-sm">
+                    {cert.date}
+                    {cert.expiration && ` • Valid until ${cert.expiration}`}
+                  </p>
+
+                  {cert.description && (
+                    <p className="text-gray-700 text-sm mt-1">
+                      {cert.description}
+                    </p>
+                  )}
+
+                  {cert.url && (
+                    <a
+                      href={ensureHttps(cert.url)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-blue-600 hover:text-blue-800 text-sm mt-2"
+                    >
+                      <FaCertificate className="mr-1" />
+                      <span>View Certificate</span>
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* Achievements Section */}
         {achievements && achievements.length > 0 && (
           <section className="mb-6">
@@ -153,7 +211,9 @@ export default function Modern({ resumeData }) {
                 <div className="flex justify-between items-start">
                   <h3 className="font-bold">{achievement.title}</h3>
                   {achievement.date && (
-                    <span className="text-gray-600 text-sm">{achievement.date}</span>
+                    <span className="text-gray-600 text-sm">
+                      {achievement.date}
+                    </span>
                   )}
                 </div>
                 {achievement.organization && (
@@ -171,21 +231,50 @@ export default function Modern({ resumeData }) {
 
         <div className="flex flex-wrap gap-6">
           {/* Skills */}
+          {/* Skills with visible categories */}
           {skills && skills.length > 0 && (
             <section className="mb-6 flex-1 min-w-[200px]">
               <h2 className="text-lg font-bold text-blue-600 border-b border-blue-200 pb-1 mb-3">
                 SKILLS
               </h2>
-              <div className="flex flex-wrap gap-2">
-                {skills.map((skill, index) => (
-                  <span
-                    key={index}
-                    className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
+
+              {/* Check if skills are categorized or flat */}
+              {skills[0] &&
+              typeof skills[0] === "object" &&
+              "category" in skills[0] ? (
+                // Categorized skills
+                <div className="space-y-3">
+                  {skills.map((skillCategory, categoryIndex) => (
+                    <div key={categoryIndex} className="mb-2">
+                      <h3 className="text-sm font-bold text-gray-700 bg-gray-100 inline-block px-2 py-0.5 rounded mb-2">
+                        {skillCategory.category}
+                      </h3>
+                      <div className="flex flex-wrap gap-2 ml-1">
+                        {skillCategory.items.map((skill, skillIndex) => (
+                          <span
+                            key={skillIndex}
+                            className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                // Flat skills list (original implementation)
+                <div className="flex flex-wrap gap-2">
+                  {skills.map((skill, index) => (
+                    <span
+                      key={index}
+                      className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              )}
             </section>
           )}
 

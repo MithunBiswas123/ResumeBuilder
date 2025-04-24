@@ -8,6 +8,7 @@ import {
   FaMapMarkerAlt,
   FaLinkedin,
   FaGithub,
+  FaCertificate ,
 } from "react-icons/fa";
 
 const ensureHttps = (url) => {
@@ -16,7 +17,7 @@ const ensureHttps = (url) => {
 };
 
 export default function Classic({ resumeData }) {
-  const { personalInfo, experience, education, skills, projects ,achievements } =
+  const { personalInfo, experience, education, skills, projects ,achievements,certificates } =
     resumeData || {};
 
   return (
@@ -266,6 +267,58 @@ export default function Classic({ resumeData }) {
                 </div>
               </section>
             )}
+
+
+            {/* Certificates */}
+
+            {certificates?.length > 0 && (
+              <section className="mb-8">
+                <h2 className="text-lg font-semibold text-gray-800 mb-4 tracking-wide uppercase border-b border-gray-300 pb-1">
+                  Certifications
+                </h2>
+
+                <div className="space-y-4">
+                  {certificates.map((cert, index) => (
+                    <div key={index} className="mb-3">
+                      <h3 className="font-semibold text-gray-900">
+                        {cert.name}
+                      </h3>
+                      <p className="text-gray-700">
+                        {cert.issuer}
+                        {cert.credentialID && (
+                          <span className="text-gray-500 text-xs ml-2">
+                            #{cert.credentialID}
+                          </span>
+                        )}
+                      </p>
+                      <p className="text-gray-600 text-sm mb-1 italic">
+                        {cert.date}
+                        {cert.expiration && ` — Valid until ${cert.expiration}`}
+                      </p>
+
+                      {cert.url && (
+                        <a
+                          href={ensureHttps(cert.url)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center text-gray-500 text-sm hover:text-gray-800 mt-1"
+                        >
+                          <FaCertificate className="mr-1 text-gray-500" />
+                          <span>View Certificate</span>
+                        </a>
+                      )}
+
+                      {cert.description && (
+                        <p className="text-gray-700 text-sm mt-1">
+                          {cert.description}
+                        </p>
+                         )}
+                         </div>
+                       ))}
+                     </div>
+                   </section>
+                 )}
+
           </div>
         </div>
       </div>

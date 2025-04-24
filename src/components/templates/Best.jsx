@@ -7,10 +7,11 @@ import {
   FaMapMarkerAlt,
   FaLinkedin,
   FaGithub,
+  FaCertificate ,
 } from "react-icons/fa";
 
 export default function Best({ resumeData }) {
-  const { personalInfo, experience, education, skills, projects ,achievements } =
+  const { personalInfo, experience, education, skills, projects ,achievements,certificates } =
     resumeData || {};
 
   // Helper function to ensure URLs are properly formatted
@@ -126,6 +127,53 @@ export default function Best({ resumeData }) {
               </div>
             </section>
           )}
+
+         {/* Certificates Section */}
+         {certificates?.length > 0 && (
+            <section className="mb-8">
+              <h2 className="text-sm uppercase tracking-widest mb-4 text-gray-500 font-medium">
+                Certificates
+              </h2>
+
+              <div className="space-y-4">
+                {certificates.map((cert, index) => (
+                  <div key={index} className="mb-3">
+                    <h3 className="font-medium text-gray-800">
+                      {cert.name}
+                    </h3>
+                    <p className="text-gray-700">
+                      {cert.issuer}
+                      {cert.credentialID && <span className="text-gray-500 text-xs ml-2">#{cert.credentialID}</span>}
+                    </p>
+                    <p className="text-gray-500 text-sm">
+                      {cert.date}
+                      {cert.expiration && ` — ${cert.expiration}`}
+                    </p>
+
+                    {cert.url && (
+                      <a
+                        href={ensureHttps(cert.url)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-500 text-sm hover:text-gray-800 flex items-center mt-1"
+                      >
+                        <FaCertificate className="mr-1 text-gray-400" />
+                        <span>View Certificate</span>
+                      </a>
+                    )}
+
+                    {cert.description && (
+                      <p className="text-gray-600 text-sm mt-1">
+                        {cert.description}
+                      </p>
+                    )}
+                  </div>
+                ))}
+                 </div>
+            </section>
+          )}
+
+
         </div>
 
         {/* Main content area */}

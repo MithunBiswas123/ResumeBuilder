@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { FaLinkedin, FaGithub } from "react-icons/fa"; // Add this import
+import { FaLinkedin, FaGithub, } from "react-icons/fa"; // Add this import
 
 export default function Elegant({ resumeData }) {
   const {
@@ -11,6 +11,7 @@ export default function Elegant({ resumeData }) {
     projects,
     achievements,
     aiHighlights,
+    certificates,
   } = resumeData || {};
 
   const ensureHttps = (url) => {
@@ -266,6 +267,52 @@ export default function Elegant({ resumeData }) {
                 </span>
               ))}
             </div>
+          </section>
+        )}
+
+         {/* Certificates Section */}
+         {certificates?.length > 0 && (
+          <section className="mb-8">
+            <h2 className="text-lg font-semibold text-gray-800 border-b border-gray-200 pb-2 mb-3">
+              Certifications
+            </h2>
+            {certificates.map((cert, index) => (
+              <div key={index} className="mb-5">
+                <div className="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
+                  <h3 className="text-base font-medium text-gray-800">
+                    {cert.name}
+                  </h3>
+                  <span className="text-sm text-gray-600">
+                    {cert.date}
+                    {cert.expiration && ` • Valid until ${cert.expiration}`}
+                  </span>
+                </div>
+                <p className="text-base text-blue-700 mb-1">
+                  {cert.issuer}
+                  {cert.credentialID && (
+                    <span className="text-sm text-gray-500 ml-2">
+                      ID: {cert.credentialID}
+                    </span>
+                  )}
+                </p>
+                
+                {cert.description && (
+                  <p className="text-gray-700 text-sm mb-1">{cert.description}</p>
+                )}
+                
+                {cert.url && (
+                  <a
+                    href={ensureHttps(cert.url)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-sm text-gray-600 hover:text-blue-700"
+                  >
+                    <FaCertificate className="mr-1 text-gray-500" />
+                    <span>View Certificate</span>
+                  </a>
+                )}
+                  </div>
+            ))}
           </section>
         )}
 

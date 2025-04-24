@@ -18,6 +18,11 @@ import Classic from './templates/Classic';
 import Best from './templates/Best';
 import Traditional from './templates/Traditional';
 import Formal from './templates/Formal';
+import Toronto from './templates/Toronto';
+import Functional from './templates/Functional';
+import Simple from './templates/Simple';
+import Stylish from './templates/Stylish';
+import Iconic from './templates/Iconic';
 
 export default function ResumePreview({ resumeData, selectedTemplate }) {
   const resumeRef = useRef(null);
@@ -171,6 +176,16 @@ const ensureHttps = (url) => {
         return <Traditional resumeData={resumeData} />;
       case 'formal':
         return <Formal resumeData={resumeData} />;
+      case 'toronto':
+        return <Toronto resumeData={resumeData} />;
+      case 'functional':
+        return <Functional resumeData={resumeData} />;
+      case 'simple':
+        return <Simple resumeData={resumeData} />;
+      case 'stylish':
+        return <Stylish resumeData={resumeData} />;
+      case 'iconic':
+        return <Iconic resumeData={resumeData} />;
       default:
         return <Modern resumeData={resumeData} />;
     }

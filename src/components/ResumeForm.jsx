@@ -288,137 +288,140 @@ export default function ResumeForm({
   // Add this to your ResumeForm component with the other state handlers
 
   // Achievement handlers
-   const addAchievement = () => {
-     setResumeData({
-       ...resumeData,
-       achievements: [
-         ...(resumeData.achievements || []),
-         { title: "", organization: "", date: "", description: "" }
-       ]
-     });
-   };
+  const addAchievement = () => {
+    setResumeData({
+      ...resumeData,
+      achievements: [
+        ...(resumeData.achievements || []),
+        { title: "", organization: "", date: "", description: "" },
+      ],
+    });
+  };
 
-   const updateAchievement = (index, field, value) => {
-     const updatedAchievements = [...(resumeData.achievements || [])];
-     updatedAchievements[index] = {
-       ...updatedAchievements[index],
-       [field]: value
-     };
+  const updateAchievement = (index, field, value) => {
+    const updatedAchievements = [...(resumeData.achievements || [])];
+    updatedAchievements[index] = {
+      ...updatedAchievements[index],
+      [field]: value,
+    };
 
-     setResumeData({
-       ...resumeData,
-       achievements: updatedAchievements
-     });
+    setResumeData({
+      ...resumeData,
+      achievements: updatedAchievements,
+    });
 
-     setActiveSection("achievements");
-   };
+    setActiveSection("achievements");
+  };
 
   {
     /* Achievements Tab */
-    {/* Achievements Tab */}
-{currentTab === "achievements" && (
-  <div>
-    {(resumeData.achievements || []).map((achievement, index) => (
-      <div key={index} className="mb-6 p-4 border rounded-md relative">
-        <button
-          onClick={() => deleteAchievement(index)}
-          className="absolute top-2 right-2 text-red-500 hover:text-red-700"
-          title="Delete achievement"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
-
-        <h3 className="font-medium mb-3">Achievement #{index + 1}</h3>
-
-        {/* Achievement form fields */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-          {/* Title/Award */}
-          <div>
-            <label className="block text-sm font-medium mb-1">
-              Title/Award
-            </label>
-            <input
-              type="text"
-              value={achievement.title || ""}
-              onChange={(e) =>
-                updateAchievement(index, "title", e.target.value)
-              }
-              className="w-full p-2 border rounded-md"
-              placeholder="e.g., Employee of the Year, Certification"
-            />
-          </div>
-          {/* Organization */}
-          <div>
-            <label className="block text-sm font-medium mb-1">
-              Organization
-            </label>
-            <input
-              type="text"
-              value={achievement.organization || ""}
-              onChange={(e) =>
-                updateAchievement(index, "organization", e.target.value)
-              }
-              className="w-full p-2 border rounded-md"
-              placeholder="e.g., Google, Microsoft, University"
-            />
-          </div>
-        </div>
-
-        {/* Date */}
-        <div className="mb-4">
-          <label className="block text-sm font-medium mb-1">Date</label>
-          <input
-            type="text"
-            value={achievement.date || ""}
-            onChange={(e) =>
-              updateAchievement(index, "date", e.target.value)
-            }
-            className="w-full p-2 border rounded-md"
-            placeholder="e.g., May 2023, 2020-2022"
-          />
-        </div>
-
-        {/* Description */}
+    {
+      /* Achievements Tab */
+    }
+    {
+      currentTab === "achievements" && (
         <div>
-          <label className="block text-sm font-medium mb-1">
-            Description
-          </label>
-          <textarea
-            value={achievement.description || ""}
-            onChange={(e) =>
-              updateAchievement(index, "description", e.target.value)
-            }
-            className="w-full p-2 border rounded-md"
-            rows="3"
-            placeholder="Details about your achievement and its significance"
-          ></textarea>
-        </div>
-      </div>
-    ))}
+          {(resumeData.achievements || []).map((achievement, index) => (
+            <div key={index} className="mb-6 p-4 border rounded-md relative">
+              <button
+                onClick={() => deleteAchievement(index)}
+                className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+                title="Delete achievement"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
 
-    <button
-      onClick={addAchievement}
-      className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md transition-colors"
-    >
-      Add Achievement
-    </button>
-  </div>
-)}
+              <h3 className="font-medium mb-3">Achievement #{index + 1}</h3>
+
+              {/* Achievement form fields */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                {/* Title/Award */}
+                <div>
+                  <label className="block text-sm font-medium mb-1">
+                    Title/Award
+                  </label>
+                  <input
+                    type="text"
+                    value={achievement.title || ""}
+                    onChange={(e) =>
+                      updateAchievement(index, "title", e.target.value)
+                    }
+                    className="w-full p-2 border rounded-md"
+                    placeholder="e.g., Employee of the Year, Certification"
+                  />
+                </div>
+                {/* Organization */}
+                <div>
+                  <label className="block text-sm font-medium mb-1">
+                    Organization
+                  </label>
+                  <input
+                    type="text"
+                    value={achievement.organization || ""}
+                    onChange={(e) =>
+                      updateAchievement(index, "organization", e.target.value)
+                    }
+                    className="w-full p-2 border rounded-md"
+                    placeholder="e.g., Google, Microsoft, University"
+                  />
+                </div>
+              </div>
+
+              {/* Date */}
+              <div className="mb-4">
+                <label className="block text-sm font-medium mb-1">Date</label>
+                <input
+                  type="text"
+                  value={achievement.date || ""}
+                  onChange={(e) =>
+                    updateAchievement(index, "date", e.target.value)
+                  }
+                  className="w-full p-2 border rounded-md"
+                  placeholder="e.g., May 2023, 2020-2022"
+                />
+              </div>
+
+              {/* Description */}
+              <div>
+                <label className="block text-sm font-medium mb-1">
+                  Description
+                </label>
+                <textarea
+                  value={achievement.description || ""}
+                  onChange={(e) =>
+                    updateAchievement(index, "description", e.target.value)
+                  }
+                  className="w-full p-2 border rounded-md"
+                  rows="3"
+                  placeholder="Details about your achievement and its significance"
+                ></textarea>
+              </div>
+            </div>
+          ))}
+
+          <button
+            onClick={addAchievement}
+            className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md transition-colors"
+          >
+            Add Achievement
+          </button>
+        </div>
+      );
+    }
   }
-  
 
   // Add this near your other handlers (before the return statement)
   // const addAchievement = () => {
@@ -452,6 +455,49 @@ export default function ResumeForm({
     setResumeData({
       ...resumeData,
       achievements: updatedAchievements,
+    });
+  };
+
+  // Add these handlers with your other state handlers
+  const addCertificate = () => {
+    setResumeData({
+      ...resumeData,
+      certificates: [
+        ...(resumeData.certificates || []),
+        {
+          name: "",
+          issuer: "",
+          date: "",
+          expiration: "",
+          credentialID: "",
+          url: "",
+          description: "",
+        },
+      ],
+    });
+  };
+
+  const updateCertificate = (index, field, value) => {
+    const updatedCertificates = [...(resumeData.certificates || [])];
+    updatedCertificates[index] = {
+      ...updatedCertificates[index],
+      [field]: value,
+    };
+
+    setResumeData({
+      ...resumeData,
+      certificates: updatedCertificates,
+    });
+
+    setActiveSection("certificates");
+  };
+
+  const deleteCertificate = (index) => {
+    const updatedCertificates = [...(resumeData.certificates || [])];
+    updatedCertificates.splice(index, 1);
+    setResumeData({
+      ...resumeData,
+      certificates: updatedCertificates,
     });
   };
 
@@ -522,7 +568,17 @@ export default function ResumeForm({
           Achievements
         </button>
 
-        
+        {/* Add this button in the tab navigation area after Achievements */}
+        <button
+          className={`px-4 py-2 ${
+            currentTab === "certificates"
+              ? "border-b-2 border-blue-600 text-blue-600"
+              : ""
+          }`}
+          onClick={() => setCurrentTab("certificates")}
+        >
+          Certificates
+        </button>
       </div>
 
       {/* Personal Info Tab */}
@@ -1124,14 +1180,117 @@ export default function ResumeForm({
       )}
 
       {/* Achievements Tab */}
-{currentTab === "achievements" && (
+      {currentTab === "achievements" && (
+        <div>
+          {(resumeData.achievements || []).map((achievement, index) => (
+            <div key={index} className="mb-6 p-4 border rounded-md relative">
+              <button
+                onClick={() => deleteAchievement(index)}
+                className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+                title="Delete achievement"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+
+              <h3 className="font-medium mb-3">Achievement #{index + 1}</h3>
+
+              {/* Achievement form fields */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                {/* Title/Award */}
+                <div>
+                  <label className="block text-sm font-medium mb-1">
+                    Title/Award
+                  </label>
+                  <input
+                    type="text"
+                    value={achievement.title || ""}
+                    onChange={(e) =>
+                      updateAchievement(index, "title", e.target.value)
+                    }
+                    className="w-full p-2 border rounded-md"
+                    placeholder="e.g., Employee of the Year, Certification"
+                  />
+                </div>
+                {/* Organization */}
+                <div>
+                  <label className="block text-sm font-medium mb-1">
+                    Organization
+                  </label>
+                  <input
+                    type="text"
+                    value={achievement.organization || ""}
+                    onChange={(e) =>
+                      updateAchievement(index, "organization", e.target.value)
+                    }
+                    className="w-full p-2 border rounded-md"
+                    placeholder="e.g., Google, Microsoft, University"
+                  />
+                </div>
+              </div>
+
+              {/* Date */}
+              <div className="mb-4">
+                <label className="block text-sm font-medium mb-1">Date</label>
+                <input
+                  type="text"
+                  value={achievement.date || ""}
+                  onChange={(e) =>
+                    updateAchievement(index, "date", e.target.value)
+                  }
+                  className="w-full p-2 border rounded-md"
+                  placeholder="e.g., May 2023, 2020-2022"
+                />
+              </div>
+
+              {/* Description */}
+              <div>
+                <label className="block text-sm font-medium mb-1">
+                  Description
+                </label>
+                <textarea
+                  value={achievement.description || ""}
+                  onChange={(e) =>
+                    updateAchievement(index, "description", e.target.value)
+                  }
+                  className="w-full p-2 border rounded-md"
+                  rows="3"
+                  placeholder="Details about your achievement and its significance"
+                ></textarea>
+              </div>
+            </div>
+          ))}
+
+          <button
+            onClick={addAchievement}
+            className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md transition-colors"
+          >
+            Add Achievement
+          </button>
+        </div>
+      )}
+
+    {/* Certificates Tab */}
+{currentTab === "certificates" && (
   <div>
-    {(resumeData.achievements || []).map((achievement, index) => (
+    {(resumeData.certificates || []).map((certificate, index) => (
       <div key={index} className="mb-6 p-4 border rounded-md relative">
         <button
-          onClick={() => deleteAchievement(index)}
+          onClick={() => deleteCertificate(index)}
           className="absolute top-2 right-2 text-red-500 hover:text-red-700"
-          title="Delete achievement"
+          title="Delete certificate"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -1149,82 +1308,133 @@ export default function ResumeForm({
           </svg>
         </button>
 
-        <h3 className="font-medium mb-3">Achievement #{index + 1}</h3>
+        <h3 className="font-medium mb-3">Certificate #{index + 1}</h3>
 
-        {/* Achievement form fields */}
+        {/* Certificate form fields */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-          {/* Title/Award */}
+          {/* Certificate Name */}
           <div>
             <label className="block text-sm font-medium mb-1">
-              Title/Award
+              Certificate Name
             </label>
             <input
               type="text"
-              value={achievement.title || ""}
+              value={certificate.name || ""}
               onChange={(e) =>
-                updateAchievement(index, "title", e.target.value)
+                updateCertificate(index, "name", e.target.value)
               }
               className="w-full p-2 border rounded-md"
-              placeholder="e.g., Employee of the Year, Certification"
+              placeholder="e.g., AWS Certified Cloud Practitioner, Google Analytics"
             />
           </div>
-          {/* Organization */}
+          {/* Issuing Organization */}
           <div>
             <label className="block text-sm font-medium mb-1">
-              Organization
+              Issuing Organization
             </label>
             <input
               type="text"
-              value={achievement.organization || ""}
+              value={certificate.issuer || ""}
               onChange={(e) =>
-                updateAchievement(index, "organization", e.target.value)
+                updateCertificate(index, "issuer", e.target.value)
               }
               className="w-full p-2 border rounded-md"
-              placeholder="e.g., Google, Microsoft, University"
+              placeholder="e.g., Amazon Web Services, Google"
             />
           </div>
         </div>
 
-        {/* Date */}
-        <div className="mb-4">
-          <label className="block text-sm font-medium mb-1">Date</label>
-          <input
-            type="text"
-            value={achievement.date || ""}
-            onChange={(e) =>
-              updateAchievement(index, "date", e.target.value)
-            }
-            className="w-full p-2 border rounded-md"
-            placeholder="e.g., May 2023, 2020-2022"
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          {/* Issue Date */}
+          <div>
+            <label className="block text-sm font-medium mb-1">Issue Date</label>
+            <input
+              type="text"
+              value={certificate.date || ""}
+              onChange={(e) =>
+                updateCertificate(index, "date", e.target.value)
+              }
+              className="w-full p-2 border rounded-md"
+              placeholder="e.g., May 2023, June 2022"
+            />
+          </div>
+          {/* Expiration Date (optional) */}
+          <div>
+            <label className="block text-sm font-medium mb-1">
+              Expiration Date <span className="text-gray-500">(optional)</span>
+            </label>
+            <input
+              type="text"
+              value={certificate.expiration || ""}
+              onChange={(e) =>
+                updateCertificate(index, "expiration", e.target.value)
+              }
+              className="w-full p-2 border rounded-md"
+              placeholder="e.g., May 2026, No Expiration"
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          {/* Credential ID */}
+          <div>
+            <label className="block text-sm font-medium mb-1">
+              Credential ID <span className="text-gray-500">(optional)</span>
+            </label>
+            <input
+              type="text"
+              value={certificate.credentialID || ""}
+              onChange={(e) =>
+                updateCertificate(index, "credentialID", e.target.value)
+              }
+              className="w-full p-2 border rounded-md"
+              placeholder="e.g., ABC123XYZ"
+            />
+          </div>
+          {/* Certificate URL */}
+          <div>
+            <label className="block text-sm font-medium mb-1">
+              Certificate URL <span className="text-gray-500">(optional)</span>
+            </label>
+            <input
+              type="text"
+              value={certificate.url || ""}
+              onChange={(e) =>
+                updateCertificate(index, "url", e.target.value)
+              }
+              className="w-full p-2 border rounded-md"
+              placeholder="https://example.com/verify/certificate"
+            />
+          </div>
         </div>
 
         {/* Description */}
         <div>
           <label className="block text-sm font-medium mb-1">
-            Description
+            Description <span className="text-gray-500">(optional)</span>
           </label>
           <textarea
-            value={achievement.description || ""}
+            value={certificate.description || ""}
             onChange={(e) =>
-              updateAchievement(index, "description", e.target.value)
+              updateCertificate(index, "description", e.target.value)
             }
             className="w-full p-2 border rounded-md"
             rows="3"
-            placeholder="Details about your achievement and its significance"
+            placeholder="Skills demonstrated or knowledge covered by this certification"
           ></textarea>
         </div>
       </div>
     ))}
 
     <button
-      onClick={addAchievement}
+      onClick={addCertificate}
       className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md transition-colors"
     >
-      Add Achievement
+      Add Certificate
     </button>
   </div>
 )}
+
 
 
     </div>
