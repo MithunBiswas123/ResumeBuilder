@@ -146,6 +146,22 @@ export default function TemplateSelector({ selectedTemplate, setSelectedTemplate
      
       color: '#0000' // black
     },
+    {
+      id: 'cool',
+      name: 'Cool',
+      description: 'Best design for all industries',
+
+     
+      color: '#0000' // black
+    },
+    {
+      id: 'horizon',
+      name: 'Horizon',
+      description: 'Best design for all industries',
+
+     
+      color: '#0000' // black
+    },
   ];
 
   // Get current template

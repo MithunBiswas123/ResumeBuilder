@@ -28,6 +28,8 @@ import Composit from './templates/Composit';
 import Chronological from './templates/Chronological';
 import Federal from './templates/Federal';
 import Pheonix from './templates/Pheonix';
+import Cool from './templates/Cool';
+import Horizon from './templates/Horizon';
 
 
 
@@ -203,6 +205,10 @@ const ensureHttps = (url) => {
         return <Federal resumeData={resumeData} />;
       case 'pheonix':
         return <Pheonix resumeData={resumeData} />;
+      case 'cool':
+        return <Cool resumeData={resumeData} />;
+      case 'horizon':
+        return <Horizon resumeData={resumeData} />;
       default:
         return <Modern resumeData={resumeData} />;
     }
