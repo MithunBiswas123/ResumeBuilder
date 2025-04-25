@@ -23,6 +23,13 @@ import Functional from './templates/Functional';
 import Simple from './templates/Simple';
 import Stylish from './templates/Stylish';
 import Iconic from './templates/Iconic';
+import Revelent from './templates/Revelent';
+import Composit from './templates/Composit';
+import Chronological from './templates/Chronological';
+import Federal from './templates/Federal';
+import Pheonix from './templates/Pheonix';
+
+
 
 export default function ResumePreview({ resumeData, selectedTemplate }) {
   const resumeRef = useRef(null);
@@ -186,6 +193,16 @@ const ensureHttps = (url) => {
         return <Stylish resumeData={resumeData} />;
       case 'iconic':
         return <Iconic resumeData={resumeData} />;
+      case 'revelent':
+        return <Revelent resumeData={resumeData} />;
+      case 'composit':
+        return <Composit resumeData={resumeData} />;
+      case 'chronological':
+        return <Chronological resumeData={resumeData} />;
+      case 'federal':
+        return <Federal resumeData={resumeData} />;
+      case 'pheonix':
+        return <Pheonix resumeData={resumeData} />;
       default:
         return <Modern resumeData={resumeData} />;
     }

@@ -90,6 +90,36 @@ export default function HomePage() {
       description: 'Best design for all industries',
       image: '/templates-previews/classic.png'
     },
+    { 
+      id: 'revelent', 
+      name: 'Revelent', 
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
+    },
+    { 
+      id: 'composit', 
+      name: 'Composit', 
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
+    },
+    { 
+      id: 'chronological', 
+      name: 'Chronological', 
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
+    },
+    { 
+      id: 'federal', 
+      name: 'Federal', 
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
+    },
+    { 
+      id: 'pheonix', 
+      name: 'Pheonix', 
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
+    },
   ];
   
   const startBuilding = () => {

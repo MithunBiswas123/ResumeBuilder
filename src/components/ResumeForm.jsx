@@ -423,31 +423,7 @@ export default function ResumeForm({
     }
   }
 
-  // Add this near your other handlers (before the return statement)
-  // const addAchievement = () => {
-  //   setResumeData({
-  //     ...resumeData,
-  //     achievements: [
-  //       ...(resumeData.achievements || []),
-  //       { title: "", organization: "", date: "", description: "" },
-  //     ],
-  //   });
-  // };
-
-  // const updateAchievement = (index, field, value) => {
-  //   const updatedAchievements = [...(resumeData.achievements || [])];
-  //   updatedAchievements[index] = {
-  //     ...updatedAchievements[index],
-  //     [field]: value,
-  //   };
-
-  //   setResumeData({
-  //     ...resumeData,
-  //     achievements: updatedAchievements,
-  //   });
-
-  //   setActiveSection("achievements");
-  // };
+ 
 
   const deleteAchievement = (index) => {
     const updatedAchievements = [...(resumeData.achievements || [])];

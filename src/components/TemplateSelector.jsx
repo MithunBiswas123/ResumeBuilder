@@ -106,6 +106,46 @@ export default function TemplateSelector({ selectedTemplate, setSelectedTemplate
      
       color: '#0000' // black
     },
+    {
+      id: 'revelent',
+      name: 'Revelent',
+      description: 'Best design for all industries',
+
+     
+      color: '#0000' // black
+    },
+    {
+      id: 'composit',
+      name: 'Composit',
+      description: 'Best design for all industries',
+
+     
+      color: '#0000' // black
+    },
+    {
+      id: 'chronological',
+      name: 'Chronological',
+      description: 'Best design for all industries',
+
+     
+      color: '#0000' // black
+    },
+    {
+      id: 'federal',
+      name: 'Federal',
+      description: 'Best design for all industries',
+
+     
+      color: '#0000' // black
+    },
+    {
+      id: 'pheonix',
+      name: 'Pheonix',
+      description: 'Best design for all industries',
+
+     
+      color: '#0000' // black
+    },
   ];
 
   // Get current template

@@ -1,6 +1,3 @@
-
-
-
 "use client";
 
 import React from "react";
@@ -10,15 +7,13 @@ import {
   FaMapMarkerAlt,
   FaGithub,
   FaLinkedin,
-  FaTrophy,
+  FaAward,
   FaCertificate,
   FaBriefcase,
   FaGraduationCap,
-  FaStar,
-  FaCode,
-  FaUser,
   FaLink,
-  FaCalendarAlt
+  FaCalendarAlt,
+  FaStar
 } from "react-icons/fa";
 
 const ensureHttps = (url) => {
@@ -26,7 +21,7 @@ const ensureHttps = (url) => {
   return url.startsWith("http") ? url : `https://${url}`;
 };
 
-export default function Iconic({ resumeData }) {
+export default function Contrast({ resumeData }) {
   const {
     personalInfo,
     experience,
@@ -39,28 +34,15 @@ export default function Iconic({ resumeData }) {
 
   return (
     <div className="bg-white w-full h-full font-sans text-gray-800 flex flex-col md:flex-row">
-      {/* Left Sidebar */}
+      {/* Left Sidebar - Black Background */}
       <div className="w-full md:w-1/3 bg-gray-900 text-white p-6 md:p-8">
-        {/* Profile Section */}
-        <div className="text-center mb-8">
-          {personalInfo?.profileImage ? (
-            <img
-              src={personalInfo.profileImage}
-              alt={personalInfo.name}
-              className="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-gray-700 object-cover"
-            />
-          ) : (
-            <div className="w-32 h-32 rounded-full mx-auto mb-4 bg-gray-800 flex items-center justify-center border-4 border-gray-700">
-              <FaUser className="text-gray-400 text-4xl" />
-            </div>
-          )}
-          
-          <h1 className="text-2xl font-bold">
+        {/* Name and Title */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold tracking-tight text-white">
             {personalInfo?.name || "Your Name"}
           </h1>
-          
           {personalInfo?.title && (
-            <p className="text-gray-400 mt-2 text-lg font-light">
+            <p className="text-gray-400 mt-1 text-lg">
               {personalInfo.title}
             </p>
           )}
@@ -68,7 +50,7 @@ export default function Iconic({ resumeData }) {
 
         {/* Contact Information */}
         <div className="mb-8">
-          <h2 className="text-sm uppercase tracking-widest mb-4 border-b border-gray-700 pb-2 font-bold">
+          <h2 className="text-sm uppercase tracking-widest mb-4 border-b border-gray-700 pb-2 font-bold text-gray-300">
             Contact
           </h2>
           
@@ -120,12 +102,10 @@ export default function Iconic({ resumeData }) {
           </div>
         </div>
 
-      
-
         {/* Education Section */}
         {education?.length > 0 && (
           <div className="mb-8">
-            <h2 className="text-sm uppercase tracking-widest mb-4 border-b border-gray-700 pb-2 font-bold">
+            <h2 className="text-sm uppercase tracking-widest mb-4 border-b border-gray-700 pb-2 font-bold text-gray-300">
               Education
             </h2>
             
@@ -144,31 +124,10 @@ export default function Iconic({ resumeData }) {
           </div>
         )}
 
-
-          {/* Skills Section - Now in sidebar with appropriate styling */}
-          {skills?.length > 0 && (
-          <div className="mb-8">
-            <h2 className="text-sm uppercase tracking-widest mb-4 border-b border-gray-700 pb-2 font-bold">
-              Skills
-            </h2>
-            
-            <div className="flex flex-wrap gap-2">
-              {skills.map((skill, index) => (
-                <span 
-                  key={index} 
-                  className="px-3 py-1 bg-gray-800 text-gray-300 text-xs rounded-full"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
-
         {/* Certifications Section */}
         {certificates?.length > 0 && (
-          <div>
-            <h2 className="text-sm uppercase tracking-widest mb-4 border-b border-gray-700 pb-2 font-bold">
+          <div className="mb-8">
+            <h2 className="text-sm uppercase tracking-widest mb-4 border-b border-gray-700 pb-2 font-bold text-gray-300">
               Certifications
             </h2>
             
@@ -183,38 +142,77 @@ export default function Iconic({ resumeData }) {
             </div>
           </div>
         )}
+
+        {/* Achievements Section */}
+        {achievements?.length > 0 && (
+          <div className="mb-8">
+            <h2 className="text-sm uppercase tracking-widest mb-4 border-b border-gray-700 pb-2 font-bold text-gray-300">
+              Achievements
+            </h2>
+            
+            <div className="space-y-3">
+              {achievements.map((achievement, index) => (
+                <div key={index}>
+                  <h3 className="text-white font-medium">{achievement.title}</h3>
+                  {achievement.organization && (
+                    <p className="text-gray-400 text-sm">{achievement.organization}</p>
+                  )}
+                  {achievement.date && (
+                    <p className="text-gray-500 text-xs">{achievement.date}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
-      {/* Main Content */}
-      <div className="w-full md:w-2/3 p-6 md:p-8 overflow-y-auto">
+      {/* Main Content - White Background */}
+      <div className="w-full md:w-2/3 p-6 md:p-8">
         {/* About Me / Summary */}
         {personalInfo?.summary && (
           <section className="mb-8">
-            <div className="flex items-center mb-4">
-              <div className="h-8 w-1 bg-gray-900 mr-4"></div>
-              <h2 className="text-lg font-bold text-gray-800">ABOUT ME</h2>
-            </div>
-            <p className="text-gray-600 leading-relaxed">
+            <h2 className="text-xl font-bold mb-3 pb-2 border-b-2 border-gray-200 text-black">
+              ABOUT ME
+            </h2>
+            <p className="text-gray-700 leading-relaxed">
               {personalInfo.summary}
             </p>
           </section>
         )}
 
-        {/* Experience Section - Moved to main content area */}
+        {/* Skills Section - Now on right side */}
+        {skills?.length > 0 && (
+          <section className="mb-8">
+            <h2 className="text-xl font-bold mb-4 pb-2 border-b-2 border-gray-200 text-black">
+              SKILLS
+            </h2>
+            
+            <div className="flex flex-wrap gap-2">
+              {skills.map((skill, index) => (
+                <span 
+                  key={index} 
+                  className="px-3 py-1 bg-gray-100 text-gray-800 text-sm rounded-full border border-gray-200"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Experience Section */}
         {experience?.length > 0 && (
           <section className="mb-8">
-            <div className="flex items-center mb-4">
-              <div className="h-8 w-1 bg-gray-900 mr-4"></div>
-              <h2 className="text-lg font-bold text-gray-800">EXPERIENCE</h2>
-            </div>
+            <h2 className="text-xl font-bold mb-4 pb-2 border-b-2 border-gray-200 text-black">
+              EXPERIENCE
+            </h2>
             
-            <div className="space-y-6">
+            <div className="space-y-5">
               {experience.map((job, index) => (
-                <div key={index} className="relative pl-8 border-l border-gray-200">
-                  <div className="absolute left-0 top-1.5 w-3 h-3 rounded-full bg-gray-900 -translate-x-1.5"></div>
-                  
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start">
-                    <h3 className="font-bold text-gray-800">
+                <div key={index} className="pl-0">
+                  <div className="flex flex-col sm:flex-row sm:justify-between">
+                    <h3 className="font-bold text-gray-900">
                       {job.position || job.title}
                     </h3>
                     <span className="text-gray-500 text-sm mt-1 sm:mt-0">
@@ -222,9 +220,9 @@ export default function Iconic({ resumeData }) {
                     </span>
                   </div>
                   
-                  <p className="text-gray-600 text-sm mt-1">
+                  <p className="font-medium text-gray-700 text-sm mt-1">
                     {job.company}
-                    {job.location && <span> • {job.location}</span>}
+                    {job.location && <span className="text-gray-600"> • {job.location}</span>}
                   </p>
                   
                   <p className="mt-2 text-gray-600 text-sm">
@@ -239,26 +237,22 @@ export default function Iconic({ resumeData }) {
         {/* Projects Section */}
         {projects?.length > 0 && (
           <section className="mb-8">
-            <div className="flex items-center mb-4">
-              <div className="h-8 w-1 bg-gray-900 mr-4"></div>
-              <h2 className="text-lg font-bold text-gray-800">PROJECTS</h2>
-            </div>
+            <h2 className="text-xl font-bold mb-4 pb-2 border-b-2 border-gray-200 text-black">
+              PROJECTS
+            </h2>
             
-            <div className="grid grid-cols-1 gap-6">
+            <div className="space-y-5">
               {projects.map((project, index) => (
-                <div 
-                  key={index} 
-                  className="p-4 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors"
-                >
+                <div key={index}>
                   <div className="flex justify-between items-start">
-                    <h3 className="font-bold text-gray-800">{project.title}</h3>
+                    <h3 className="font-bold text-gray-900">{project.title}</h3>
                     
                     {project.link && (
                       <a
                         href={ensureHttps(project.link)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-gray-500 hover:text-gray-800 transition-colors"
+                        className="text-gray-500 hover:text-black transition-colors"
                       >
                         <FaLink />
                       </a>
@@ -266,58 +260,21 @@ export default function Iconic({ resumeData }) {
                   </div>
                   
                   {project.technologies && (
-                    <div className="flex flex-wrap gap-1 my-2">
+                    <div className="flex flex-wrap gap-2 my-2">
                       {project.technologies.map((tech, idx) => (
                         <span 
                           key={idx} 
-                          className="text-xs text-gray-600"
+                          className="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded"
                         >
-                          {tech}{idx < project.technologies.length - 1 ? " • " : ""}
+                          {tech}
                         </span>
                       ))}
                     </div>
                   )}
                   
-                  <p className="text-sm text-gray-600">
+                  <p className="text-gray-600 text-sm">
                     {project.description}
                   </p>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* Achievements Section */}
-        {achievements?.length > 0 && (
-          <section className="mb-8">
-            <div className="flex items-center mb-4">
-              <div className="h-8 w-1 bg-gray-900 mr-4"></div>
-              <h2 className="text-lg font-bold text-gray-800">ACHIEVEMENTS</h2>
-            </div>
-            
-            <div className="space-y-4">
-              {achievements.map((achievement, index) => (
-                <div key={index} className="border-l-4 border-gray-200 pl-4 py-1 hover:border-gray-400 transition-colors">
-                  <div className="flex flex-col sm:flex-row sm:justify-between">
-                    <h3 className="font-bold text-gray-800">{achievement.title}</h3>
-                    {achievement.date && (
-                      <span className="text-gray-500 text-sm">
-                        {achievement.date}
-                      </span>
-                    )}
-                  </div>
-                  
-                  {achievement.organization && (
-                    <p className="text-gray-600 text-sm">
-                      {achievement.organization}
-                    </p>
-                  )}
-                  
-                  {achievement.description && (
-                    <p className="mt-1 text-gray-600 text-sm">
-                      {achievement.description}
-                    </p>
-                  )}
                 </div>
               ))}
             </div>
