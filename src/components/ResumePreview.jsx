@@ -30,6 +30,11 @@ import Federal from './templates/Federal';
 import Pheonix from './templates/Pheonix';
 import Cool from './templates/Cool';
 import Horizon from './templates/Horizon';
+import Gullible from './templates/Gullible';
+import Deligant from './templates/Deligant';
+import Executive from './templates/Functional';
+import Premium from './templates/Premium';
+import Everest from './templates/Everest';
 
 
 
@@ -209,6 +214,16 @@ const ensureHttps = (url) => {
         return <Cool resumeData={resumeData} />;
       case 'horizon':
         return <Horizon resumeData={resumeData} />;
+      case 'gullible':
+        return <Gullible resumeData={resumeData} />;
+      case 'deligant':
+        return <Deligant resumeData={resumeData} />;
+      case 'executive':
+        return <Executive resumeData={resumeData} />;
+      case 'premium':
+        return <Premium resumeData={resumeData} />;
+      case 'everest':
+        return <Everest resumeData={resumeData} />;
       default:
         return <Modern resumeData={resumeData} />;
     }

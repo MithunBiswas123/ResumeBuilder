@@ -132,6 +132,39 @@ export default function HomePage() {
       description: 'Best design for all industries',
       image: '/templates-previews/classic.png'
     },
+    { 
+      id: 'gullible', 
+      name: 'Gullible', 
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
+    },
+    { 
+      id: 'deligant', 
+      name: 'Deligant', 
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
+    },
+    { 
+      id: 'executive',
+      name: 'Executive', 
+       
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
+    },
+    { 
+      id: 'premium',
+      name: 'Premium', 
+       
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
+    },
+    { 
+      id: 'everest',
+      name: 'Everest', 
+       
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
+    },
   ];
   
   const startBuilding = () => {

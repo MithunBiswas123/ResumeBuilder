@@ -162,6 +162,40 @@ export default function TemplateSelector({ selectedTemplate, setSelectedTemplate
      
       color: '#0000' // black
     },
+    {
+      id: 'gullible',
+      name: 'Gullible',
+      description: 'Best design for all industries',
+
+     
+      color: '#0000' // black
+    },
+    {
+      id: 'deligant',
+      name: 'Deligant',
+      description: 'Best design for all industries',
+
+     
+      color: '#0000' // black
+    },
+    {
+      id: 'executive',
+      name: 'Executive',
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'premium',
+      name: 'Premium',
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'everest',
+      name: 'Everest',
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
   ];
 
   // Get current template
