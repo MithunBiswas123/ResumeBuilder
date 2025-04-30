@@ -1,12 +1,3 @@
-
-
-
-
-
-
-
-
-
 "use client";
 
 import { useRef } from 'react';
@@ -29,12 +20,26 @@ import Chronological from './templates/Chronological';
 import Federal from './templates/Federal';
 import Pheonix from './templates/Pheonix';
 import Cool from './templates/Cool';
-import Horizon from './templates/Horizon';
+// import Horizon from './templates/Horizon';
 import Gullible from './templates/Gullible';
 import Deligant from './templates/Deligant';
 import Executive from './templates/Functional';
 import Premium from './templates/Premium';
 import Everest from './templates/Everest';
+import PaginatedTemplate from './templates/PaginatedTemplate';
+import Chronic from './templates/Chronic';
+import Chronicles from './templates/Chronicles';
+import Tokyo from './templates/Tokyo';
+import Stockholm from './templates/Stockholm'
+import Milano from './templates/Milano';
+import Vienna from './templates/Vienna';
+import Kyoto from './templates/Kyoto';
+import Berlin from './templates/Berlin';
+import Fancy from './templates/Fancy';
+
+
+
+
 
 
 
@@ -212,8 +217,8 @@ const ensureHttps = (url) => {
         return <Pheonix resumeData={resumeData} />;
       case 'cool':
         return <Cool resumeData={resumeData} />;
-      case 'horizon':
-        return <Horizon resumeData={resumeData} />;
+      // case 'horizon':
+      //   return <Horizon resumeData={resumeData} />;
       case 'gullible':
         return <Gullible resumeData={resumeData} />;
       case 'deligant':
@@ -224,6 +229,27 @@ const ensureHttps = (url) => {
         return <Premium resumeData={resumeData} />;
       case 'everest':
         return <Everest resumeData={resumeData} />;
+      case 'paginated':
+        return <PaginatedTemplate resumeData={resumeData} />;
+        case 'chronic':
+        return <Chronic resumeData={resumeData} />;
+        case 'chronicles':
+        return <Chronicles resumeData={resumeData} />;
+        case 'tokyo':
+        return <Tokyo resumeData={resumeData} />;
+        case 'stockholm':
+        return <Stockholm resumeData={resumeData} />;
+        case 'milano':
+        return <Milano resumeData={resumeData} />;
+        case 'vienna':
+        return <Vienna resumeData={resumeData} />;
+        case 'kyoto':
+        return <Kyoto resumeData={resumeData} />;
+        case 'berlin':
+        return <Berlin resumeData={resumeData} />;
+        case 'fancy':
+        return <Fancy resumeData={resumeData} />;
+     
       default:
         return <Modern resumeData={resumeData} />;
     }

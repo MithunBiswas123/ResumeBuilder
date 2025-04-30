@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import { useState } from 'react';
@@ -41,6 +39,12 @@ export default function TemplateSelector({ selectedTemplate, setSelectedTemplate
 
      
       color: '#1e3a8a' // blue-900
+    },
+    {
+      id: 'paginated',
+      name: 'Multi-Page',
+      description: 'Automatically creates multiple pages when content exceeds one page',
+      color: '#10b981' // emerald-500
     },
     {
       id: 'best',
@@ -154,14 +158,7 @@ export default function TemplateSelector({ selectedTemplate, setSelectedTemplate
      
       color: '#0000' // black
     },
-    {
-      id: 'horizon',
-      name: 'Horizon',
-      description: 'Best design for all industries',
-
-     
-      color: '#0000' // black
-    },
+    
     {
       id: 'gullible',
       name: 'Gullible',
@@ -196,6 +193,67 @@ export default function TemplateSelector({ selectedTemplate, setSelectedTemplate
       description: 'Best design for all industries',
       color: '#0000' // black
     },
+    {
+      id: 'chronic',
+      name: 'Chronic',
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'chronicles',
+      name: 'Chronicles',
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'tokyo',
+      name: 'Tokyo',
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'stockholm',
+      name: 'Stockholm',
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'milano',
+      name: 'Milano',
+  
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'vienna',
+      name: 'Vienna',
+  
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'kyoto',
+      name: 'Kyoto',
+  
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'berlin',
+      name: 'Berlin',
+  
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'fancy',
+      name: 'Fancy',
+  
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    
+
   ];
 
   // Get current template

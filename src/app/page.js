@@ -126,12 +126,12 @@ export default function HomePage() {
       description: 'Best design for all industries',
       image: '/templates-previews/classic.png'
     },
-    { 
-      id: 'horizon', 
-      name: 'Horizon', 
-      description: 'Best design for all industries',
-      image: '/templates-previews/classic.png'
-    },
+    // { 
+    //   id: 'horizon', 
+    //   name: 'Horizon', 
+    //   description: 'Best design for all industries',
+    //   image: '/templates-previews/classic.png'
+    // },
     { 
       id: 'gullible', 
       name: 'Gullible', 
@@ -165,6 +165,66 @@ export default function HomePage() {
       description: 'Best design for all industries',
       image: '/templates-previews/classic.png'
     },
+    { 
+      id: 'chronic',
+      name: 'Chronic', 
+       
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
+    },
+    { 
+      id: 'chronicles',
+      name: 'Chronicles', 
+       
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
+    },
+    { 
+      id: 'tokyo',
+      name: 'Tokyo', 
+       
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
+    },
+    { 
+      id: 'stockholm',
+      name: 'Stockholm', 
+       
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
+    },
+    { 
+      id: 'milano',
+      name: 'Milano', 
+       
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
+    },
+    { 
+      id: 'vienna',
+      name: 'Vienna',
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
+    },
+    { 
+      id: 'kyoto',
+      name: 'Kyoto',
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
+    },
+    { 
+      id: 'berlin',
+      name: 'Berlin',
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
+    },
+    { 
+      id: 'facncy',
+      name: 'Fancy',
+      description: 'Best design for all industries',
+      image: '/templates-previews/classic.png'
+    },
+    
   ];
   
   const startBuilding = () => {
