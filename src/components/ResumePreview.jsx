@@ -36,6 +36,23 @@ import Vienna from './templates/Vienna';
 import Kyoto from './templates/Kyoto';
 import Berlin from './templates/Berlin';
 import Fancy from './templates/Fancy';
+import MountFuji from './templates/MountFuji';
+import Asthetic from './templates/Asthetic';
+import Minimal from './templates/Minimal';
+import Phoenix from './templates/Phoen';
+import Philips from './templates/Philips';
+import Crisp from './templates/Crisp';
+import Clean from './templates/Clean';
+import Parallel from './templates/Parallel';
+import Zinc from './templates/Zinc';
+import Nexus from './templates/Nexus';
+import Star from './templates/Star';
+import Nova from './templates/Nova';
+import Santino from './templates/Santino';
+import TwoColumn from './templates/TwoColumn';
+import Timeline from './templates/Timeline';
+import Tempo from './templates/Tempo';
+import Sample from './templates/Sample';
 
 
 
@@ -249,6 +266,41 @@ const ensureHttps = (url) => {
         return <Berlin resumeData={resumeData} />;
         case 'fancy':
         return <Fancy resumeData={resumeData} />;
+        case 'mountfuji':
+        return <MountFuji resumeData={resumeData} />;
+        case 'asthetic':
+        return <Asthetic resumeData={resumeData} />;
+        case 'minimal':
+        return <Minimal resumeData={resumeData} />;
+        case 'phoenix':
+        return <Phoenix resumeData={resumeData} />;
+        case 'philips':
+        return <Philips resumeData={resumeData} />;
+        case 'crisp':
+        return <Crisp resumeData={resumeData} />;
+        case 'clean':
+        return <Clean resumeData={resumeData} />;
+        case 'parallel':
+        return <Parallel resumeData={resumeData} />;
+        case 'zinc':
+        return <Zinc resumeData={resumeData} />;
+        case 'nexus':
+        return <Nexus resumeData={resumeData} />;
+        case 'star':
+        return <Star resumeData={resumeData} />;
+        case 'nova':
+        return <Nova resumeData={resumeData} />;
+        case 'santino':
+        return <Santino resumeData={resumeData} />;
+        case 'twocolumn':
+        return <TwoColumn resumeData={resumeData} />;
+        case 'timeline':
+        return <Timeline resumeData={resumeData} />;
+        case 'tempo':
+        return <Tempo resumeData={resumeData} />;
+        case 'sample':
+        return <Sample resumeData={resumeData} />;
+       
      
       default:
         return <Modern resumeData={resumeData} />;

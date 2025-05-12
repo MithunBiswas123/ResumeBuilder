@@ -252,6 +252,117 @@ export default function TemplateSelector({ selectedTemplate, setSelectedTemplate
       description: 'Best design for all industries',
       color: '#0000' // black
     },
+    {
+      id: 'mountfuji',
+      name: 'Mount Fuji',
+     
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'asthetic',
+      name: 'Asthetic',
+    
+     
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'minimal',
+      name: 'Minimal',
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'phoen',
+      name: 'Phoen',
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'philips',
+      name: 'Philips',
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'crisp',
+      name: 'Crisp',
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'crisp',
+      name: 'Crisp',
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'clean',
+      name: 'Clean',
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'parallel',
+      name: 'Parallel',
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'zinc',
+      name: 'Zinc',
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'nexus',
+      name: 'Nexus',
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'star',
+      name: 'Star',
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'nova',
+      name: 'Nova',
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'santino',
+      name: 'Santino',
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'twocolumn',
+      name: 'Two Column',
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'timeline',
+      name: 'Timmeline',
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'tempo',
+      name: 'Tempo',
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
+    {
+      id: 'sample',
+      name: 'Sample',
+      description: 'Best design for all industries',
+      color: '#0000' // black
+    },
     
 
   ];

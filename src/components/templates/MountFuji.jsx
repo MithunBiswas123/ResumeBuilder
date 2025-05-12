@@ -19,7 +19,7 @@ export default function TwoColumn({ resumeData }) {
     return url.startsWith("http") ? url : `https://${url}`;
   };
   
-  // Define sections for left column
+  // Define sections for left column - DARK THEME
   const leftSections = [
     { 
       id: 'contact',
@@ -28,42 +28,42 @@ export default function TwoColumn({ resumeData }) {
       available: true, // Always show contact info
       content: (
         <section className="resume-section">
-          <h2 className="text-sm uppercase font-bold text-gray-100 bg-slate-700 px-2">Contact</h2>
+          <h2 className="text-sm uppercase font-bold text-white bg-gray-800 px-2">Contact</h2>
           <div className="space-y-1">
             {personalInfo?.email && (
               <div className="flex items-start">
-                <span className="text-slate-600 mr-1.5"><FaEnvelope size={12} /></span>
-                <a href={`mailto:${personalInfo.email}`} className="text-slate-800 text-sm">
+                <span className="text-white mr-1.5"><FaEnvelope size={12} /></span>
+                <a href={`mailto:${personalInfo.email}`} className="text-gray-200 text-sm">
                   {personalInfo.email}
                 </a>
               </div>
             )}
             {personalInfo?.phone && (
               <div className="flex items-start">
-                <span className="text-slate-600 mr-1.5"><FaPhone size={12} /></span>
-                <a href={`tel:${personalInfo.phone}`} className="text-slate-800 text-sm">
+                <span className="text-white mr-1.5"><FaPhone size={12} /></span>
+                <a href={`tel:${personalInfo.phone}`} className="text-gray-200 text-sm">
                   {personalInfo.phone}
                 </a>
               </div>
             )}
             {personalInfo?.location && (
               <div className="flex items-start">
-                <span className="text-slate-600 mr-1.5"><FaMapMarkerAlt size={12} /></span>
-                <span className="text-slate-800 text-sm">{personalInfo.location}</span>
+                <span className="text-white mr-1.5"><FaMapMarkerAlt size={12} /></span>
+                <span className="text-gray-200 text-sm">{personalInfo.location}</span>
               </div>
             )}
             {personalInfo?.linkedin && (
               <div className="flex items-start">
-                <span className="text-slate-600 mr-1.5"><FaLinkedin size={12} /></span>
-                <a href={ensureHttps(personalInfo.linkedin)} target="_blank" rel="noopener noreferrer" className="text-slate-800 text-sm">
+                <span className="text-white mr-1.5"><FaLinkedin size={12} /></span>
+                <a href={ensureHttps(personalInfo.linkedin)} target="_blank" rel="noopener noreferrer" className="text-gray-200 text-sm">
                   LinkedIn
                 </a>
               </div>
             )}
             {personalInfo?.github && (
               <div className="flex items-start">
-                <span className="text-slate-600 mr-1.5"><FaGithub size={12} /></span>
-                <a href={ensureHttps(personalInfo.github)} target="_blank" rel="noopener noreferrer" className="text-slate-800 text-sm">
+                <span className="text-white mr-1.5"><FaGithub size={12} /></span>
+                <a href={ensureHttps(personalInfo.github)} target="_blank" rel="noopener noreferrer" className="text-gray-200 text-sm">
                   GitHub
                 </a>
               </div>
@@ -79,12 +79,12 @@ export default function TwoColumn({ resumeData }) {
       available: skills?.length > 0,
       content: (
         <section className="resume-section">
-          <h2 className="text-sm uppercase font-bold text-gray-100 bg-slate-700 px-2">Skills</h2>
+          <h2 className="text-sm uppercase font-bold text-white bg-gray-800 px-2">Skills</h2>
           <div className="flex flex-wrap gap-1">
             {skills?.map((skill, index) => (
               <span 
                 key={index} 
-                className="px-1.5 text-sm bg-slate-100 text-slate-700 rounded"
+                className="px-1.5 text-sm bg-gray-800 text-gray-200 rounded"
               >
                 {skill}
               </span>
@@ -100,14 +100,14 @@ export default function TwoColumn({ resumeData }) {
       available: education?.length > 0,
       content: (
         <section className="resume-section">
-          <h2 className="text-sm uppercase font-bold text-gray-100 bg-slate-700 px-2">Education</h2>
+          <h2 className="text-sm uppercase font-bold text-white bg-gray-800 px-2">Education</h2>
           
           <div className="space-y-2">
             {education?.map((edu, index) => (
               <div key={index}>
-                <h3 className="text-sm font-bold text-slate-800">{edu.degree}</h3>
-                <p className="text-sm text-slate-700">{edu.school}</p>
-                <p className="text-sm text-slate-500">
+                <h3 className="text-sm font-bold text-white">{edu.degree}</h3>
+                <p className="text-sm text-gray-100">{edu.school}</p>
+                <p className="text-sm text-gray-300">
                   {edu.startDate} — {edu.endDate || "Present"}
                 </p>
               </div>
@@ -123,22 +123,22 @@ export default function TwoColumn({ resumeData }) {
       available: certificates?.length > 0,
       content: (
         <section className="resume-section">
-          <h2 className="text-sm uppercase font-bold text-gray-100 bg-slate-700 px-2">Certifications</h2>
+          <h2 className="text-sm uppercase font-bold text-white bg-gray-800 px-2">Certifications</h2>
           
           <div className="space-y-1.5">
             {certificates?.map((cert, index) => (
               <div key={index}>
-                <h3 className="text-sm font-bold text-slate-800">{cert.name}</h3>
-                <p className="text-sm text-slate-600">{cert.issuer}</p>
+                <h3 className="text-sm font-bold text-white">{cert.name}</h3>
+                <p className="text-sm text-gray-200">{cert.issuer}</p>
                 <div className="flex justify-between items-center">
-                  <span className="text-xs text-slate-500">{cert.date}</span>
+                  <span className="text-xs text-gray-300">{cert.date}</span>
                   
                   {cert.url && (
                     <a
                       href={ensureHttps(cert.url)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-slate-600 underline"
+                      className="text-xs text-white underline"
                     >
                       View
                     </a>
@@ -152,7 +152,7 @@ export default function TwoColumn({ resumeData }) {
     },
   ];
   
-  // Define sections for right column
+  // Define sections for right column (LIGHT THEME)
   const rightSections = [
     { 
       id: 'summary', 
@@ -161,8 +161,8 @@ export default function TwoColumn({ resumeData }) {
       available: !!personalInfo?.summary,
       content: (
         <section className="resume-section">
-          <h2 className="text-base uppercase font-bold text-slate-800 border-b-2 border-slate-300 pb-1">Professional Summary</h2>
-          <p className="text-sm text-slate-700">{personalInfo?.summary}</p>
+          <h2 className="text-base uppercase font-bold text-gray-800 border-b border-gray-300 pb-1">Professional Summary</h2>
+          <p className="text-sm text-gray-700">{personalInfo?.summary}</p>
         </section>
       )
     },
@@ -173,26 +173,26 @@ export default function TwoColumn({ resumeData }) {
       available: experience?.length > 0,
       content: (
         <section className="resume-section">
-          <h2 className="text-base uppercase font-bold text-slate-800 border-b-2 border-slate-300 pb-1">Professional Experience</h2>
+          <h2 className="text-base uppercase font-bold text-gray-800 border-b border-gray-300 pb-1">Professional Experience</h2>
           
           <div className="space-y-2">
             {experience?.map((job, index) => (
               <div key={index} className="page-break-inside-avoid">
                 <div className="flex justify-between items-start">
-                  <h3 className="text-base font-bold text-slate-800">
+                  <h3 className="text-base font-bold text-gray-800">
                     {job.position || job.title}
                   </h3>
-                  <span className="text-sm text-slate-500 whitespace-nowrap">
+                  <span className="text-sm text-gray-500 whitespace-nowrap">
                     {job.startDate} — {job.endDate || "Present"}
                   </span>
                 </div>
                 
-                <p className="text-sm text-slate-600 font-medium">
+                <p className="text-sm text-gray-600 font-medium">
                   {job.company}
                   {job.location ? ` · ${job.location}` : ""}
                 </p>
                 
-                <p className="text-sm text-slate-700">
+                <p className="text-sm text-gray-700">
                   {job.description}
                 </p>
               </div>
@@ -208,7 +208,7 @@ export default function TwoColumn({ resumeData }) {
       available: projects?.length > 0,
       content: (
         <section className="resume-section">
-          <h2 className="text-base uppercase font-bold text-slate-800 border-b-2 border-slate-300 pb-1">Projects</h2>
+          <h2 className="text-base uppercase font-bold text-gray-800 border-b border-gray-300 pb-1">Projects</h2>
           
           <div className="space-y-2">
             {projects?.map((project, index) => (
@@ -217,7 +217,7 @@ export default function TwoColumn({ resumeData }) {
                 className="page-break-inside-avoid"
               >
                 <div className="flex justify-between items-start">
-                  <h3 className="text-base font-bold text-slate-800">
+                  <h3 className="text-base font-bold text-gray-800">
                     {project.title}
                   </h3>
                   {project.link && (
@@ -225,7 +225,7 @@ export default function TwoColumn({ resumeData }) {
                       href={ensureHttps(project.link)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-slate-600"
+                      className="text-gray-600"
                       aria-label="View Project"
                     >
                       <FaLink size={12} />
@@ -233,7 +233,7 @@ export default function TwoColumn({ resumeData }) {
                   )}
                 </div>
                 
-                <p className="text-sm text-slate-700">
+                <p className="text-sm text-gray-700">
                   {project.description}
                 </p>
                 
@@ -242,7 +242,7 @@ export default function TwoColumn({ resumeData }) {
                     {project.technologies.map((tech, i) => (
                       <span 
                         key={i} 
-                        className="px-1 text-xs bg-slate-100 text-slate-600 rounded"
+                        className="px-1 text-xs bg-gray-100 text-gray-700 rounded"
                       >
                         {tech}
                       </span>
@@ -262,30 +262,30 @@ export default function TwoColumn({ resumeData }) {
       available: achievements?.length > 0,
       content: (
         <section className="resume-section">
-          <h2 className="text-base uppercase font-bold text-slate-800 border-b-2 border-slate-300 pb-1">Achievements</h2>
+          <h2 className="text-base uppercase font-bold text-gray-800 border-b border-gray-300 pb-1">Achievements</h2>
           
           <div className="space-y-2">
             {achievements?.map((achievement, index) => (
               <div key={index}>
                 <div className="flex justify-between items-start">
-                  <h3 className="text-sm font-bold text-slate-800">
+                  <h3 className="text-sm font-bold text-gray-800">
                     {achievement.title}
                   </h3>
                   {achievement.date && (
-                    <span className="text-sm text-slate-500">
+                    <span className="text-sm text-gray-500">
                       {achievement.date}
                     </span>
                   )}
                 </div>
                 
                 {achievement.organization && (
-                  <p className="text-sm text-slate-600">
+                  <p className="text-sm text-gray-600">
                     {achievement.organization}
                   </p>
                 )}
                 
                 {achievement.description && (
-                  <p className="text-sm text-slate-700">
+                  <p className="text-sm text-gray-700">
                     {achievement.description}
                   </p>
                 )}
@@ -334,15 +334,15 @@ export default function TwoColumn({ resumeData }) {
   };
 
   return (
-    <div className="bg-white min-h-full font-sans text-slate-800 relative">
-      {/* Header with name and title - Redesigned without image */}
-      <header className="bg-gradient-to-r from-slate-800 to-slate-700 px-6 py-4 border-b-4 border-amber-500">
+    <div className="bg-white min-h-full font-sans text-gray-800 relative">
+      {/* Simple white header */}
+      <header className="bg-white px-6 py-4 border-b border-gray-200">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-white">
+          <h1 className="text-2xl font-bold text-gray-800">
             {personalInfo?.name || "Your Name"}
           </h1>
           {personalInfo?.title && (
-            <h2 className="text-lg font-light text-white/90 mt-1">
+            <h2 className="text-lg font-medium text-gray-600">
               {personalInfo.title}
             </h2>
           )}
@@ -350,8 +350,8 @@ export default function TwoColumn({ resumeData }) {
       </header>
 
       {/* Section Selector - Right side floating panel */}
-      <div className="fixed top-20 right-2 z-10 p-2 bg-white/95 rounded-lg shadow-lg border border-gray-200 backdrop-blur-sm w-40 print:hidden">
-        <h3 className="text-sm font-medium text-gray-500 text-center border-b border-gray-100 pb-1 mb-1">
+      <div className="fixed top-20 right-2 z-10 p-2 bg-white rounded-md shadow-md border border-gray-200 w-36 print:hidden">
+        <h3 className="text-xs font-medium text-gray-500 text-center border-b border-gray-100 pb-1 mb-1">
           Add Sections
         </h3>
         <div className="space-y-0.5 max-h-[70vh] overflow-y-auto">
@@ -359,17 +359,17 @@ export default function TwoColumn({ resumeData }) {
             <button
               key={section.id}
               onClick={() => handleSectionClick(section.id)}
-              className={`flex items-center w-full px-2 py-1 rounded-md transition-all text-sm ${
+              className={`flex items-center w-full px-2 py-1 rounded text-xs ${
                 sectionOrder.includes(section.id)
-                  ? 'bg-gray-200 text-gray-400 cursor-default'
-                  : 'bg-amber-50 hover:bg-amber-100 text-amber-800'
+                  ? 'bg-gray-100 text-gray-400 cursor-default'
+                  : 'bg-white hover:bg-gray-50 text-gray-700'
               }`}
               disabled={sectionOrder.includes(section.id)}
             >
-              <span className="mr-1 text-sm">{section.icon}</span>
+              <span className="mr-1 text-xs">{section.icon}</span>
               <span>{section.label}</span>
               {sectionOrder.includes(section.id) && (
-                <span className="ml-auto w-5 h-5 flex items-center justify-center rounded-full bg-amber-500 text-white text-xs">
+                <span className="ml-auto w-4 h-4 flex items-center justify-center rounded-full bg-gray-500 text-white text-xs">
                   {sectionOrder.indexOf(section.id) + 1}
                 </span>
               )}
@@ -379,7 +379,7 @@ export default function TwoColumn({ resumeData }) {
           {sectionOrder.length > 0 && (
             <button
               onClick={resetSections}
-              className="w-full mt-1 px-2 py-1 bg-red-50 hover:bg-red-100 text-red-600 rounded-md transition-all text-sm font-medium"
+              className="w-full mt-1 px-2 py-0.5 bg-gray-50 hover:bg-gray-100 text-gray-500 rounded text-xs font-medium"
             >
               Reset
             </button>
@@ -387,11 +387,11 @@ export default function TwoColumn({ resumeData }) {
         </div>
       </div>
 
-      {/* Two-Column Main Content */}
+      {/* Two-Column Main Content - BLACK LEFT, WHITE RIGHT */}
       <div className="flex" ref={contentRef}>
-        {/* Left Column - Sidebar */}
-        <div className="w-1/3 bg-slate-50 p-3 min-h-screen border-r border-slate-200">
-          <div className="space-y-4">
+        {/* Left Column - BLACK */}
+        <div className="w-1/3 bg-zinc-900 p-3 min-h-screen">
+          <div className="space-y-3">
             {/* Get left column sections */}
             {getLeftColumnSections().length > 0 ? (
               getLeftColumnSections().map((section, index) => (
@@ -412,9 +412,9 @@ export default function TwoColumn({ resumeData }) {
           </div>
         </div>
 
-        {/* Right Column - Main Content */}
-        <div className="w-2/3 p-5">
-          <div className="space-y-5">
+        {/* Right Column - WHITE */}
+        <div className="w-2/3 p-4 bg-white">
+          <div className="space-y-4">
             {/* Get right column sections */}
             {getRightColumnSections().length > 0 ? (
               getRightColumnSections().map((section, index) => (
@@ -423,9 +423,9 @@ export default function TwoColumn({ resumeData }) {
                 </div>
               ))
             ) : (
-              <div className="text-center py-6 border-2 border-dashed border-gray-300 rounded-lg print:hidden">
+              <div className="text-center py-4 border border-dashed border-gray-300 rounded print:hidden">
                 <p className="text-sm text-gray-400">
-                  Select sections from the panel to add content
+                  Select sections from the panel
                 </p>
               </div>
             )}
@@ -470,17 +470,16 @@ export default function TwoColumn({ resumeData }) {
           }
           
           /* Background colors for print */
-          .bg-slate-800, .from-slate-800, .to-slate-700 {
-            background-color: #1e293b !important;
-            color: white !important;
+          .bg-black, .bg-gray-800 {
+            background-color: #000000 !important;
           }
           
-          .border-amber-500 {
-            border-color: #f59e0b !important;
+          .text-white {
+            color: #ffffff !important;
           }
           
-          .bg-slate-50 {
-            background-color: #f8fafc !important;
+          .text-gray-200, .text-gray-300 {
+            color: #e5e7eb !important;
           }
           
           /* Keep column structure for print */
@@ -497,12 +496,12 @@ export default function TwoColumn({ resumeData }) {
           }
           
           /* Add some minimal spacing between sections */
-          .space-y-4 > * + * {
-            margin-top: 0.15in !important;
+          .space-y-3 > * + * {
+            margin-top: 0.12in !important;
           }
           
-          .space-y-5 > * + * {
-            margin-top: 0.2in !important;
+          .space-y-4 > * + * {
+            margin-top: 0.15in !important;
           }
         }
         
