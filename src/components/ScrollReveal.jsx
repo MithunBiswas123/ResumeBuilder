@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 
 const ANIMATIONS = {
   slideLeft: 'opacity-0 translate-x-64', // Slide from right to left
-  slideRight: 'opacity-0 -translate-x-64', // Slide from left to right
+  slideRight: 'opacity-0 -translate-x-0', // Slide from left to right
   slideDown: 'opacity-0 -translate-y-64', // Slide from top to bottom
   slideUp: 'opacity-0 translate-y-64', // Slide from bottom to top
   fadeSlideLeft: 'opacity-0 -translate-x-64 scale-95'

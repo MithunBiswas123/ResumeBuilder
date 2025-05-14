@@ -1,0 +1,171 @@
+/* Custom styles for the carousel */
+.template-carousel .slick-track {
+  display: flex !important;
+  padding: 20px 0;
+}
+
+.template-carousel .slick-slide {
+  height: inherit !important;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.template-carousel .slick-slide > div {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+}
+
+/* Add a glow effect to the active slide */
+.template-carousel .slick-center {
+  filter: brightness(1.15);
+  transform: scale(1.08);
+  z-index: 10;
+}
+
+/* Custom dots styling */
+.template-carousel .slick-dots {
+  bottom: -40px;
+}
+
+.template-carousel .slick-dots li {
+  margin: 0 5px;
+}
+
+.template-carousel .slick-dots li button:before {
+  color: #ef4444 !important; /* Red color */
+  font-size: 12px;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.template-carousel .slick-dots li.slick-active button:before {
+  opacity: 1;
+  color: white !important;
+  transform: scale(1.2);
+}
+
+/* Enhanced touch support for mobile swipe */
+.template-carousel {
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Template item hover effects */
+.template-item {
+  transition: all 0.3s ease;
+}
+
+.template-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 
+              0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Skeleton loading animation */
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.skeleton-shimmer {
+  background-size: 400% 100%;
+  animation: shimmer 1.5s infinite linear;
+  background-repeat: no-repeat;
+}
+
+/* Fade in animation for template items */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.template-item {
+  animation: fadeIn 0.5s ease forwards;
+  animation-delay: calc(var(--index, 0) * 0.1s);
+}
+
+/* Transition animations for "Show All" */
+.templates-grid-expanded {
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom arrows styling */
+.template-carousel .slick-prev,
+.template-carousel .slick-next {
+  font-size: 0;
+  line-height: 0;
+  position: absolute;
+  top: 50%;
+  display: block;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  transform: translate(0, -50%);
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  outline: none;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 20;
+  transition: all 0.3s ease;
+}
+
+.template-carousel .slick-prev:hover,
+.template-carousel .slick-next:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translate(0, -50%) scale(1.1);
+}
+
+.template-carousel .slick-prev {
+  left: -15px;
+}
+
+.template-carousel .slick-next {
+  right: -15px;
+}
+
+/* Hide default arrows */
+.template-carousel .slick-prev:before,
+.template-carousel .slick-next:before {
+  content: "";
+}
+
+/* Better spacing for the slides */
+@media (min-width: 768px) {
+  .template-carousel .slick-slide {
+    padding: 0 10px;
+  }
+  
+  .template-carousel .slick-prev {
+    left: -30px;
+  }
+  
+  .template-carousel .slick-next {
+    right: -30px;
+  }
+}
+
+/* Add a subtle animation to improve UI */
+.template-carousel .slick-slide {
+  opacity: 0.7;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.template-carousel .slick-center {
+  opacity: 1;
+}
+
+/* Add a slight shadow to templates */
+.template-carousel .template-item {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}

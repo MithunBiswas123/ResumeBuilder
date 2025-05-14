@@ -7,6 +7,7 @@
 // import Image from 'next/image';
 // import Link from 'next/link';
 
+
 // export default function HomePage() {
 //   const router = useRouter();
 //   const [selectedTemplate, setSelectedTemplate] = useState(null);
@@ -475,7 +476,7 @@ import React from "react";
 import TrustedBy from "@/components/TrustedBy";
 import ResumeHero from "@/components/ResumeHero";
 import ResumeCard from "@/components/ResumeCard";
-
+import LandingPageCarousel from "@/components/LandingPageCarousel";
 import ResumeButtons from "@/components/ResumeButtons";
 import Image from "next/image";
 import IconHover from "@/components/IconHover";
@@ -664,7 +665,7 @@ function page() {
                       icon={feature.Icon}
                     />
                   </div>
-                  <h3 className="mb-3 text-xl sm:text-2xl font-bold text-gray-800">
+                  <h3 className="mb-3 text-xl sm:text-2xl font-bold text-gray-800 pt-10">
                     {feature.title}
                   </h3>
                   <p className="text-gray-600 leading-relaxed">
@@ -677,28 +678,34 @@ function page() {
         </div>
       </div>
 
-      {/* Template selection section with optimized performance */}
-      <div className="bg-[url(/page3Bg.svg)] pt-16 pb-16 sm:pt-20 sm:pb-20 px-4 sm:px-5 bg-cover bg-center h-auto w-full">
-        <ScrollReveal
-          animation="slideRight"
-          duration={500}
-          easing="smooth"
-          className="mb-10 sm:mb-12"
-        >
-          <h2 className="text-white text-center text-2xl md:text-3xl font-semibold mb-16 sm:mb-20">
-            Pick one of many world-class templates <br className="hidden sm:block" /> and build your resume
-            in minutes
-          </h2>
-        </ScrollReveal>
+      {/* Template selection section with carousel */}
 
-        <ScrollReveal animation="slideRight" duration={500} easing="smooth">
-          <ResumeButtons />
-        </ScrollReveal>
+
+
+      <div className="bg-[url(/page3Bg.svg)] pt-16 pb-16 sm:pt-64 sm:pb-64 px-4 sm:px-5 bg-cover bg-center h-auto w-full flex flex-col items-center justify-center">
+        <div className="w-full  flex flex-col items-center justify-center">
+          <ScrollReveal
+            animation="slideRight"
+            duration={500}
+            easing="smooth"
+            className="mb-10 sm:mb-12 w-full"
+          >
+            <h2 className="text-white text-center text-2xl md:text-3xl font-semibold mb-16 sm:mb-16 ">
+              Pick one of many world-class templates <br className="hidden sm:block" /> and build your resume
+              in minutes
+            </h2>
+          </ScrollReveal>
+
+          <ScrollReveal animation="slideRight" duration={500} easing="smooth">
+            <LandingPageCarousel />
+          </ScrollReveal>
+        </div>
       </div>
 
       {/* FAQ section with optimized layout and accessibility */}
       <div className="bg-slate-50 w-full">
-        <div className="bg-slate-50 py-16 sm:py-20 px-4 sm:px-5 md:max-w-6xl lg:max-w-7xl mx-auto flex flex-col">
+        <div className="w-full flex flex-col items-center justify-center">
+          <div className="bg-slate-50 py-16 sm:py-20 px-4 sm:px-5 md:max-w-6xl lg:max-w-7xl mx-auto flex flex-col">
           <ScrollReveal
             animation="slideRight"
             duration={500}
@@ -725,6 +732,7 @@ function page() {
             </div>
           </ScrollReveal>
           <ResumeAccordion />
+        </div>
         </div>
       </div>
     </>

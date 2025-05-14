@@ -92,23 +92,44 @@ const ResumeAccordion = (props) => {
   };
 
   return (
-    <div
-      {...props}
-      className="w-full max-w-3xl mx-auto"
-      role="tablist"
-      aria-label="Resume FAQ Accordion"
-    >
-      {items.map((item, index) => (
-        <AccordionItem
-          key={index}
-          title={item.title}
-          content={item.content}
-          isOpen={openIndex === index}
-          onClick={() => handleClick(index)}
-          index={index}
-        />
-      ))}
-    </div>
+  //  <div className="wfull flex flex-col items-center justify-center">
+  //    <div
+  //     {...props}
+  //     className="w-full max-w-3xl mx-auto  "
+  //     role="tablist"
+  //     aria-label="Resume FAQ Accordion"
+  //   >
+  //     {items.map((item, index) => (
+  //       <AccordionItem
+  //         key={index}
+  //         title={item.title}
+  //         content={item.content}
+  //         isOpen={openIndex === index}
+  //         onClick={() => handleClick(index)}
+  //         index={index}
+  //       />
+  //     ))}
+  //   </div>
+  //  </div>
+  <div className="w-full flex flex-col items-center justify-center">
+  <div
+    {...props}
+    className="w-full max-w-3xl mx-auto"
+    role="tablist"
+    aria-label="Resume FAQ Accordion"
+  >
+    {items.map((item, index) => (
+      <AccordionItem
+        key={index}
+        title={item.title}
+        content={item.content}
+        isOpen={openIndex === index}
+        onClick={() => handleClick(index)}
+        index={index}
+      />
+    ))}
+  </div>
+</div>
   );
 };
 
