@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import {
   FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, 
   FaLink, FaBriefcase, FaGraduationCap, FaTools,
@@ -11,7 +11,6 @@ export default function TwoColumn({ resumeData }) {
   const { personalInfo, experience, education, skills, projects, achievements, certificates } =
     resumeData || {};
 
-  const [sectionOrder, setSectionOrder] = useState([]);
   const contentRef = useRef(null);
   
   const ensureHttps = (url) => {
@@ -23,8 +22,6 @@ export default function TwoColumn({ resumeData }) {
   const sidebarSections = [
     { 
       id: 'skills', 
-      label: 'Skills',
-      icon: <FaTools />,
       available: skills?.length > 0,
       content: (
         <section className="tc-sidebar-section">
@@ -42,8 +39,6 @@ export default function TwoColumn({ resumeData }) {
     },
     { 
       id: 'certificates', 
-      label: 'Certificates',
-      icon: <FaCertificate />,
       available: certificates?.length > 0,
       content: (
         <section className="tc-sidebar-section">
@@ -70,15 +65,13 @@ export default function TwoColumn({ resumeData }) {
           </div>
         </section>
       )
-    },
+    }
   ];
   
   // Main content sections
   const mainSections = [
     { 
       id: 'summary', 
-      label: 'Summary',
-      icon: <FaUserAlt />,
       available: !!personalInfo?.summary,
       content: (
         <section className="tc-main-section">
@@ -89,8 +82,6 @@ export default function TwoColumn({ resumeData }) {
     },
     { 
       id: 'experience', 
-      label: 'Experience',
-      icon: <FaBriefcase />,
       available: experience?.length > 0,
       content: (
         <section className="tc-main-section">
@@ -115,8 +106,6 @@ export default function TwoColumn({ resumeData }) {
     },
     { 
       id: 'education', 
-      label: 'Education',
-      icon: <FaGraduationCap />,
       available: education?.length > 0,
       content: (
         <section className="tc-main-section">
@@ -137,8 +126,6 @@ export default function TwoColumn({ resumeData }) {
     },
     { 
       id: 'projects', 
-      label: 'Projects',
-      icon: <FaLaptopCode />,
       available: projects?.length > 0,
       content: (
         <section className="tc-main-section">
@@ -177,8 +164,6 @@ export default function TwoColumn({ resumeData }) {
     },
     { 
       id: 'achievements', 
-      label: 'Achievements',
-      icon: <FaTrophy />,
       available: achievements?.length > 0,
       content: (
         <section className="tc-main-section">
@@ -203,56 +188,9 @@ export default function TwoColumn({ resumeData }) {
       )
     }
   ];
-  
-  // Combine all sections for the section selector
-  const allSections = [...mainSections, ...sidebarSections];
-  const availableSections = allSections.filter(section => section.available);
-
-  const handleSectionClick = (sectionId) => {
-    if (sectionOrder.includes(sectionId)) return;
-    setSectionOrder(prev => [...prev, sectionId]);
-  };
-
-  const resetSections = () => {
-    setSectionOrder([]);
-  };
-
-  // Helper function to determine whether a section should be rendered in sidebar or main
-  const isSidebarSection = (sectionId) => {
-    return sidebarSections.some(section => section.id === sectionId);
-  };
 
   return (
     <div className="tc-container">
-      {/* Section Selector */}
-      <div className="tc-selector print:hidden">
-        <div className="tc-selector-header">Add sections to your resume:</div>
-        <div className="tc-buttons">
-          {availableSections.map((section) => (
-            <button
-              key={section.id}
-              onClick={() => handleSectionClick(section.id)}
-              disabled={sectionOrder.includes(section.id)}
-              className={`tc-button ${sectionOrder.includes(section.id) ? 'tc-button-selected' : ''}`}
-            >
-              <span className="tc-button-icon">{section.icon}</span>
-              <span className="tc-button-text">{section.label}</span>
-              {sectionOrder.includes(section.id) && (
-                <span className="tc-button-badge">
-                  {sectionOrder.indexOf(section.id) + 1}
-                </span>
-              )}
-            </button>
-          ))}
-          
-          {sectionOrder.length > 0 && (
-            <button onClick={resetSections} className="tc-reset">
-              Reset
-            </button>
-          )}
-        </div>
-      </div>
-
       {/* Two-column layout */}
       <div className="tc-resume">
         {/* Left sidebar */}
@@ -313,57 +251,17 @@ export default function TwoColumn({ resumeData }) {
           
           {/* Sidebar Content */}
           <div className="tc-sidebar-content">
-            {/* Show selected sidebar sections */}
-            {sectionOrder.length > 0 ? (
-              sectionOrder.map(sectionId => {
-                if (!isSidebarSection(sectionId)) return null;
-                const section = sidebarSections.find(s => s.id === sectionId);
-                if (!section || !section.available) return null;
-                return (
-                  <div key={sectionId} className="tc-fade-in">
-                    {section.content}
-                  </div>
-                );
-              })
-            ) : (
-              <div className="hidden print:block">
-                {/* For print - show all sidebar sections in default order if nothing is selected */}
-                {sidebarSections.filter(section => section.available).map(section => (
-                  <div key={section.id}>{section.content}</div>
-                ))}
-              </div>
-            )}
+            {sidebarSections.filter(section => section.available).map(section => (
+              <div key={section.id}>{section.content}</div>
+            ))}
           </div>
         </aside>
 
         {/* Main content area */}
         <main className="tc-main" ref={contentRef}>
-          {/* Show selected main sections */}
-          {sectionOrder.length > 0 ? (
-            sectionOrder.map(sectionId => {
-              if (isSidebarSection(sectionId)) return null;
-              const section = mainSections.find(s => s.id === sectionId);
-              if (!section || !section.available) return null;
-              return (
-                <div key={sectionId} className="tc-fade-in">
-                  {section.content}
-                </div>
-              );
-            })
-          ) : (
-            <>
-              <div className="tc-empty print:hidden">
-                <p>Select sections above to build your resume</p>
-              </div>
-              
-              {/* For print - show all main sections in default order if nothing is selected */}
-              <div className="hidden print:block">
-                {mainSections.filter(section => section.available).map(section => (
-                  <div key={section.id}>{section.content}</div>
-                ))}
-              </div>
-            </>
-          )}
+          {mainSections.filter(section => section.available).map(section => (
+            <div key={section.id}>{section.content}</div>
+          ))}
 
           {/* Page numbers for print only */}
           <div className="hidden print:block text-right text-xs text-gray-400 pt-4 mt-8">
@@ -382,87 +280,6 @@ export default function TwoColumn({ resumeData }) {
           font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
           line-height: 1.5;
           background: #fff;
-        }
-        
-        /* Section Selector */
-        .tc-selector {
-          margin: 1rem auto 2rem;
-          padding: 1rem;
-          background: #f7fafc;
-          border: 1px solid #e2e8f0;
-          border-radius: 8px;
-          max-width: 800px;
-        }
-        
-        .tc-selector-header {
-          font-weight: 600;
-          margin-bottom: 0.75rem;
-          color: #4a5568;
-          font-size: 0.9rem;
-        }
-        
-        .tc-buttons {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.5rem;
-        }
-        
-        .tc-button {
-          display: inline-flex;
-          align-items: center;
-          padding: 0.5rem 0.75rem;
-          background: white;
-          border: 1px solid #e2e8f0;
-          border-radius: 6px;
-          font-size: 0.875rem;
-          color: #4a5568;
-          cursor: pointer;
-          transition: all 0.15s ease;
-        }
-        
-        .tc-button:hover:not(:disabled) {
-          background: #edf2f7;
-          border-color: #cbd5e0;
-        }
-        
-        .tc-button-selected {
-          background: #edf2f7;
-          color: #a0aec0;
-          cursor: default;
-        }
-        
-        .tc-button-icon {
-          margin-right: 0.5rem;
-          font-size: 0.875rem;
-          color: #718096;
-        }
-        
-        .tc-button-badge {
-          margin-left: 0.5rem;
-          width: 1.25rem;
-          height: 1.25rem;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          background: #e2e8f0;
-          color: #4a5568;
-          border-radius: 50%;
-          font-size: 0.75rem;
-        }
-        
-        .tc-reset {
-          padding: 0.5rem 0.75rem;
-          background: white;
-          border: 1px solid #fed7d7;
-          color: #e53e3e;
-          border-radius: 6px;
-          font-size: 0.875rem;
-          cursor: pointer;
-          margin-left: auto;
-        }
-        
-        .tc-reset:hover {
-          background: #fff5f5;
         }
         
         /* Two-column layout */
@@ -551,10 +368,10 @@ export default function TwoColumn({ resumeData }) {
           background-color: #4299e1;
         }
         
-        /* Skills styles */
+        /* Skills styles - Changed to row-based display */
         .tc-skills-list {
           display: flex;
-          flex-direction: column;
+          flex-wrap: wrap;
           gap: 0.5rem;
         }
         
@@ -562,6 +379,7 @@ export default function TwoColumn({ resumeData }) {
           display: flex;
           align-items: center;
           font-size: 0.85rem;
+          margin-bottom: 0.25rem;
         }
         
         .tc-skill-bullet {
@@ -569,7 +387,7 @@ export default function TwoColumn({ resumeData }) {
           height: 0.35rem;
           background-color: #4299e1;
           border-radius: 50%;
-          margin-right: 0.75rem;
+          margin-right: 0.5rem;
           flex-shrink: 0;
         }
         
@@ -617,15 +435,6 @@ export default function TwoColumn({ resumeData }) {
         /* Main content area styles */
         .tc-main {
           padding: 2rem;
-        }
-        
-        .tc-empty {
-          padding: 2.5rem;
-          text-align: center;
-          border: 1px dashed #e2e8f0;
-          border-radius: 8px;
-          color: #a0aec0;
-          margin: 1rem 0;
         }
         
         /* Main section styles */
@@ -711,16 +520,6 @@ export default function TwoColumn({ resumeData }) {
           color: #4a5568;
           padding: 0.15rem 0.5rem;
           border-radius: 4px;
-        }
-        
-        /* Animation */
-        .tc-fade-in {
-          animation: fadeIn 0.2s ease-out forwards;
-        }
-        
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(4px); }
-          to { opacity: 1; transform: translateY(0); }
         }
         
         /* Print styles */

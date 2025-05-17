@@ -1,17 +1,16 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import {
   FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, 
   FaLink, FaBriefcase, FaGraduationCap, FaTools,
   FaLaptopCode, FaTrophy, FaCertificate, FaUserAlt
 } from "react-icons/fa";
 
-export default function Santino({ resumeData }) {
+export default function TwoColumn({ resumeData }) {
   const { personalInfo, experience, education, skills, projects, achievements, certificates } =
     resumeData || {};
 
-  const [sectionOrder, setSectionOrder] = useState([]);
   const contentRef = useRef(null);
   
   const ensureHttps = (url) => {
@@ -19,39 +18,86 @@ export default function Santino({ resumeData }) {
     return url.startsWith("http") ? url : `https://${url}`;
   };
   
-  const allSections = [
+  // Sidebar sections
+  const sidebarSections = [
+    { 
+      id: 'skills', 
+      available: skills?.length > 0,
+      content: (
+        <section className="tc-sidebar-section">
+          <h2 className="tc-sidebar-heading">Skills</h2>
+          <div className="tc-skills-list">
+            {skills?.map((skill, index) => (
+              <div key={index} className="tc-skill-item">
+                <div className="tc-skill-bullet"></div>
+                <span>{skill}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )
+    },
+    { 
+      id: 'certificates', 
+      available: certificates?.length > 0,
+      content: (
+        <section className="tc-sidebar-section">
+          <h2 className="tc-sidebar-heading">Certifications</h2>
+          <div className="tc-certificates-list">
+            {certificates?.map((cert, index) => (
+              <div key={index} className="tc-cert-item page-break-inside-avoid">
+                <h3 className="tc-cert-title">{cert.name}</h3>
+                <div className="tc-cert-issuer">{cert.issuer}</div>
+                <div className="tc-cert-date">{cert.date}</div>
+                {cert.url && (
+                  <a
+                    href={ensureHttps(cert.url)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="tc-cert-link"
+                  >
+                    <FaLink size={10} className="tc-icon" />
+                    <span>View</span>
+                  </a>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      )
+    }
+  ];
+  
+  // Main content sections
+  const mainSections = [
     { 
       id: 'summary', 
-      label: 'Summary',
-      icon: <FaUserAlt />,
       available: !!personalInfo?.summary,
       content: (
-        <section className="min-section">
-          <h2 className="min-heading">Summary</h2>
-          <p className="min-text">{personalInfo?.summary}</p>
+        <section className="tc-main-section">
+          <h2 className="tc-main-heading">Professional Summary</h2>
+          <p className="tc-summary-text">{personalInfo?.summary}</p>
         </section>
       )
     },
     { 
       id: 'experience', 
-      label: 'Experience',
-      icon: <FaBriefcase />,
       available: experience?.length > 0,
       content: (
-        <section className="min-section">
-          <h2 className="min-heading">Experience</h2>
-          <div className="min-items">
+        <section className="tc-main-section">
+          <h2 className="tc-main-heading">Experience</h2>
+          <div className="tc-items-list">
             {experience?.map((job, index) => (
-              <div key={index} className="min-item page-break-inside-avoid">
-                <div className="min-item-header">
-                  <h3 className="min-item-title">{job.position || job.title}</h3>
-                  <span className="min-date">{job.startDate} — {job.endDate || "Present"}</span>
+              <div key={index} className="tc-exp-item page-break-inside-avoid">
+                <div className="tc-exp-header">
+                  <h3 className="tc-exp-title">{job.position || job.title}</h3>
+                  <span className="tc-exp-date">{job.startDate} — {job.endDate || "Present"}</span>
                 </div>
-                <div className="min-subtitle">
+                <div className="tc-exp-company">
                   {job.company}
-                  {job.location && <span className="min-location"> • {job.location}</span>}
+                  {job.location && <span className="tc-exp-location"> • {job.location}</span>}
                 </div>
-                <p className="min-text">{job.description}</p>
+                <p className="tc-exp-description">{job.description}</p>
               </div>
             ))}
           </div>
@@ -60,20 +106,18 @@ export default function Santino({ resumeData }) {
     },
     { 
       id: 'education', 
-      label: 'Education',
-      icon: <FaGraduationCap />,
       available: education?.length > 0,
       content: (
-        <section className="min-section">
-          <h2 className="min-heading">Education</h2>
-          <div className="min-items">
+        <section className="tc-main-section">
+          <h2 className="tc-main-heading">Education</h2>
+          <div className="tc-items-list">
             {education?.map((edu, index) => (
-              <div key={index} className="min-item page-break-inside-avoid">
-                <div className="min-item-header">
-                  <h3 className="min-item-title">{edu.degree}</h3>
-                  <span className="min-date">{edu.startDate} — {edu.endDate || "Present"}</span>
+              <div key={index} className="tc-edu-item page-break-inside-avoid">
+                <div className="tc-edu-header">
+                  <h3 className="tc-edu-title">{edu.degree}</h3>
+                  <span className="tc-edu-date">{edu.startDate} — {edu.endDate || "Present"}</span>
                 </div>
-                <div className="min-subtitle">{edu.school}</div>
+                <div className="tc-edu-school">{edu.school}</div>
               </div>
             ))}
           </div>
@@ -81,53 +125,34 @@ export default function Santino({ resumeData }) {
       )
     },
     { 
-      id: 'skills', 
-      label: 'Skills',
-      icon: <FaTools />,
-      available: skills?.length > 0,
-      content: (
-        <section className="min-section">
-          <h2 className="min-heading">Skills</h2>
-          <div className="min-skills">
-            {skills?.map((skill, index) => (
-              <div key={index} className="min-skill">• {skill}</div>
-            ))}
-          </div>
-        </section>
-      )
-    },
-    { 
       id: 'projects', 
-      label: 'Projects',
-      icon: <FaLaptopCode />,
       available: projects?.length > 0,
       content: (
-        <section className="min-section">
-          <h2 className="min-heading">Projects</h2>
-          <div className="min-items">
+        <section className="tc-main-section">
+          <h2 className="tc-main-heading">Projects</h2>
+          <div className="tc-items-list">
             {projects?.map((project, index) => (
-              <div key={index} className="min-item page-break-inside-avoid">
-                <div className="min-item-header">
-                  <h3 className="min-item-title">
+              <div key={index} className="tc-project-item page-break-inside-avoid">
+                <div className="tc-project-header">
+                  <h3 className="tc-project-title">
                     {project.title}
                     {project.link && (
                       <a
                         href={ensureHttps(project.link)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="min-link"
+                        className="tc-project-link"
                       >
-                        <FaLink size={12} />
+                        <FaLink size={11} />
                       </a>
                     )}
                   </h3>
                 </div>
-                <p className="min-text">{project.description}</p>
+                <p className="tc-project-description">{project.description}</p>
                 {project.technologies?.length > 0 && (
-                  <div className="min-tags">
-                    <span className="min-tag-label">Technologies:</span>
+                  <div className="tc-tech-tags">
                     {project.technologies.map((tech, i) => (
-                      <span key={i} className="min-tag">{tech}</span>
+                      <span key={i} className="tc-tech-tag">{tech}</span>
                     ))}
                   </div>
                 )}
@@ -139,506 +164,415 @@ export default function Santino({ resumeData }) {
     },
     { 
       id: 'achievements', 
-      label: 'Achievements',
-      icon: <FaTrophy />,
       available: achievements?.length > 0,
       content: (
-        <section className="min-section">
-          <h2 className="min-heading">Achievements</h2>
-          <div className="min-items">
+        <section className="tc-main-section">
+          <h2 className="tc-main-heading">Achievements</h2>
+          <div className="tc-items-list">
             {achievements?.map((achievement, index) => (
-              <div key={index} className="min-item page-break-inside-avoid">
-                <div className="min-item-header">
-                  <h3 className="min-item-title">{achievement.title}</h3>
-                  {achievement.date && <span className="min-date">{achievement.date}</span>}
+              <div key={index} className="tc-achievement-item page-break-inside-avoid">
+                <div className="tc-achievement-header">
+                  <h3 className="tc-achievement-title">{achievement.title}</h3>
+                  {achievement.date && <span className="tc-achievement-date">{achievement.date}</span>}
                 </div>
                 {achievement.organization && (
-                  <div className="min-subtitle">{achievement.organization}</div>
+                  <div className="tc-achievement-org">{achievement.organization}</div>
                 )}
                 {achievement.description && (
-                  <p className="min-text">{achievement.description}</p>
+                  <p className="tc-achievement-description">{achievement.description}</p>
                 )}
               </div>
             ))}
           </div>
         </section>
       )
-    },
-    { 
-      id: 'certificates', 
-      label: 'Certificates',
-      icon: <FaCertificate />,
-      available: certificates?.length > 0,
-      content: (
-        <section className="min-section">
-          <h2 className="min-heading">Certifications</h2>
-          <div className="min-items">
-            {certificates?.map((cert, index) => (
-              <div key={index} className="min-item page-break-inside-avoid">
-                <div className="min-item-header">
-                  <h3 className="min-item-title">{cert.name}</h3>
-                  <span className="min-date">{cert.date}</span>
-                </div>
-                <div className="min-subtitle">{cert.issuer}</div>
-                {cert.url && (
-                  <a
-                    href={ensureHttps(cert.url)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="min-view-link"
-                  >
-                    <FaLink size={11} className="min-icon" />
-                    View Certificate
-                  </a>
-                )}
-              </div>
-            ))}
-          </div>
-        </section>
-      )
-    },
+    }
   ];
 
-  const availableSections = allSections.filter(section => section.available);
-
-  const handleSectionClick = (sectionId) => {
-    if (sectionOrder.includes(sectionId)) return;
-    setSectionOrder(prev => [...prev, sectionId]);
-  };
-
-  const resetSections = () => {
-    setSectionOrder([]);
-  };
-
   return (
-    <div className="min-container">
-      {/* Header with personal info */}
-      <header className="min-header">
-        <h1>{personalInfo?.name || "Your Name"}</h1>
-        {personalInfo?.title && <h2 className="min-subtitle">{personalInfo.title}</h2>}
-        
-        {/* Contact Details */}
-        <div className="min-contacts">
-          {personalInfo?.email && (
-            <a href={`mailto:${personalInfo.email}`} className="min-contact">
-              <FaEnvelope className="min-icon" />
-              {personalInfo.email}
-            </a>
-          )}
-          
-          {personalInfo?.phone && (
-            <a href={`tel:${personalInfo.phone}`} className="min-contact">
-              <FaPhone className="min-icon" />
-              {personalInfo.phone}
-            </a>
-          )}
-          
-          {personalInfo?.location && (
-            <span className="min-contact">
-              <FaMapMarkerAlt className="min-icon" />
-              {personalInfo.location}
-            </span>
-          )}
-          
-          {personalInfo?.linkedin && (
-            <a
-              href={ensureHttps(personalInfo.linkedin)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="min-contact"
-            >
-              <FaLinkedin className="min-icon" />
-              LinkedIn
-            </a>
-          )}
-          
-          {personalInfo?.github && (
-            <a
-              href={ensureHttps(personalInfo.github)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="min-contact"
-            >
-              <FaGithub className="min-icon" />
-              GitHub
-            </a>
-          )}
-        </div>
-      </header>
-
-      {/* Section Selector */}
-      <div className="min-selector print:hidden">
-        <div className="min-selector-header">Select sections to add:</div>
-        <div className="min-buttons">
-          {availableSections.map((section) => (
-            <button
-              key={section.id}
-              onClick={() => handleSectionClick(section.id)}
-              disabled={sectionOrder.includes(section.id)}
-              className={`min-button ${sectionOrder.includes(section.id) ? 'min-button-selected' : ''}`}
-            >
-              <span className="min-button-icon">{section.icon}</span>
-              <span className="min-button-text">{section.label}</span>
-              {sectionOrder.includes(section.id) && (
-                <span className="min-button-badge">
-                  {sectionOrder.indexOf(section.id) + 1}
-                </span>
-              )}
-            </button>
-          ))}
-          
-          {sectionOrder.length > 0 && (
-            <button onClick={resetSections} className="min-reset">
-              Reset
-            </button>
-          )}
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <main className="min-content" ref={contentRef}>
-        {sectionOrder.length > 0 ? (
-          sectionOrder.map(sectionId => {
-            const section = allSections.find(s => s.id === sectionId);
-            if (!section || !section.available) return null;
-            return (
-              <div key={sectionId} className="min-fade-in">
-                {section.content}
-              </div>
-            );
-          })
-        ) : (
-          <div className="min-empty print:hidden">
-            <p>Select sections above to build your resume</p>
+    <div className="tc-container">
+      {/* Two-column layout */}
+      <div className="tc-resume">
+        {/* Left sidebar */}
+        <aside className="tc-sidebar">
+          {/* Header with personal info */}
+          <div className="tc-personal-info">
+            <h1 className="tc-name">{personalInfo?.name || "Your Name"}</h1>
+            {personalInfo?.title && <h2 className="tc-title">{personalInfo.title}</h2>}
           </div>
-        )}
-        
-        {/* For print - show all sections in default order if nothing is selected */}
-        {sectionOrder.length === 0 && (
-          <div className="hidden print:block">
-            {availableSections.map(section => (
+          
+          {/* Contact Details */}
+          <div className="tc-contacts">
+            {personalInfo?.email && (
+              <a href={`mailto:${personalInfo.email}`} className="tc-contact-item">
+                <FaEnvelope className="tc-contact-icon" />
+                <span>{personalInfo.email}</span>
+              </a>
+            )}
+            
+            {personalInfo?.phone && (
+              <a href={`tel:${personalInfo.phone}`} className="tc-contact-item">
+                <FaPhone className="tc-contact-icon" />
+                <span>{personalInfo.phone}</span>
+              </a>
+            )}
+            
+            {personalInfo?.location && (
+              <div className="tc-contact-item">
+                <FaMapMarkerAlt className="tc-contact-icon" />
+                <span>{personalInfo.location}</span>
+              </div>
+            )}
+            
+            {personalInfo?.linkedin && (
+              <a
+                href={ensureHttps(personalInfo.linkedin)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="tc-contact-item"
+              >
+                <FaLinkedin className="tc-contact-icon" />
+                <span>LinkedIn</span>
+              </a>
+            )}
+            
+            {personalInfo?.github && (
+              <a
+                href={ensureHttps(personalInfo.github)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="tc-contact-item"
+              >
+                <FaGithub className="tc-contact-icon" />
+                <span>GitHub</span>
+              </a>
+            )}
+          </div>
+          
+          {/* Sidebar Content */}
+          <div className="tc-sidebar-content">
+            {sidebarSections.filter(section => section.available).map(section => (
               <div key={section.id}>{section.content}</div>
             ))}
           </div>
-        )}
-      </main>
+        </aside>
 
-      {/* Minimal CSS */}
+        {/* Main content area */}
+        <main className="tc-main" ref={contentRef}>
+          {mainSections.filter(section => section.available).map(section => (
+            <div key={section.id}>{section.content}</div>
+          ))}
+        </main>
+      </div>
+
+      {/* Two-Column CSS */}
       <style jsx global>{`
-        .min-container {
-          max-width: 8.5in;
+        /* Base Styles */
+        .tc-container {
+          max-width: 1100px;
           margin: 0 auto;
-          background: white;
-          color: #333;
+          color: #2d3748;
           font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
           line-height: 1.5;
-          padding: 2rem;
+          background: #fff;
         }
         
-        .min-header {
-          text-align: center;
+        /* Two-column layout */
+        .tc-resume {
+          display: grid;
+          grid-template-columns: 240px 1fr;
+          min-height: 11in;
+          border: 1px solid #e2e8f0;
+          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+        
+        /* Sidebar styles */
+        .tc-sidebar {
+          background: #2d3748;
+          color: white;
+          padding: 2rem 1.5rem;
+        }
+        
+        .tc-personal-info {
           margin-bottom: 1.5rem;
-          padding-bottom: 1.5rem;
-          border-bottom: 2px solid #f0f0f0;
+          text-align: center;
         }
         
-        .min-header h1 {
-          font-size: 1.75rem;
+        .tc-name {
+          font-size: 1.5rem;
           font-weight: 700;
           margin: 0 0 0.5rem;
-          line-height: 1.1;
         }
         
-        .min-header h2 {
-          font-size: 1.1rem;
-          font-weight: 500;
-          color: #555;
-          margin: 0 0 1rem;
+        .tc-title {
+          font-size: 1rem;
+          font-weight: 400;
+          color: #e2e8f0;
+          margin: 0;
         }
         
-        .min-contacts {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 1rem;
-          font-size: 0.9rem;
-        }
-        
-        .min-contact {
-          display: inline-flex;
-          align-items: center;
-          color: #555;
-          text-decoration: none;
-        }
-        
-        .min-contact:hover {
-          color: #000;
-          text-decoration: underline;
-        }
-        
-        .min-icon {
-          margin-right: 0.4rem;
-          font-size: 0.9rem;
-          color: #555;
-        }
-        
-        .min-selector {
+        .tc-contacts {
           margin-bottom: 2rem;
-          padding: 1rem;
-          background: #f9f9f9;
-          border: 1px solid #eaeaea;
-          border-radius: 4px;
-        }
-        
-        .min-selector-header {
-          font-size: 0.9rem;
-          font-weight: 500;
-          margin-bottom: 0.75rem;
-          color: #555;
-        }
-        
-        .min-buttons {
           display: flex;
-          flex-wrap: wrap;
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+        
+        .tc-contact-item {
+          display: flex;
+          align-items: center;
+          color: #e2e8f0;
+          font-size: 0.85rem;
+          text-decoration: none;
+          transition: color 0.15s;
+        }
+        
+        .tc-contact-item:hover {
+          color: white;
+        }
+        
+        .tc-contact-icon {
+          width: 1rem;
+          height: 1rem;
+          margin-right: 0.75rem;
+          color: #a0aec0;
+        }
+        
+        /* Sidebar section styles */
+        .tc-sidebar-section {
+          margin-bottom: 2rem;
+        }
+        
+        .tc-sidebar-heading {
+          font-size: 1rem;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          margin: 0 0 1rem;
+          position: relative;
+          padding-bottom: 0.5rem;
+        }
+        
+        .tc-sidebar-heading::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 2.5rem;
+          height: 2px;
+          background-color: #4299e1;
+        }
+        
+        /* Skills styles */
+        .tc-skills-list {
+          display: flex;
+          flex-direction: column;
           gap: 0.5rem;
         }
         
-        .min-button {
-          display: inline-flex;
+        .tc-skill-item {
+          display: flex;
           align-items: center;
-          padding: 0.4rem 0.75rem;
-          background: white;
-          border: 1px solid #e0e0e0;
-          border-radius: 4px;
-          font-size: 0.875rem;
-          color: #333;
-          cursor: pointer;
-          transition: all 0.15s ease;
+          font-size: 0.85rem;
         }
         
-        .min-button:hover:not(:disabled) {
-          background: #f0f0f0;
-          border-color: #d0d0d0;
-        }
-        
-        .min-button-selected {
-          background: #f0f0f0;
-          color: #999;
-          cursor: default;
-        }
-        
-        .min-button-icon {
-          margin-right: 0.5rem;
-          font-size: 0.875rem;
-          color: #666;
-        }
-        
-        .min-button-badge {
-          margin-left: 0.5rem;
-          width: 1.2rem;
-          height: 1.2rem;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          background: #eaeaea;
+        .tc-skill-bullet {
+          width: 0.35rem;
+          height: 0.35rem;
+          background-color: #4299e1;
           border-radius: 50%;
-          font-size: 0.75rem;
+          margin-right: 0.5rem;
+          flex-shrink: 0;
         }
         
-        .min-reset {
-          padding: 0.4rem 0.75rem;
-          background: white;
-          border: 1px solid #ffcccb;
-          color: #d9534f;
-          border-radius: 4px;
-          font-size: 0.875rem;
-          cursor: pointer;
-        }
-        
-        .min-reset:hover {
-          background: #fff5f5;
-        }
-        
-        .min-empty {
-          padding: 2rem;
-          text-align: center;
-          border: 1px dashed #ddd;
-          border-radius: 4px;
-          color: #999;
-        }
-        
-        .min-section {
-          margin-bottom: 1.5rem;
-        }
-        
-        .min-heading {
-          font-size: 1.1rem;
-          font-weight: 600;
-          color: #333;
-          margin: 0 0 1rem;
-          padding-bottom: 0.5rem;
-          border-bottom: 1px solid #eaeaea;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-        }
-        
-        .min-items {
+        /* Certificate styles */
+        .tc-certificates-list {
           display: flex;
           flex-direction: column;
-          gap: 1.2rem;
+          gap: 1.25rem;
         }
         
-        .min-item {
-          break-inside: avoid;
+        .tc-cert-item {
+          font-size: 0.85rem;
         }
         
-        .min-item-header {
+        .tc-cert-title {
+          font-size: 0.9rem;
+          font-weight: 600;
+          margin: 0 0 0.25rem;
+        }
+        
+        .tc-cert-issuer {
+          color: #e2e8f0;
+          margin-bottom: 0.25rem;
+        }
+        
+        .tc-cert-date {
+          color: #a0aec0;
+          font-size: 0.8rem;
+          margin-bottom: 0.5rem;
+        }
+        
+        .tc-cert-link {
+          display: inline-flex;
+          align-items: center;
+          color: #4299e1;
+          text-decoration: none;
+          font-size: 0.8rem;
+          gap: 0.25rem;
+        }
+        
+        .tc-cert-link:hover {
+          text-decoration: underline;
+        }
+        
+        /* Main content area styles */
+        .tc-main {
+          padding: 2rem;
+        }
+        
+        /* Main section styles */
+        .tc-main-section {
+          margin-bottom: 2rem;
+        }
+        
+        .tc-main-heading {
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: #2d3748;
+          margin: 0 0 1.25rem;
+          padding-bottom: 0.5rem;
+          border-bottom: 2px solid #edf2f7;
+        }
+        
+        .tc-items-list {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+        
+        /* Experience styles */
+        .tc-exp-header, .tc-edu-header, .tc-project-header, .tc-achievement-header {
           display: flex;
           justify-content: space-between;
           align-items: baseline;
           margin-bottom: 0.25rem;
         }
         
-        .min-item-title {
+        .tc-exp-title, .tc-edu-title, .tc-project-title, .tc-achievement-title {
           font-size: 1.05rem;
           font-weight: 600;
+          color: #2d3748;
           margin: 0;
-          display: flex;
-          align-items: center;
         }
         
-        .min-date {
+        .tc-exp-date, .tc-edu-date, .tc-achievement-date {
           font-size: 0.85rem;
-          color: #666;
+          color: #718096;
           white-space: nowrap;
         }
         
-        .min-subtitle {
+        .tc-exp-company, .tc-edu-school, .tc-achievement-org {
           font-size: 0.95rem;
-          color: #444;
+          color: #4a5568;
           margin-bottom: 0.5rem;
-          font-weight: 500;
         }
         
-        .min-location {
-          color: #666;
-          font-weight: normal;
+        .tc-exp-location {
+          color: #718096;
+          font-weight: 400;
         }
         
-        .min-text {
+        .tc-exp-description, .tc-project-description, .tc-achievement-description, .tc-summary-text {
           font-size: 0.9rem;
-          color: #444;
+          color: #4a5568;
+          line-height: 1.6;
           margin: 0;
         }
         
-        .min-skills {
+        /* Project styles */
+        .tc-project-link {
+          margin-left: 0.5rem;
+          color: #4299e1;
+          transition: color 0.15s;
+        }
+        
+        .tc-project-link:hover {
+          color: #2b6cb0;
+        }
+        
+        .tc-tech-tags {
           display: flex;
           flex-wrap: wrap;
-          gap: 0.5rem 1.5rem;
+          gap: 0.5rem;
+          margin-top: 0.75rem;
         }
         
-        .min-skill {
-          font-size: 0.9rem;
-          color: #444;
+        .tc-tech-tag {
+          font-size: 0.75rem;
+          background: #edf2f7;
+          color: #4a5568;
+          padding: 0.15rem 0.5rem;
+          border-radius: 4px;
         }
         
-        .min-link {
-          margin-left: 0.5rem;
-          color: #666;
-          text-decoration: none;
-        }
-        
-        .min-link:hover {
-          color: #000;
-        }
-        
-        .min-tags {
-          margin-top: 0.5rem;
-          font-size: 0.85rem;
-        }
-        
-        .min-tag-label {
-          font-weight: 500;
-          color: #555;
-          margin-right: 0.5rem;
-        }
-        
-        .min-tag {
-          margin-right: 0.75rem;
-          color: #666;
-        }
-        
-        .min-view-link {
-          display: inline-flex;
-          align-items: center;
-          font-size: 0.85rem;
-          color: #555;
-          text-decoration: none;
-          margin-top: 0.5rem;
-        }
-        
-        .min-view-link:hover {
-          text-decoration: underline;
-          color: #000;
-        }
-        
-        .min-fade-in {
-          animation: fadeIn 0.2s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(4px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-
+        /* Print styles */
         @media print {
-          .min-container {
+          @page {
+            margin: 0.5in;
+            size: letter portrait;
+          }
+          
+          .tc-container {
             padding: 0;
             max-width: none;
-            width: 100%;
           }
           
-          .min-header {
-            padding-bottom: 1rem;
-            margin-bottom: 1rem;
-            border-bottom: 1px solid #eaeaea;
+          .tc-resume {
+            border: none;
+            box-shadow: none;
+            min-height: 0;
           }
           
-          .min-section {
-            margin-bottom: 1rem;
+          .tc-sidebar {
+            padding: 0.75in 0.5in 0.75in 0.5in;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
           }
           
-          .min-heading {
-            font-size: 1rem;
-            margin-bottom: 0.75rem;
+          .tc-main {
+            padding: 0.75in 0.5in 0.75in 0.5in;
           }
           
-          .min-item-title {
-            font-size: 1rem;
+          .tc-main-section {
+            margin-bottom: 1.25rem;
           }
           
-          .min-subtitle {
-            font-size: 0.9rem;
-          }
-          
-          .min-text {
-            font-size: 0.85rem;
+          .tc-sidebar-section {
+            margin-bottom: 1.25rem;
           }
         }
         
-        @media (max-width: 600px) {
-          .min-container {
-            padding: 1rem;
+        /* Responsive styles */
+        @media (max-width: 768px) {
+          .tc-resume {
+            grid-template-columns: 1fr;
           }
           
-          .min-header h1 {
-            font-size: 1.5rem;
+          .tc-sidebar {
+            padding: 1.5rem;
           }
           
-          .min-contacts {
-            flex-direction: column;
+          .tc-main {
+            padding: 1.5rem;
+          }
+          
+          .tc-personal-info {
+            text-align: center;
+          }
+          
+          .tc-contacts {
             align-items: center;
-            gap: 0.5rem;
           }
         }
       `}</style>

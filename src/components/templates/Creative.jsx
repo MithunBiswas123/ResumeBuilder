@@ -1,7 +1,8 @@
 
 
 "use client";
-import { FaLinkedin, FaGithub } from "react-icons/fa"; // Add this import
+import { useState, useEffect } from 'react';
+import { FaLinkedin, FaGithub, FaCertificate, FaMapMarkerAlt } from "react-icons/fa"; // Added FaMapMarkerAlt
 
 export default function Creative({ resumeData }) {
   const {
@@ -15,17 +16,41 @@ export default function Creative({ resumeData }) {
     aiHighlights,
   } = resumeData || {};
 
+  // Helper function to get formatted location from different possible structures
+  const getFormattedLocation = (data) => {
+    if (!data) return null;
+    
+    if (data.location) return data.location;
+    
+    if (data.address) {
+      if (data.address.city && data.address.state) {
+        return `${data.address.city}, ${data.address.state}`;
+      } else if (data.address.city) {
+        return data.address.city;
+      } else if (data.address.location) {
+        return data.address.location;
+      }
+    }
+    
+    return null;
+  };
+
   const ensureHttps = (url) => {
     if (!url) return "";
     return url.startsWith("http") ? url : `https://${url}`;
   };
+
+  // Debug the location data structure (remove in production)
+  useEffect(() => {
+    console.log("Personal Info:", personalInfo);
+  }, [personalInfo]);
 
   return (
     <div className="bg-white w-full h-full font-sans text-gray-800 flex">
       {/* Sidebar */}
       <div className="w-1/3 bg-purple-700 text-black p-8 text-wrap">
         {/* Profile */}
-        <div className="text-start mb-8">
+        <div className="text-start mb-4">
           {personalInfo?.profileImage && (
             <div className="mb-4 flex justify-center">
               <img
@@ -39,41 +64,57 @@ export default function Creative({ resumeData }) {
             {personalInfo?.name || "Your Name"}
           </h1>
           {personalInfo?.title && <p className="mt-1">{personalInfo.title}</p>}
+          
+          {/* Display location directly under name for better visibility */}
+          {getFormattedLocation(personalInfo) && (
+            <p className="flex items-center text-sm mt-1">
+              <FaMapMarkerAlt className="mr-1 text-gray-800" />
+              <span>{getFormattedLocation(personalInfo)}</span>
+            </p>
+          )}
         </div>
 
         {/* Contact */}
-        <div className="mb-8">
+        <div className="mb-4">
           <h2 className="text-lg font-bold border-b border-purple-500 pb-2 mb-3">
             Contact
           </h2>
           <div className="space-y-2">
             {personalInfo?.email && <p>{personalInfo.email}</p>}
             {personalInfo?.phone && <p>{personalInfo.phone}</p>}
-            {personalInfo?.linkedin && (
-                            <a
-                              href={ensureHttps(personalInfo.linkedin)}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center text-gray-600 hover:text-gray-900"
-                            >
-                              <FaLinkedin className="mr-3 text-gray-400" />
-                              <span>LinkedIn</span>
-                            </a>
-                          )}
             
-                          {/* GitHub link with proper icon */}
-                          {personalInfo?.github && (
-                            <a
-                              href={ensureHttps(personalInfo.github)}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center text-gray-600 hover:text-gray-900"
-                            >
-                              <FaGithub className="mr-3 text-gray-400" />
-                              <span>GitHub</span>
-                            </a>
-                          )}
-            {personalInfo?.location && <p>{personalInfo.location}</p>}
+            {personalInfo?.linkedin && (
+              <a
+                href={ensureHttps(personalInfo.linkedin)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center text-black hover:text-gray-900"
+              >
+                <FaLinkedin className="mr-3 text-black" />
+                <span>LinkedIn</span>
+              </a>
+            )}
+            
+            {/* GitHub link with proper icon */}
+            {personalInfo?.github && (
+              <a
+                href={ensureHttps(personalInfo.github)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center text-black "
+              >
+                <FaGithub className="mr-3 text-black" />
+                <span>GitHub</span>
+              </a>
+            )}
+            
+            {/* Display location in contact section too with icon */}
+            {getFormattedLocation(personalInfo) && (
+              <p className="flex items-center text-black">
+                <FaMapMarkerAlt className="mr-3 text-black" />
+                <span>{getFormattedLocation(personalInfo)}</span>
+              </p>
+            )}
           </div>
         </div>
 
@@ -90,6 +131,13 @@ export default function Creative({ resumeData }) {
                 <p className="text-sm">
                   {edu.startDate} - {edu.endDate || "Present"}
                 </p>
+                {/* Add location for each education entry if available */}
+                {getFormattedLocation(edu) && (
+                  <p className="text-sm flex items-center mt-1">
+                    <FaMapMarkerAlt className="mr-1 text-xs" />
+                    <span>{getFormattedLocation(edu)}</span>
+                  </p>
+                )}
               </div>
             ))}
           </div>
@@ -100,7 +148,7 @@ export default function Creative({ resumeData }) {
       <div className="w-2/3 p-8">
         {/* AI Highlights Section */}
         {aiHighlights && (
-          <section className="mb-8 bg-gradient-to-r from-purple-50 to-indigo-50 p-5 rounded-lg border border-purple-100">
+          <section className="mb-4 bg-gradient-to-r from-purple-50 to-indigo-50 p-5 rounded-lg border border-purple-100">
             <h2 className="text-2xl font-bold text-purple-700 mb-3 flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -163,7 +211,7 @@ export default function Creative({ resumeData }) {
 
         {/* Summary */}
         {personalInfo?.summary && (
-          <section className="mb-8">
+          <section className="mb-4">
             <h2 className="text-2xl font-bold text-purple-700 mb-3">
               About Me
             </h2>
@@ -173,8 +221,8 @@ export default function Creative({ resumeData }) {
 
         {/* Experience */}
         {experience?.length > 0 && (
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-purple-700 mb-4">
+          <section className="mb-4">
+            <h2 className="text-2xl font-bold text-purple-700 mb-2">
               Experience
             </h2>
             {experience.map((job, index) => (
@@ -187,18 +235,28 @@ export default function Creative({ resumeData }) {
                     {job.startDate} - {job.endDate || "Present"}
                   </span>
                 </div>
-                <p className="text-purple-600 font-medium">{job.company}</p>
+                <div className="flex items-center">
+                  <p className="text-purple-600 font-medium">{job.company}</p>
+                  
+                  {/* Add location for each job if available */}
+                  {getFormattedLocation(job) && (
+                    <span className="flex items-center text-gray-500 ml-2 text-sm">
+                      <FaMapMarkerAlt className="mr-1" />
+                      {getFormattedLocation(job)}
+                    </span>
+                  )}
+                </div>
+                
                 <p className="mt-2">{job.description}</p>
               </div>
             ))}
           </section>
         )}
 
-
-           {/* Achievements Section */}
-           {achievements?.length > 0 && (
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-purple-700 mb-4">
+        {/* Achievements Section */}
+        {achievements?.length > 0 && (
+          <section className="mb-4">
+            <h2 className="text-2xl font-bold text-purple-700 mb-2">
               Achievements
             </h2>
             {achievements.map((achievement, index) => (
@@ -213,9 +271,20 @@ export default function Creative({ resumeData }) {
                     </span>
                   )}
                 </div>
-                {achievement.organization && (
-                  <p className="text-purple-600 font-medium">{achievement.organization}</p>
-                )}
+                <div className="flex items-center">
+                  {achievement.organization && (
+                    <p className="text-purple-600 font-medium">{achievement.organization}</p>
+                  )}
+                  
+                  {/* Add location for each achievement if available */}
+                  {getFormattedLocation(achievement) && (
+                    <span className="flex items-center text-gray-500 ml-2 text-sm">
+                      <FaMapMarkerAlt className="mr-1" />
+                      {getFormattedLocation(achievement)}
+                    </span>
+                  )}
+                </div>
+                
                 {achievement.description && (
                   <p className="mt-2">{achievement.description}</p>
                 )}
@@ -226,8 +295,8 @@ export default function Creative({ resumeData }) {
 
         {/* Skills - Moved from sidebar to main content */}
         {skills?.length > 0 && (
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-purple-700 mb-4">Skills</h2>
+          <section className="mb-4">
+            <h2 className="text-2xl font-bold text-purple-700 mb-2">Skills</h2>
             <div className="flex flex-wrap gap-2">
               {skills.map((skill, index) => (
                 <span
@@ -241,11 +310,10 @@ export default function Creative({ resumeData }) {
           </section>
         )}
 
-
-         {/* Certificates Section - Add after skills and before projects */}
-         {certificates?.length > 0 && (
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-purple-700 mb-4">Certifications</h2>
+        {/* Certificates Section - Add after skills and before projects */}
+        {certificates?.length > 0 && (
+          <section className="mb-4">
+            <h2 className="text-2xl font-bold text-purple-700 mb-2">Certifications</h2>
             
             {certificates.map((cert, index) => (
               <div 
@@ -262,14 +330,24 @@ export default function Creative({ resumeData }) {
                   </span>
                 </div>
                 
-                <p className="text-purple-600 font-medium">
-                  {cert.issuer}
-                  {cert.credentialID && (
-                    <span className="text-gray-500 text-sm ml-2">
-                      ID: {cert.credentialID}
+                <div className="flex items-center">
+                  <p className="text-purple-600 font-medium">
+                    {cert.issuer}
+                    {cert.credentialID && (
+                      <span className="text-gray-500 text-sm ml-2">
+                        ID: {cert.credentialID}
+                      </span>
+                    )}
+                  </p>
+                  
+                  {/* Add location for certification if available */}
+                  {getFormattedLocation(cert) && (
+                    <span className="flex items-center text-gray-500 ml-2 text-sm">
+                      <FaMapMarkerAlt className="mr-1" />
+                      {getFormattedLocation(cert)}
                     </span>
                   )}
-                </p>
+                </div>
                 
                 {cert.description && (
                   <p className="mt-2 text-gray-700">{cert.description}</p>
@@ -283,7 +361,7 @@ export default function Creative({ resumeData }) {
                       rel="noopener noreferrer"
                       className="flex items-center text-purple-600 hover:text-purple-800 text-sm"
                     >
-                         <FaCertificate className="mr-1" />
+                      <FaCertificate className="mr-1" />
                       <span>View Certificate</span>
                     </a>
                   </div>
@@ -296,7 +374,7 @@ export default function Creative({ resumeData }) {
         {/* Projects */}
         {projects?.length > 0 && (
           <section>
-            <h2 className="text-2xl font-bold text-purple-700 mb-4">
+            <h2 className="text-2xl font-bold text-purple-700 mb-2">
               Projects
             </h2>
             {projects.map((project, index) => (
@@ -314,6 +392,15 @@ export default function Creative({ resumeData }) {
                     </span>
                   )}
                 </div>
+                
+                {/* Add location for project if available */}
+                {getFormattedLocation(project) && (
+                  <p className="flex items-center text-gray-500 text-sm mb-2">
+                    <FaMapMarkerAlt className="mr-1" />
+                    {getFormattedLocation(project)}
+                  </p>
+                )}
+                
                 <p className="mt-2 text-gray-700">{project.description}</p>
 
                 {/* Technologies/Skills used */}
@@ -332,15 +419,15 @@ export default function Creative({ resumeData }) {
 
                 {/* Project links */}
                 {project.link && (
-                      <a
-                        href={ensureHttps(project.link)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-gray-500 text-sm hover:text-gray-800"
-                      >
-                        View →
-                      </a>
-                    )}
+                  <a
+                    href={ensureHttps(project.link)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-500 text-sm hover:text-gray-800 mt-2 inline-block"
+                  >
+                    View →
+                  </a>
+                )}
               </div>
             ))}
           </section>

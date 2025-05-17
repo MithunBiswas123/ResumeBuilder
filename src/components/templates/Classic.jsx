@@ -23,8 +23,8 @@ export default function Classic({ resumeData }) {
   return (
     <div className="bg-white w-full h-full p-10 font-serif text-gray-800">
       {/* Elegant header with decorative elements */}
-      <header className="text-center mb-8 relative">
-        <div className="border-b-2 border-t-2 border-gray-300 py-6 px-4">
+      <header className="text-center mb-4 relative">
+        <div className="border-b-2 border-t-2 border-gray-300 py-4 px-4">
           <h1 className="text-3xl md:text-4xl font-normal text-gray-800 tracking-widest uppercase">
             {personalInfo?.name || "Your Name"}
           </h1>

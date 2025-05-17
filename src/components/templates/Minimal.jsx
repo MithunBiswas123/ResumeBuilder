@@ -26,9 +26,9 @@ export default function Minimal({ resumeData }) {
       icon: <FaUserAlt />,
       available: !!personalInfo?.summary,
       content: (
-        <section className="mb-5 resume-section">
+        <section className="mb-3 resume-section">
           <h2 className="text-sm uppercase tracking-wider font-semibold text-gray-700 mb-3 border-b pb-1">About Me</h2>
-          <div className="bg-white rounded p-4 border-l-2 border-gray-400">
+          <div className="bg-white rounded p-2 border-l-2 border-gray-400">
             <p className="text-sm text-gray-700 leading-relaxed">{personalInfo?.summary}</p>
           </div>
         </section>
@@ -40,7 +40,7 @@ export default function Minimal({ resumeData }) {
       icon: <FaBriefcase />,
       available: experience?.length > 0,
       content: (
-        <section className="mb-5 resume-section">
+        <section className="mb-3 resume-section">
           <h2 className="text-sm uppercase tracking-wider font-semibold text-gray-700 mb-3 border-b pb-1">Professional Experience</h2>
           
           <div className="space-y-4">
@@ -75,7 +75,7 @@ export default function Minimal({ resumeData }) {
       icon: <FaGraduationCap />,
       available: education?.length > 0,
       content: (
-        <section className="mb-5 resume-section">
+        <section className="mb-3 resume-section">
           <h2 className="text-sm uppercase tracking-wider font-semibold text-gray-700 mb-3 border-b pb-1">Education</h2>
           
           <div className="space-y-3">
@@ -102,7 +102,7 @@ export default function Minimal({ resumeData }) {
       icon: <FaTools />,
       available: skills?.length > 0,
       content: (
-        <section className="mb-5 resume-section">
+        <section className="mb-3 resume-section">
           <h2 className="text-sm uppercase tracking-wider font-semibold text-gray-700 mb-3 border-b pb-1">Skills & Expertise</h2>
           
           <div className="bg-white rounded p-4">
@@ -126,7 +126,7 @@ export default function Minimal({ resumeData }) {
       icon: <FaLaptopCode />,
       available: projects?.length > 0,
       content: (
-        <section className="mb-5 resume-section">
+        <section className="mb-3 resume-section">
           <h2 className="text-sm uppercase tracking-wider font-semibold text-gray-700 mb-3 border-b pb-1">Projects</h2>
           
           <div className="grid md:grid-cols-2 gap-3">
@@ -180,10 +180,10 @@ export default function Minimal({ resumeData }) {
       icon: <FaTrophy />,
       available: achievements?.length > 0,
       content: (
-        <section className="mb-5 resume-section">
+        <section className="mb-3 resume-section">
           <h2 className="text-sm uppercase tracking-wider font-semibold text-gray-700 mb-3 border-b pb-1">Achievements</h2>
           
-          <div className="space-y-3">
+          <div className="grid md:grid-cols-2 gap-3">
             {achievements?.map((achievement, index) => (
               <div key={index} className="bg-white rounded p-4">
                 <div className="flex flex-col md:flex-row md:justify-between">
@@ -220,7 +220,7 @@ export default function Minimal({ resumeData }) {
       icon: <FaCertificate />,
       available: certificates?.length > 0,
       content: (
-        <section className="mb-5 resume-section">
+        <section className="mb-3 resume-section">
           <h2 className="text-sm uppercase tracking-wider font-semibold text-gray-700 mb-3 border-b pb-1">Certifications</h2>
           
           <div className="grid md:grid-cols-2 gap-3">

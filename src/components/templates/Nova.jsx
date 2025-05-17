@@ -29,7 +29,6 @@ export default function Nova({ resumeData }) {
       content: (
         <section className="nova-section">
           <div className="nova-section-header">
-            <span className="nova-section-icon"><FaUserAlt /></span>
             <h2>Professional Summary</h2>
           </div>
           <div className="nova-section-content">
@@ -46,7 +45,6 @@ export default function Nova({ resumeData }) {
       content: (
         <section className="nova-section">
           <div className="nova-section-header">
-            <span className="nova-section-icon"><FaBriefcase /></span>
             <h2>Work Experience</h2>
           </div>
           <div className="nova-section-content">
@@ -79,7 +77,6 @@ export default function Nova({ resumeData }) {
       content: (
         <section className="nova-section">
           <div className="nova-section-header">
-            <span className="nova-section-icon"><FaGraduationCap /></span>
             <h2>Education</h2>
           </div>
           <div className="nova-section-content">
@@ -106,14 +103,12 @@ export default function Nova({ resumeData }) {
       content: (
         <section className="nova-section">
           <div className="nova-section-header">
-            <span className="nova-section-icon"><FaTools /></span>
             <h2>Skills</h2>
           </div>
           <div className="nova-section-content">
             <div className="nova-skills-grid">
               {skills?.map((skill, index) => (
                 <div key={index} className="nova-skill">
-                  <FaChevronRight className="nova-skill-icon" />
                   <span>{skill}</span>
                 </div>
               ))}
@@ -130,7 +125,6 @@ export default function Nova({ resumeData }) {
       content: (
         <section className="nova-section">
           <div className="nova-section-header">
-            <span className="nova-section-icon"><FaLaptopCode /></span>
             <h2>Projects</h2>
           </div>
           <div className="nova-section-content">
@@ -145,8 +139,7 @@ export default function Nova({ resumeData }) {
                       rel="noopener noreferrer"
                       className="nova-link"
                     >
-                      <FaLink size={12} />
-                      <span>View Project</span>
+                      <span>View</span>
                     </a>
                   )}
                 </div>
@@ -176,7 +169,6 @@ export default function Nova({ resumeData }) {
       content: (
         <section className="nova-section">
           <div className="nova-section-header">
-            <span className="nova-section-icon"><FaTrophy /></span>
             <h2>Achievements</h2>
           </div>
           <div className="nova-section-content">
@@ -214,7 +206,6 @@ export default function Nova({ resumeData }) {
       content: (
         <section className="nova-section">
           <div className="nova-section-header">
-            <span className="nova-section-icon"><FaCertificate /></span>
             <h2>Certifications</h2>
           </div>
           <div className="nova-section-content">
@@ -234,8 +225,7 @@ export default function Nova({ resumeData }) {
                       rel="noopener noreferrer"
                       className="nova-cert-link"
                     >
-                      <FaLink size={10} />
-                      <span>View Certificate</span>
+                      View
                     </a>
                   )}
                 </div>
@@ -273,21 +263,18 @@ export default function Nova({ resumeData }) {
           <div className="nova-contact-container">
             {personalInfo?.email && (
               <a href={`mailto:${personalInfo.email}`} className="nova-contact-item">
-                <span className="nova-contact-icon"><FaEnvelope /></span>
                 <span>{personalInfo.email}</span>
               </a>
             )}
             
             {personalInfo?.phone && (
               <a href={`tel:${personalInfo.phone}`} className="nova-contact-item">
-                <span className="nova-contact-icon"><FaPhone /></span>
                 <span>{personalInfo.phone}</span>
               </a>
             )}
             
             {personalInfo?.location && (
               <div className="nova-contact-item">
-                <span className="nova-contact-icon"><FaMapMarkerAlt /></span>
                 <span>{personalInfo.location}</span>
               </div>
             )}
@@ -299,7 +286,6 @@ export default function Nova({ resumeData }) {
                 rel="noopener noreferrer"
                 className="nova-contact-item"
               >
-                <span className="nova-contact-icon"><FaLinkedin /></span>
                 <span>LinkedIn</span>
               </a>
             )}
@@ -311,7 +297,6 @@ export default function Nova({ resumeData }) {
                 rel="noopener noreferrer"
                 className="nova-contact-item"
               >
-                <span className="nova-contact-icon"><FaGithub /></span>
                 <span>GitHub</span>
               </a>
             )}
@@ -322,7 +307,6 @@ export default function Nova({ resumeData }) {
       {/* Section Selector */}
       <div className="nova-section-selector print:hidden">
         <div className="nova-selector-header">
-          <FaRegLightbulb className="mr-2" />
           <span>Build Your Resume</span>
         </div>
         
@@ -336,9 +320,6 @@ export default function Nova({ resumeData }) {
               }`}
               disabled={sectionOrder.includes(section.id)}
             >
-              <span className="nova-selector-icon">
-                {section.icon}
-              </span>
               <span className="nova-selector-label">{section.label}</span>
               {sectionOrder.includes(section.id) && (
                 <span className="nova-selector-badge">
@@ -367,25 +348,20 @@ export default function Nova({ resumeData }) {
             const section = allSections.find(s => s.id === sectionId);
             if (!section || !section.available) return null;
             return (
-              <div key={sectionId} className="animate-fadeIn">
+              <div key={sectionId}>
                 {section.content}
               </div>
             );
           })
         ) : (
           <div className="nova-empty-content print:hidden">
-            <div className="nova-empty-icon">
-              <FaPlusCircle />
-            </div>
-            <p>
-              Select sections from the panel to build your resume
-            </p>
+            <p>Select sections from the panel to build your resume</p>
           </div>
         )}
         
         {/* For print - show all sections in default order if nothing is selected */}
         {sectionOrder.length === 0 && (
-          <div className="hidden print:block space-y-6">
+          <div className="hidden print:block">
             {availableSections.map(section => (
               <div key={section.id}>{section.content}</div>
             ))}
@@ -393,7 +369,7 @@ export default function Nova({ resumeData }) {
         )}
 
         {/* Page numbers for print only */}
-        <div className="hidden print:block text-right text-xs text-gray-400 pt-4 border-t border-gray-200 mt-8">
+        <div className="hidden print:block text-right text-xs text-gray-400 pt-2 border-t border-gray-200 mt-4">
           <span className="print-page-number"></span>
         </div>
       </main>
@@ -402,96 +378,75 @@ export default function Nova({ resumeData }) {
       <style jsx global>{`
         /* Global styles */
         .nova-container {
-          --primary-color: #5046e5;
-          --primary-light: #6366f1;
-          --primary-dark: #4338ca;
-          --accent-color: #8b5cf6;
-          --text-primary: #1f2937;
-          --text-secondary: #4b5563;
-          --text-light: #6b7280;
+          --text-primary: #333333;
+          --text-secondary: #555555;
+          --text-light: #777777;
           --bg-card: #ffffff;
-          --border-color: #e5e7eb;
+          --border-color: #dddddd;
           
-          font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+          font-family: Arial, Helvetica, sans-serif;
           color: var(--text-primary);
-          background-color: #f9fafb;
-          min-height: 100vh;
+          background-color: #ffffff;
           padding: 0;
           position: relative;
+          line-height: 1.5;
         }
         
         /* Header styles */
         .nova-header {
-          background-image: linear-gradient(to right, var(--primary-color), var(--accent-color));
-          padding: 2.5rem 1.5rem;
-          color: white;
-          border-bottom-left-radius: 16px;
-          border-bottom-right-radius: 16px;
-          margin-bottom: 2rem;
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+          padding: 1rem 0.5rem;
+          margin-bottom: 1rem;
+          border-bottom: 1px solid var(--border-color);
         }
-        
+
         .nova-header-content {
           max-width: 800px;
           margin: 0 auto;
           text-align: center;
         }
-        
+
         .nova-header h1 {
-          font-size: 2.25rem;
+          font-size: 1.5rem;
           font-weight: 700;
-          margin-bottom: 0.5rem;
-          letter-spacing: -0.025em;
+          margin-bottom: 0.25rem;
+          color: #000;
         }
-        
+
         .nova-title {
-          font-size: 1.25rem;
+          font-size: 1rem;
           font-weight: 500;
-          opacity: 0.9;
-          margin-bottom: 1.5rem;
+          margin-bottom: 0.75rem;
+          color: var(--text-secondary);
         }
-        
+
         .nova-contact-container {
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
-          gap: 1rem 2rem;
+          gap: 0.75rem 1.5rem;
           font-size: 0.875rem;
           max-width: 800px;
           margin: 0 auto;
         }
-        
+
         .nova-contact-item {
-          display: flex;
-          align-items: center;
-          color: white;
-          transition: transform 0.2s;
+          color: var(--text-secondary);
+          text-decoration: none;
         }
-        
+
         .nova-contact-item:hover {
-          transform: translateY(-1px);
-        }
-        
-        .nova-contact-icon {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 1.75rem;
-          height: 1.75rem;
-          background-color: rgba(255, 255, 255, 0.2);
-          border-radius: 50%;
-          margin-right: 0.5rem;
+          text-decoration: underline;
         }
         
         /* Section selector styles */
         .nova-section-selector {
           position: fixed;
-          top: 6rem;
-          right: 2rem;
-          width: 16rem;
+          top: 4.5rem;
+          right: 1rem;
+          width: 15rem;
           background-color: var(--bg-card);
-          border-radius: 12px;
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+          border-radius: 4px;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
           overflow: hidden;
           border: 1px solid var(--border-color);
           z-index: 10;
@@ -500,99 +455,85 @@ export default function Nova({ resumeData }) {
         .nova-selector-header {
           display: flex;
           align-items: center;
-          background-image: linear-gradient(to right, var(--primary-color), var(--accent-color));
-          color: white;
-          padding: 1rem;
+          background-color: #f5f5f5;
+          color: #333;
+          padding: 0.75rem;
           font-weight: 600;
+          font-size: 0.9rem;
         }
         
         .nova-selector-content {
-          padding: 0.75rem;
+          padding: 0.5rem;
           display: flex;
           flex-direction: column;
-          gap: 0.5rem;
-          max-height: 60vh;
+          gap: 0.35rem;
+          max-height: 50vh;
           overflow-y: auto;
         }
         
         .nova-selector-button {
           display: flex;
           align-items: center;
-          padding: 0.625rem 0.875rem;
-          border-radius: 8px;
-          border: none;
-          background-color: #f9fafb;
+          padding: 0.5rem;
+          border-radius: 4px;
+          border: 1px solid #eee;
+          background-color: #ffffff;
           color: var(--text-secondary);
           cursor: pointer;
-          transition: all 0.15s ease;
           text-align: left;
           width: 100%;
           position: relative;
+          font-size: 0.875rem;
         }
         
         .nova-selector-button:not(:disabled):hover {
-          background-color: #f3f4f6;
-          color: var(--primary-color);
+          background-color: #f5f5f5;
         }
         
         .nova-selector-button.nova-selected {
-          background-color: #eff6ff;
-          color: #93c5fd;
+          background-color: #f0f0f0;
+          color: #999;
           cursor: not-allowed;
-        }
-        
-        .nova-selector-icon {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 1.25rem;
-          height: 1.25rem;
-          margin-right: 0.75rem;
-          color: var(--primary-light);
-        }
-        
-        .nova-selected .nova-selector-icon {
-          color: #93c5fd;
         }
         
         .nova-selector-badge {
           position: absolute;
-          right: 0.75rem;
+          right: 0.5rem;
           top: 50%;
           transform: translateY(-50%);
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 1.25rem;
-          height: 1.25rem;
-          background-color: #dbeafe;
-          color: #3b82f6;
+          width: 1.1rem;
+          height: 1.1rem;
+          background-color: #eee;
+          color: #777;
           border-radius: 50%;
-          font-size: 0.75rem;
+          font-size: 0.7rem;
           font-weight: 600;
         }
         
         .nova-reset-button {
           margin-top: 0.5rem;
-          padding: 0.625rem;
-          background-color: #fee2e2;
-          color: #ef4444;
-          border: none;
-          border-radius: 8px;
+          padding: 0.5rem;
+          background-color: #f5f5f5;
+          color: #666;
+          border: 1px solid #ddd;
+          border-radius: 4px;
           font-weight: 500;
           cursor: pointer;
-          transition: background-color 0.15s;
+          font-size: 0.875rem;
         }
         
         .nova-reset-button:hover {
-          background-color: #fecaca;
+          background-color: #eee;
         }
         
         /* Main content styles */
         .nova-main {
           max-width: 800px;
-          margin: 0 auto 3rem;
-          padding: 0 1.5rem;
+          margin: 0 auto 1rem;
+          padding: 0 1rem;
         }
         
         .nova-empty-content {
@@ -601,62 +542,42 @@ export default function Nova({ resumeData }) {
           align-items: center;
           justify-content: center;
           background-color: var(--bg-card);
-          border: 2px dashed #e5e7eb;
-          border-radius: 12px;
-          padding: 3rem 1rem;
+          border: 1px solid #eee;
+          border-radius: 4px;
+          padding: 2rem 1rem;
           color: var(--text-secondary);
           text-align: center;
-        }
-        
-        .nova-empty-icon {
-          font-size: 2.5rem;
-          color: #d1d5db;
-          margin-bottom: 1rem;
         }
         
         /* Section styles */
         .nova-section {
           background-color: var(--bg-card);
-          border-radius: 12px;
-          overflow: hidden;
           margin-bottom: 1.5rem;
-          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
         }
         
         .nova-section-header {
-          display: flex;
-          align-items: center;
-          padding: 1rem 1.25rem;
-          background-image: linear-gradient(to right, var(--primary-color), var(--accent-color));
-          color: white;
-        }
-        
-        .nova-section-icon {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 2rem;
-          height: 2rem;
-          background-color: rgba(255, 255, 255, 0.2);
-          border-radius: 50%;
-          margin-right: 0.875rem;
+          padding: 0 0 0.25rem 0;
+          margin-bottom: 0.5rem;
+          border-bottom: 1px solid #000;
         }
         
         .nova-section-header h2 {
-          font-size: 1.125rem;
-          font-weight: 600;
-          letter-spacing: 0.025em;
+          font-size: 1.1rem;
+          font-weight: 700;
+          margin: 0;
+          text-transform: uppercase;
+          color: #000;
         }
         
         .nova-section-content {
-          padding: 1.25rem;
+          padding: 0;
         }
         
         /* Item styles (for experience, education, etc.) */
         .nova-item {
           position: relative;
-          padding-bottom: 1.25rem;
-          margin-bottom: 1.25rem;
+          padding-bottom: 1rem;
+          margin-bottom: 1rem;
           border-bottom: 1px solid var(--border-color);
         }
         
@@ -670,25 +591,25 @@ export default function Nova({ resumeData }) {
           display: flex;
           justify-content: space-between;
           align-items: baseline;
-          margin-bottom: 0.5rem;
+          margin-bottom: 0.35rem;
         }
         
         .nova-item-header h3 {
-          font-size: 1.125rem;
+          font-size: 1rem;
           font-weight: 600;
           color: var(--text-primary);
+          margin: 0;
         }
         
         .nova-date {
-          font-size: 0.875rem;
+          font-size: 0.8rem;
           color: var(--text-light);
           white-space: nowrap;
         }
         
         .nova-company, .nova-school, .nova-organization {
-          font-size: 0.9375rem;
-          margin-bottom: 0.5rem;
-          color: var(--primary-color);
+          font-size: 0.9rem;
+          margin-bottom: 0.4rem;
           font-weight: 500;
           display: flex;
           align-items: center;
@@ -699,133 +620,95 @@ export default function Nova({ resumeData }) {
         }
         
         .nova-location {
-          font-size: 0.875rem;
+          font-size: 0.8rem;
           color: var(--text-light);
           position: relative;
-          padding-left: 0.75rem;
+          padding-left: 0.6rem;
         }
         
         .nova-location:before {
-          content: "";
+          content: "•";
           position: absolute;
-          left: 0.25rem;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 3px;
-          height: 3px;
-          border-radius: 50%;
-          background-color: var(--text-light);
+          left: 0.2rem;
+          top: 0;
         }
         
         .nova-description {
-          font-size: 0.9375rem;
+          font-size: 0.9rem;
           color: var(--text-secondary);
-          line-height: 1.5;
+          line-height: 1.4;
+          margin: 0;
         }
         
         /* Skills styles */
         .nova-skills-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-          gap: 0.75rem;
+          grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+          gap: 0.5rem;
         }
         
         .nova-skill {
-          display: flex;
-          align-items: center;
-          font-size: 0.9375rem;
+          font-size: 0.9rem;
           color: var(--text-secondary);
-        }
-        
-        .nova-skill-icon {
-          color: var(--primary-light);
-          margin-right: 0.5rem;
-          flex-shrink: 0;
-          font-size: 0.75rem;
         }
         
         /* Projects and links styles */
         .nova-link, .nova-cert-link {
-          display: inline-flex;
-          align-items: center;
-          font-size: 0.75rem;
-          color: var(--primary-color);
-          background-color: #eff6ff;
-          padding: 0.25rem 0.75rem;
-          border-radius: 999px;
-          transition: background-color 0.15s;
-        }
-        
-        .nova-link svg, .nova-cert-link svg {
-          margin-right: 0.375rem;
+          font-size: 0.8rem;
+          color: #555;
+          text-decoration: none;
         }
         
         .nova-link:hover, .nova-cert-link:hover {
-          background-color: #dbeafe;
+          text-decoration: underline;
         }
         
         .nova-tech-tags {
           display: flex;
           flex-wrap: wrap;
           gap: 0.5rem;
-          margin-top: 0.75rem;
+          margin-top: 0.5rem;
         }
         
         .nova-tech-tag {
-          font-size: 0.75rem;
-          background-color: #f3f4f6;
+          font-size: 0.8rem;
           color: var(--text-secondary);
-          padding: 0.25rem 0.625rem;
-          border-radius: 999px;
           white-space: nowrap;
+        }
+        
+        .nova-tech-tag:not(:last-child):after {
+          content: ",";
         }
         
         /* Certificates styles */
         .nova-certificates-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
           gap: 1rem;
         }
         
         .nova-certificate {
-          background-color: #f9fafb;
-          border-radius: 8px;
-          padding: 1rem;
-          border: 1px solid var(--border-color);
+          padding-bottom: 0.75rem;
         }
         
         .nova-certificate-header {
           display: flex;
           justify-content: space-between;
           align-items: baseline;
-          margin-bottom: 0.5rem;
+          margin-bottom: 0.4rem;
         }
         
         .nova-certificate-header h3 {
-          font-size: 1rem;
+          font-size: 0.95rem;
           font-weight: 600;
           color: var(--text-primary);
+          margin: 0;
         }
         
         .nova-issuer {
-          font-size: 0.875rem;
+          font-size: 0.8rem;
           color: var(--text-secondary);
-          margin-bottom: 0.75rem;
-        }
-        
-        .nova-cert-link {
-          font-size: 0.75rem;
-          padding: 0.25rem 0.5rem;
-        }
-        
-        /* Animation */
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(8px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-fadeIn {
-          animation: fadeIn 0.3s ease-out forwards;
+          margin-bottom: 0.5rem;
         }
         
         /* Print styles */
@@ -841,15 +724,8 @@ export default function Nova({ resumeData }) {
           }
           
           .nova-header {
-            background: #4f46e5 !important;
-            border-radius: 0;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: none;
-          }
-          
-          .nova-header-content {
-            text-align: center;
+            padding: 0 0 0.5rem 0;
+            margin-bottom: 1rem;
           }
           
           .nova-main {
@@ -860,13 +736,6 @@ export default function Nova({ resumeData }) {
             break-inside: avoid;
             page-break-inside: avoid;
             margin-bottom: 1rem;
-            border-radius: 0;
-            box-shadow: none;
-            border: 1px solid #e5e7eb;
-          }
-          
-          .nova-section-header {
-            background: #4f46e5 !important;
           }
           
           .page-break-inside-avoid {
@@ -879,7 +748,6 @@ export default function Nova({ resumeData }) {
             content: counter(page);
           }
           
-          /* Elements that don't need special print styles */
           .nova-certificates-grid {
             grid-template-columns: repeat(2, 1fr);
           }
@@ -894,7 +762,7 @@ export default function Nova({ resumeData }) {
           .nova-section-selector {
             position: static;
             width: 100%;
-            margin: 0 auto 1.5rem;
+            margin: 0 auto 1rem;
             max-width: 800px;
           }
           
@@ -902,12 +770,8 @@ export default function Nova({ resumeData }) {
             max-height: none;
           }
           
-          .nova-header {
-            padding: 2rem 1rem;
-          }
-          
           .nova-contact-container {
-            gap: 0.75rem;
+            gap: 0.5rem;
           }
           
           .nova-certificates-grid, .nova-skills-grid {

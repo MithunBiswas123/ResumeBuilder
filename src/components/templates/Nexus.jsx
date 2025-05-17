@@ -1,18 +1,16 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import {
   FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, 
   FaLink, FaBriefcase, FaGraduationCap, FaTools,
-  FaLaptopCode, FaTrophy, FaCertificate, FaUserAlt, 
-  FaCircle, FaInfoCircle
+  FaLaptopCode, FaTrophy, FaCertificate, FaUserAlt
 } from "react-icons/fa";
 
 export default function Nexus({ resumeData }) {
   const { personalInfo, experience, education, skills, projects, achievements, certificates } =
     resumeData || {};
-
-  const [sectionOrder, setSectionOrder] = useState([]);
+  
   const contentRef = useRef(null);
   
   const ensureHttps = (url) => {
@@ -27,7 +25,7 @@ export default function Nexus({ resumeData }) {
       icon: <FaUserAlt />,
       available: !!personalInfo?.summary,
       content: (
-        <section className="mb-10 resume-section">
+        <section className="mb-6 resume-section">
           <div className="dot-header">
             <div className="dot-circle"></div>
             <h2>Profile</h2>
@@ -44,7 +42,7 @@ export default function Nexus({ resumeData }) {
       icon: <FaBriefcase />,
       available: experience?.length > 0,
       content: (
-        <section className="mb-10 resume-section">
+        <section className="mb-6 resume-section">
           <div className="dot-header">
             <div className="dot-circle"></div>
             <h2>Experience</h2>
@@ -89,13 +87,13 @@ export default function Nexus({ resumeData }) {
       icon: <FaGraduationCap />,
       available: education?.length > 0,
       content: (
-        <section className="mb-10 resume-section">
+        <section className="mb-6 resume-section">
           <div className="dot-header">
             <div className="dot-circle"></div>
             <h2>Education</h2>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-4">
             {education?.map((edu, index) => (
               <div key={index} className="education-item">
                 <div className="dot-indicator"></div>
@@ -118,7 +116,7 @@ export default function Nexus({ resumeData }) {
       icon: <FaTools />,
       available: skills?.length > 0,
       content: (
-        <section className="mb-10 resume-section">
+        <section className="mb-6 resume-section">
           <div className="dot-header">
             <div className="dot-circle"></div>
             <h2>Skills</h2>
@@ -143,13 +141,13 @@ export default function Nexus({ resumeData }) {
       icon: <FaLaptopCode />,
       available: projects?.length > 0,
       content: (
-        <section className="mb-10 resume-section">
+        <section className="mb-6 resume-section">
           <div className="dot-header">
             <div className="dot-circle"></div>
             <h2>Projects</h2>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-4">
             {projects?.map((project, index) => (
               <div key={index} className="project-card page-break-inside-avoid">
                 <div className="project-title">
@@ -189,7 +187,7 @@ export default function Nexus({ resumeData }) {
       icon: <FaTrophy />,
       available: achievements?.length > 0,
       content: (
-        <section className="mb-10 resume-section">
+        <section className="mb-6 resume-section">
           <div className="dot-header">
             <div className="dot-circle"></div>
             <h2>Achievements</h2>
@@ -235,13 +233,13 @@ export default function Nexus({ resumeData }) {
       icon: <FaCertificate />,
       available: certificates?.length > 0,
       content: (
-        <section className="mb-10 resume-section">
+        <section className="mb-6 resume-section">
           <div className="dot-header">
             <div className="dot-circle"></div>
             <h2>Certifications</h2>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-4">
             {certificates?.map((cert, index) => (
               <div key={index} className="cert-item">
                 <div className="cert-header">
@@ -270,218 +268,167 @@ export default function Nexus({ resumeData }) {
   ];
 
   const availableSections = allSections.filter(section => section.available);
-
-  const handleSectionClick = (sectionId) => {
-    if (sectionOrder.includes(sectionId)) return;
-    setSectionOrder(prev => [...prev, sectionId]);
+  
+   // Auto distribute sections between columns but place certificates on right side
+  const distributeSections = () => {
+    const left = [];
+    const right = [];
+    
+    availableSections.forEach((section, index) => {
+      // Always place certificates on the right side
+      if (section.id === 'certificates') {
+        right.push(section.id);
+      } 
+      // Distribute other sections as before
+      else if (index % 2 === 0) {
+        left.push(section.id);
+      } else {
+        right.push(section.id);
+      }
+    });
+    
+    return {
+      leftSections: left,
+      rightSections: right
+    };
   };
-
-  const resetSections = () => {
-    setSectionOrder([]);
-  };
+  
+  const { leftSections, rightSections } = distributeSections();
 
   return (
     <div className="bg-white min-h-full font-sans text-gray-800 relative">
-      {/* Left sidebar with name and contacts */}
-      <div className="resume-layout">
-        <aside className="sidebar">
-          <div className="name-container">
-            <h1 className="name">
-              {personalInfo?.name || "Your Name"}
-            </h1>
+      {/* Header with personal info and contact details */}
+      <header className="resume-header">
+        <div className="header-container">
+          <div className="personal-info">
+            <h1 className="name">{personalInfo?.name || "Your Name"}</h1>
+            {personalInfo?.title && <h2 className="title">{personalInfo.title}</h2>}
+          </div>
+          
+          <div className="contact-info">
+            {personalInfo?.email && (
+              <a href={`mailto:${personalInfo.email}`} className="contact-item">
+                <FaEnvelope className="contact-icon" />
+                <span>{personalInfo.email}</span>
+              </a>
+            )}
             
-            {personalInfo?.title && (
-              <h2 className="job-title">{personalInfo.title}</h2>
+            {personalInfo?.phone && (
+              <a href={`tel:${personalInfo.phone}`} className="contact-item">
+                <FaPhone className="contact-icon" />
+                <span>{personalInfo.phone}</span>
+              </a>
+            )}
+            
+            {personalInfo?.location && (
+              <div className="contact-item">
+                <FaMapMarkerAlt className="contact-icon" />
+                <span>{personalInfo.location}</span>
+              </div>
+            )}
+            
+            {personalInfo?.linkedin && (
+              <a
+                href={ensureHttps(personalInfo.linkedin)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-item"
+              >
+                <FaLinkedin className="contact-icon" />
+                <span>LinkedIn</span>
+              </a>
+            )}
+            
+            {personalInfo?.github && (
+              <a
+                href={ensureHttps(personalInfo.github)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-item"
+              >
+                <FaGithub className="contact-icon" />
+                <span>GitHub</span>
+              </a>
             )}
           </div>
-          
-          <div className="contact-section">
-            <div className="contact-heading">
-              <div className="dot-circle"></div>
-              <h3>Contact</h3>
-            </div>
-            
-            <div className="contact-list">
-              {personalInfo?.email && (
-                <a href={`mailto:${personalInfo.email}`} className="contact-item">
-                  <FaEnvelope className="contact-icon" />
-                  <span>{personalInfo.email}</span>
-                </a>
-              )}
-              
-              {personalInfo?.phone && (
-                <a href={`tel:${personalInfo.phone}`} className="contact-item">
-                  <FaPhone className="contact-icon" />
-                  <span>{personalInfo.phone}</span>
-                </a>
-              )}
-              
-              {personalInfo?.location && (
-                <div className="contact-item">
-                  <FaMapMarkerAlt className="contact-icon" />
-                  <span>{personalInfo.location}</span>
-                </div>
-              )}
-              
-              {personalInfo?.linkedin && (
-                <a
-                  href={ensureHttps(personalInfo.linkedin)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="contact-item"
-                >
-                  <FaLinkedin className="contact-icon" />
-                  <span>LinkedIn</span>
-                </a>
-              )}
-              
-              {personalInfo?.github && (
-                <a
-                  href={ensureHttps(personalInfo.github)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="contact-item"
-                >
-                  <FaGithub className="contact-icon" />
-                  <span>GitHub</span>
-                </a>
-              )}
-            </div>
-          </div>
-        </aside>
+        </div>
+      </header>
 
-        {/* Main content area */}
-        <main className="main-content" ref={contentRef}>
-          {/* Section Selector - Right side panel */}
-          <div className="section-selector print:hidden">
-            <div className="selector-heading">
-              <FaInfoCircle className="mr-2 text-teal-500" />
-              <span>Add Sections</span>
-            </div>
-            
-            <div className="selector-options">
-              {availableSections.map((section) => (
-                <button
-                  key={section.id}
-                  onClick={() => handleSectionClick(section.id)}
-                  className={`selector-button ${
-                    sectionOrder.includes(section.id)
-                      ? 'selected-button'
-                      : ''
-                  }`}
-                  disabled={sectionOrder.includes(section.id)}
-                >
-                  <span className={`button-icon ${sectionOrder.includes(section.id) ? 'text-gray-400' : 'text-teal-500'}`}>
-                    {section.icon}
-                  </span>
-                  <span>{section.label}</span>
-                  {sectionOrder.includes(section.id) && (
-                    <span className="order-indicator">
-                      {sectionOrder.indexOf(section.id) + 1}
-                    </span>
-                  )}
-                </button>
-              ))}
-              
-              {sectionOrder.length > 0 && (
-                <button onClick={resetSections} className="reset-button">
-                  Reset All
-                </button>
-              )}
-            </div>
-          </div>
-
-          {/* Display sections in the order they were clicked */}
-          {sectionOrder.length > 0 ? (
-            sectionOrder.map(sectionId => {
-              const section = allSections.find(s => s.id === sectionId);
-              if (!section || !section.available) return null;
-              return (
-                <div key={sectionId} className="animate-fadeIn">
-                  {section.content}
-                </div>
-              );
-            })
-          ) : (
-            <div className="empty-content print:hidden">
-              <p className="text-gray-500">
-                Select sections from the panel to build your resume
-              </p>
-            </div>
-          )}
-          
-          {/* For print - show all sections in default order if nothing is selected */}
-          {sectionOrder.length === 0 && (
-            <div className="hidden print:block space-y-8">
-              {availableSections.map(section => (
-                <div key={section.id}>{section.content}</div>
-              ))}
-            </div>
-          )}
-
-          {/* Page numbers for print only */}
-          <div className="hidden print:block text-right text-xs text-gray-400 pt-4 border-t border-gray-200 mt-8">
-            <span className="print-page-number"></span>
-          </div>
-        </main>
+      {/* Main Two Column Content Area */}
+      <div className="two-column-layout" ref={contentRef}>
+        {/* Left Column */}
+        <div className="column left-column">
+          {leftSections.map(sectionId => {
+            const section = allSections.find(s => s.id === sectionId);
+            if (!section) return null;
+            return <div key={sectionId}>{section.content}</div>;
+          })}
+        </div>
+        
+        {/* Right Column */}
+        <div className="column right-column">
+          {rightSections.map(sectionId => {
+            const section = allSections.find(s => s.id === sectionId);
+            if (!section) return null;
+            return <div key={sectionId}>{section.content}</div>;
+          })}
+        </div>
       </div>
       
-      {/* Styles specific to this template */}
+      {/* Page numbers for print only */}
+      <div className="hidden print:block text-right text-xs text-gray-400 pt-2 border-t border-gray-200 mt-4">
+        <span className="print-page-number"></span>
+      </div>
+      
+      {/* Styles */}
       <style jsx global>{`
         /* Overall Layout */
-        .resume-layout {
-          display: grid;
-          grid-template-columns: 220px 1fr;
-          min-height: 100vh;
+        body {
+          margin: 0;
+          padding: 0;
         }
         
-        /* Sidebar */
-        .sidebar {
+        /* Header */
+        .resume-header {
           background-color: #F3F4F6;
-          padding: 2rem 1.5rem;
-          border-right: 1px solid #E5E7EB;
+          padding: 1.5rem;
+          border-bottom: 1px solid #E5E7EB;
         }
         
-        .name-container {
-          margin-bottom: 2rem;
+        .header-container {
+          max-width: 1100px;
+          margin: 0 auto;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          align-items: center;
+          gap: 1rem;
+        }
+        
+        .personal-info {
+          flex-shrink: 0;
         }
         
         .name {
-          font-size: 1.5rem;
+          font-size: 1.75rem;
           font-weight: 700;
           color: #111827;
-          letter-spacing: -0.015em;
+          margin: 0 0 0.25rem;
           line-height: 1.2;
-          margin-bottom: 0.5rem;
         }
         
-        .job-title {
-          font-size: 1rem;
+        .title {
+          font-size: 1.1rem;
           font-weight: 500;
           color: #4B5563;
+          margin: 0;
         }
         
-        .contact-section {
-          margin-top: 1.5rem;
-        }
-        
-        .contact-heading {
+        .contact-info {
           display: flex;
-          align-items: center;
-          margin-bottom: 1rem;
-        }
-        
-        .contact-heading h3 {
-          font-size: 1rem;
-          font-weight: 600;
-          color: #111827;
-          margin-left: 8px;
-        }
-        
-        .contact-list {
-          display: flex;
-          flex-direction: column;
-          gap: 0.75rem;
+          flex-wrap: wrap;
+          gap: 0.75rem 1.5rem;
+          justify-content: flex-end;
         }
         
         .contact-item {
@@ -490,6 +437,7 @@ export default function Nexus({ resumeData }) {
           font-size: 0.85rem;
           color: #4B5563;
           transition: color 0.15s;
+          text-decoration: none;
         }
         
         .contact-item:hover {
@@ -504,135 +452,40 @@ export default function Nexus({ resumeData }) {
           color: #0D9488;
         }
         
-        /* Main Content */
-        .main-content {
-          padding: 2rem 2.5rem;
-          position: relative;
+        /* Two Column Layout */
+        .two-column-layout {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 2rem;
+          max-width: 1100px;
+          margin: 0 auto;
+          padding: 1.5rem;
         }
         
-        /* Section Selector */
-        .section-selector {
-          position: fixed;
-          top: 1.5rem;
-          right: 1rem;
-          width: 15rem;
-          background-color: white;
-          border: 1px solid #E5E7EB;
-          border-radius: 0.5rem;
-          padding: 1rem;
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-          z-index: 10;
+        .column {
+          min-height: 100px;
         }
-        
-        .selector-heading {
-          display: flex;
-          align-items: center;
-          font-size: 0.875rem;
-          font-weight: 600;
-          color: #111827;
-          margin-bottom: 0.75rem;
-          padding-bottom: 0.5rem;
-          border-bottom: 1px solid #F3F4F6;
-        }
-        
-        .selector-options {
-          max-height: 70vh;
-          overflow-y: auto;
-          display: flex;
-          flex-direction: column;
-          gap: 0.25rem;
-        }
-        
-        .selector-button {
-          display: flex;
-          align-items: center;
-          width: 100%;
-          text-align: left;
-          padding: 0.5rem 0.75rem;
-          font-size: 0.875rem;
-          color: #4B5563;
-          border-radius: 0.375rem;
-          transition: all 0.15s;
-          background-color: transparent;
-          border: none;
-        }
-        
-        .selector-button:not(:disabled):hover {
-          background-color: #F3F4F6;
-          color: #111827;
-        }
-        
-        .selected-button {
-          background-color: #F3F4F6;
-          color: #9CA3AF;
-          cursor: default;
-        }
-        
-        .button-icon {
-          margin-right: 0.5rem;
-          width: 1rem;
-        }
-        
-        .order-indicator {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 1.25rem;
-          height: 1.25rem;
-          margin-left: auto;
-          border-radius: 9999px;
-          background-color: #E5E7EB;
-          color: #6B7280;
-          font-size: 0.75rem;
-          font-weight: 500;
-        }
-        
-        .reset-button {
-          width: 100%;
-          margin-top: 0.75rem;
-          padding: 0.5rem 0;
-          font-size: 0.875rem;
-          color: #EF4444;
-          border: 1px solid #FEE2E2;
-          background-color: white;
-          border-radius: 0.375rem;
-          transition: all 0.15s;
-        }
-        
-        .reset-button:hover {
-          background-color: #FEF2F2;
-        }
-        
-        .empty-content {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          height: 16rem;
-          border: 2px dashed #E5E7EB;
-          border-radius: 0.5rem;
-          background-color: #F9FAFB;
-        }
-        
-        /* Dot Headers */
+
+        /* Section Styles */
         .dot-header {
           display: flex;
           align-items: center;
-          margin-bottom: 1rem;
+          margin-bottom: 0.75rem;
           position: relative;
         }
         
         .dot-header h2 {
-          font-size: 1.25rem;
+          font-size: 1.125rem;
           font-weight: 600;
           color: #111827;
-          margin-left: 1rem;
+          margin: 0 0 0 0.75rem;
         }
         
         .dot-header::after {
           content: '';
           position: absolute;
           top: 50%;
-          left: 2rem;
+          left: 1.5rem;
           right: 0;
           height: 1px;
           background-color: #E5E7EB;
@@ -640,8 +493,8 @@ export default function Nexus({ resumeData }) {
         }
         
         .dot-circle {
-          width: 1rem;
-          height: 1rem;
+          width: 0.875rem;
+          height: 0.875rem;
           border-radius: 9999px;
           background-color: #0D9488;
           flex-shrink: 0;
@@ -650,7 +503,7 @@ export default function Nexus({ resumeData }) {
         }
         
         .content-box {
-          margin-left: 2rem;
+          margin-left: 1.5rem;
         }
         
         /* Experience Timeline */
@@ -660,21 +513,21 @@ export default function Nexus({ resumeData }) {
         
         .timeline-item {
           display: flex;
-          margin-bottom: 1.5rem;
+          margin-bottom: 1.25rem;
         }
         
         .timeline-dot-container {
           display: flex;
           flex-direction: column;
           align-items: center;
-          width: 1.5rem;
-          margin-right: 1rem;
+          width: 1.25rem;
+          margin-right: 0.75rem;
           flex-shrink: 0;
         }
         
         .timeline-dot {
-          width: 0.75rem;
-          height: 0.75rem;
+          width: 0.625rem;
+          height: 0.625rem;
           border-radius: 9999px;
           background-color: #0D9488;
           margin-top: 0.5rem;
@@ -693,7 +546,7 @@ export default function Nexus({ resumeData }) {
         }
         
         .date-span {
-          font-size: 0.875rem;
+          font-size: 0.8rem;
           color: #6B7280;
           white-space: nowrap;
         }
@@ -703,6 +556,10 @@ export default function Nexus({ resumeData }) {
           position: relative;
           padding-left: 1rem;
           margin-bottom: 1rem;
+        }
+        
+        .education-item:last-child {
+          margin-bottom: 0;
         }
         
         .dot-indicator {
@@ -727,7 +584,7 @@ export default function Nexus({ resumeData }) {
         .skill-grid {
           display: flex;
           flex-wrap: wrap;
-          gap: 0.75rem 1.5rem;
+          gap: 0.5rem 1.25rem;
         }
         
         .skill-item {
@@ -749,6 +606,11 @@ export default function Nexus({ resumeData }) {
         .project-card {
           position: relative;
           padding-left: 1rem;
+          margin-bottom: 1rem;
+        }
+        
+        .project-card:last-child {
+          margin-bottom: 0;
         }
         
         .project-card::before {
@@ -795,6 +657,10 @@ export default function Nexus({ resumeData }) {
           margin-bottom: 1rem;
         }
         
+        .achievement-item:last-child {
+          margin-bottom: 0;
+        }
+        
         .achievement-content {
           padding-left: 0.75rem;
         }
@@ -803,6 +669,11 @@ export default function Nexus({ resumeData }) {
         .cert-item {
           position: relative;
           padding-left: 1rem;
+          margin-bottom: 1rem;
+        }
+        
+        .cert-item:last-child {
+          margin-bottom: 0;
         }
         
         .cert-item::before {
@@ -847,26 +718,22 @@ export default function Nexus({ resumeData }) {
             print-color-adjust: exact !important;
           }
           
-          .resume-layout {
-            display: grid;
-            grid-template-columns: 180px 1fr;
-            min-height: auto;
+          .resume-header {
+            padding: 0.75rem 0 1rem;
+            background-color: #F3F4F6 !important;
           }
           
-          .sidebar {
-            padding: 1.5rem 1rem;
-          }
-          
-          .main-content {
-            padding: 1.5rem 2rem;
+          .two-column-layout {
+            gap: 1.5rem;
+            padding: 1rem 0;
           }
           
           .name {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
           }
           
-          .job-title {
-            font-size: 0.9rem;
+          .title {
+            font-size: 1rem;
           }
           
           .contact-item {
@@ -874,7 +741,7 @@ export default function Nexus({ resumeData }) {
           }
           
           .dot-header h2 {
-            font-size: 1.1rem;
+            font-size: 1rem;
           }
           
           .resume-section {
@@ -906,45 +773,22 @@ export default function Nexus({ resumeData }) {
           .contact-icon {
             color: #0D9488 !important;
           }
-          
-          .sidebar {
-            background-color: #F3F4F6 !important;
-          }
-        }
-        
-        /* Animation */
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(8px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-fadeIn {
-          animation: fadeIn 0.3s ease-out forwards;
         }
         
         /* Responsive */
-        @media (max-width: 768px) {
-          .resume-layout {
+        @media (max-width: 900px) {
+          .two-column-layout {
             grid-template-columns: 1fr;
-          }
-          
-          .sidebar {
-            border-right: none;
-            border-bottom: 1px solid #E5E7EB;
-            padding: 1.5rem;
-          }
-          
-          .contact-list {
-            flex-direction: row;
-            flex-wrap: wrap;
             gap: 1rem;
           }
           
-          .section-selector {
-            position: static;
-            width: 100%;
-            margin-bottom: 2rem;
-            box-shadow: none;
+          .header-container {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+          
+          .contact-info {
+            justify-content: flex-start;
           }
         }
       `}</style>

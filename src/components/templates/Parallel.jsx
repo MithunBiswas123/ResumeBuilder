@@ -55,25 +55,7 @@ export default function Parallel({ resumeData }) {
         </section>
       )
     },
-    { 
-      id: 'skills', 
-      label: 'Skills',
-      icon: <FaTools />,
-      available: skills?.length > 0,
-      content: (
-        <section className="mb-6 resume-section">
-          <h2 className="text-base font-bold mb-2">SKILLS</h2>
-          
-          <div className="space-y-1">
-            {skills?.map((skill, index) => (
-              <div key={index} className="text-sm text-gray-700 py-1 border-b border-gray-100">
-                {skill}
-              </div>
-            ))}
-          </div>
-        </section>
-      )
-    },
+   
     { 
       id: 'certificates', 
       label: 'Certificates',
@@ -108,6 +90,7 @@ export default function Parallel({ resumeData }) {
         </section>
       )
     },
+   
   ];
   
   const rightColumnSections = [
@@ -146,6 +129,28 @@ export default function Parallel({ resumeData }) {
         </section>
       )
     },
+   { 
+  id: 'skills', 
+  label: 'Skills',
+  icon: <FaTools />,
+  available: skills?.length > 0,
+  content: (
+    <section className="mb-6 resume-section">
+      <h2 className="text-base font-bold mb-2">SKILLS</h2>
+      
+      <div className="flex flex-wrap gap-2">
+        {skills?.map((skill, index) => (
+          <div 
+            key={index} 
+            className="text-sm text-gray-700 px-3 py-1 border border-gray-200 rounded-md bg-gray-50"
+          >
+            {skill}
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+},
     { 
       id: 'projects', 
       label: 'Projects',
@@ -198,7 +203,7 @@ export default function Parallel({ resumeData }) {
         </section>
       )
     },
-    { 
+     { 
       id: 'achievements', 
       label: 'Achievements',
       icon: <FaTrophy />,
@@ -238,6 +243,7 @@ export default function Parallel({ resumeData }) {
         </section>
       )
     },
+    
   ];
 
   // Combine sections for the selector

@@ -123,7 +123,7 @@ export default function Clean({ resumeData }) {
         <section className="mb-6 resume-section">
           <h2 className="text-base uppercase font-bold text-gray-800 mb-3">Projects</h2>
           
-          <div className="space-y-4">
+          <div className="grid md:grid-cols-2 gap-3">
             {projects?.map((project, index) => (
               <div key={index} className="page-break-inside-avoid">
                 <div className="flex justify-between items-start mb-1">
@@ -168,7 +168,7 @@ export default function Clean({ resumeData }) {
         <section className="mb-6 resume-section">
           <h2 className="text-base uppercase font-bold text-gray-800 mb-3">Achievements</h2>
           
-          <div className="space-y-4">
+          <div className="grid md:grid-cols-2 gap-3">
             {achievements?.map((achievement, index) => (
               <div key={index} className="page-break-inside-avoid">
                 <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-1 mb-1">
@@ -209,7 +209,7 @@ export default function Clean({ resumeData }) {
         <section className="mb-6 resume-section">
           <h2 className="text-base uppercase font-bold text-gray-800 mb-3">Certifications</h2>
           
-          <div className="space-y-4">
+          <div className="grid md:grid-cols-2 gap-3">
             {certificates?.map((cert, index) => (
               <div key={index}>
                 <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-1 mb-1">

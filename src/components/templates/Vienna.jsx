@@ -61,7 +61,7 @@ export default function Vienna({ resumeData }) {
   return (
     <div className="font-serif bg-amber-50 min-h-full text-gray-800 print:text-sm">
       {/* Elegant header with name and title */}
-      <header className="bg-gradient-to-r from-amber-700 to-amber-600 pt-14 pb-4 px-8 text-amber-50">
+      <header className="bg-gradient-to-r from-amber-700 to-amber-600 pt-6 pb-3 px-8 text-amber-50">
         <div className="max-w-5xl mx-auto">
           <h1 className="text-3xl md:text-4xl font-light tracking-wide mb-1">
             {personalInfo?.name || "Your Name"}
@@ -145,7 +145,7 @@ export default function Vienna({ resumeData }) {
           <div className="md:col-span-2">
             {/* Experience section with elegant timeline */}
             {experience?.length > 0 && (
-              <div className="resume-section mb-10 page-break-inside-avoid">
+              <div className="resume-section mb-3 page-break-inside-avoid">
                 <h2 className="text-2xl font-light text-amber-800 border-b-2 border-amber-200 pb-2 mb-6 flex items-center">
                   <FaBriefcase className="mr-3 text-amber-600" />
                   Professional Experience
@@ -188,7 +188,7 @@ export default function Vienna({ resumeData }) {
             
             {/* Projects section with elegant cards */}
             {projects?.length > 0 && (
-              <div className="resume-section mb-10 page-break-inside-avoid">
+              <div className="resume-section mb-3 page-break-inside-avoid">
                 <h2 className="text-2xl font-light text-amber-800 border-b-2 border-amber-200 pb-2 mb-6 flex items-center">
                   <FaLaptopCode className="mr-3 text-amber-600" />
                   Projects

@@ -26,10 +26,10 @@ export default function Crisp({ resumeData }) {
       icon: <FaUserAlt />,
       available: !!personalInfo?.summary,
       content: (
-        <section className="mb-6 resume-section">
-          <h2 className="text-lg font-bold text-slate-800 mb-3 border-b border-slate-200 pb-2">About Me</h2>
-          <div className="bg-white p-4 border border-slate-200">
-            <p className="text-slate-600 leading-relaxed">{personalInfo?.summary}</p>
+        <section className="mb-4 resume-section">
+          <h2 className="text-base font-bold text-slate-800 mb-2 border-b border-slate-200 pb-1">About Me</h2>
+          <div className="bg-white p-3 border border-slate-200">
+            <p className="text-slate-600 text-sm leading-relaxed">{personalInfo?.summary}</p>
           </div>
         </section>
       )
@@ -40,28 +40,28 @@ export default function Crisp({ resumeData }) {
       icon: <FaBriefcase />,
       available: experience?.length > 0,
       content: (
-        <section className="mb-8 resume-section">
-          <h2 className="text-lg font-bold text-slate-800 mb-3 border-b border-slate-200 pb-2">Work Experience</h2>
+        <section className="mb-4 resume-section">
+          <h2 className="text-base font-bold text-slate-800 mb-2 border-b border-slate-200 pb-1">Work Experience</h2>
           
-          <div className="space-y-5">
+          <div className="space-y-3">
             {experience?.map((job, index) => (
               <div key={index} className="page-break-inside-avoid">
-                <div className="bg-white p-4 border border-slate-200">
-                  <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-2">
-                    <h3 className="text-lg font-medium text-slate-800">
+                <div className="bg-white p-3 border border-slate-200">
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-1 mb-1">
+                    <h3 className="text-sm font-medium text-slate-800">
                       {job.position || job.title}
                     </h3>
-                    <span className="text-sm py-1 px-3 bg-slate-100 text-slate-600 rounded">
+                    <span className="text-xs py-0.5 px-2 bg-slate-100 text-slate-600 rounded">
                       {job.startDate} — {job.endDate || "Present"}
                     </span>
                   </div>
                   
-                  <p className="text-blue-600 font-medium">
+                  <p className="text-blue-600 font-medium text-xs">
                     {job.company}
                     {job.location ? ` · ${job.location}` : ""}
                   </p>
                   
-                  <p className="text-slate-600 mt-2">
+                  <p className="text-slate-600 mt-1 text-xs">
                     {job.description}
                   </p>
                 </div>
@@ -77,16 +77,16 @@ export default function Crisp({ resumeData }) {
       icon: <FaGraduationCap />,
       available: education?.length > 0,
       content: (
-        <section className="mb-6 resume-section">
-          <h2 className="text-lg font-bold text-slate-800 mb-3 border-b border-slate-200 pb-2">Education</h2>
+        <section className="mb-4 resume-section">
+          <h2 className="text-base font-bold text-slate-800 mb-2 border-b border-slate-200 pb-1">Education</h2>
           
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 gap-3">
             {education?.map((edu, index) => (
-              <div key={index} className="bg-white p-4 border border-slate-200">
-                <h3 className="text-lg font-medium text-slate-800">{edu.degree}</h3>
-                <p className="text-blue-600 font-medium mt-1">{edu.school}</p>
-                <p className="text-sm text-slate-500 mt-2 flex items-center">
-                  <span className="mr-2">•</span>
+              <div key={index} className="bg-white p-3 border border-slate-200">
+                <h3 className="text-sm font-medium text-slate-800">{edu.degree}</h3>
+                <p className="text-blue-600 font-medium text-xs mt-0.5">{edu.school}</p>
+                <p className="text-xs text-slate-500 mt-1 flex items-center">
+                  <span className="mr-1">•</span>
                   {edu.startDate} — {edu.endDate || "Present"}
                 </p>
               </div>
@@ -101,15 +101,15 @@ export default function Crisp({ resumeData }) {
       icon: <FaTools />,
       available: skills?.length > 0,
       content: (
-        <section className="mb-6 resume-section">
-          <h2 className="text-lg font-bold text-slate-800 mb-3 border-b border-slate-200 pb-2">Skills</h2>
+        <section className="mb-4 resume-section">
+          <h2 className="text-base font-bold text-slate-800 mb-2 border-b border-slate-200 pb-1">Skills</h2>
           
-          <div className="bg-white p-4 border border-slate-200">
-            <div className="flex flex-wrap gap-2">
+          <div className="bg-white p-3 border border-slate-200">
+            <div className="flex flex-wrap gap-1.5">
               {skills?.map((skill, index) => (
                 <span 
                   key={index} 
-                  className="px-3 py-1.5 text-sm bg-slate-100 text-slate-700 border border-slate-200 rounded"
+                  className="px-2 py-1 text-xs bg-slate-100 text-slate-700 border border-slate-200 rounded"
                 >
                   {skill}
                 </span>
@@ -125,17 +125,17 @@ export default function Crisp({ resumeData }) {
       icon: <FaLaptopCode />,
       available: projects?.length > 0,
       content: (
-        <section className="mb-6 resume-section">
-          <h2 className="text-lg font-bold text-slate-800 mb-3 border-b border-slate-200 pb-2">Projects</h2>
+        <section className="mb-4 resume-section">
+          <h2 className="text-base font-bold text-slate-800 mb-2 border-b border-slate-200 pb-1">Projects</h2>
           
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 gap-3">
             {projects?.map((project, index) => (
               <div 
                 key={index} 
-                className="bg-white p-4 border border-slate-200 hover:border-blue-200 transition-colors page-break-inside-avoid"
+                className="bg-white p-3 border border-slate-200 hover:border-blue-200 transition-colors page-break-inside-avoid"
               >
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-lg font-medium text-slate-800">
+                <div className="flex justify-between items-start mb-1">
+                  <h3 className="text-sm font-medium text-slate-800">
                     {project.title}
                   </h3>
                   {project.link && (
@@ -143,24 +143,24 @@ export default function Crisp({ resumeData }) {
                       href={ensureHttps(project.link)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-1 text-blue-500 hover:text-blue-700 transition-colors"
+                      className="p-0.5 text-blue-500 hover:text-blue-700 transition-colors"
                       aria-label="View Project"
                     >
-                      <FaLink className="text-sm" />
+                      <FaLink className="text-xs" />
                     </a>
                   )}
                 </div>
                 
-                <p className="text-slate-600 mb-3">
+                <p className="text-slate-600 mb-2 text-xs">
                   {project.description}
                 </p>
                 
                 {project.technologies && (
-                  <div className="flex flex-wrap gap-1.5 mt-auto">
+                  <div className="flex flex-wrap gap-1 mt-auto">
                     {project.technologies.map((tech, i) => (
                       <span 
                         key={i} 
-                        className="inline-block px-2 py-1 text-xs bg-slate-50 text-slate-600 border border-slate-100 rounded"
+                        className="inline-block px-1.5 py-0.5 text-xs bg-slate-50 text-slate-600 border border-slate-100 rounded"
                       >
                         {tech}
                       </span>
@@ -179,34 +179,34 @@ export default function Crisp({ resumeData }) {
       icon: <FaTrophy />,
       available: achievements?.length > 0,
       content: (
-        <section className="mb-6 resume-section">
-          <h2 className="text-lg font-bold text-slate-800 mb-3 border-b border-slate-200 pb-2">Achievements</h2>
+        <section className="mb-4 resume-section">
+          <h2 className="text-base font-bold text-slate-800 mb-2 border-b border-slate-200 pb-1">Achievements</h2>
           
-          <div className="bg-white p-4 border border-slate-200">
-            <ul className="space-y-3">
+          <div className="bg-white p-3 border border-slate-200">
+            <ul className="space-y-2">
               {achievements?.map((achievement, index) => (
-                <li key={index} className="flex items-start gap-2 page-break-inside-avoid">
-                  <FaChevronRight className="mt-1 text-blue-500 flex-shrink-0" />
+                <li key={index} className="flex items-start gap-1.5 page-break-inside-avoid">
+                  <FaChevronRight className="mt-0.5 text-blue-500 flex-shrink-0 text-xs" />
                   <div>
-                    <div className="flex flex-col md:flex-row md:items-center gap-2">
-                      <h3 className="text-base font-medium text-slate-800">
+                    <div className="flex flex-col md:flex-row md:items-center gap-1">
+                      <h3 className="text-xs font-medium text-slate-800">
                         {achievement.title}
                       </h3>
                       {achievement.date && (
-                        <span className="text-xs py-0.5 px-2 bg-slate-100 text-slate-600 rounded">
+                        <span className="text-xs py-0.5 px-1.5 bg-slate-100 text-slate-600 rounded">
                           {achievement.date}
                         </span>
                       )}
                     </div>
                     
                     {achievement.organization && (
-                      <p className="text-blue-600 text-sm mt-0.5">
+                      <p className="text-blue-600 text-xs">
                         {achievement.organization}
                       </p>
                     )}
                     
                     {achievement.description && (
-                      <p className="text-slate-600 mt-1 text-sm">
+                      <p className="text-slate-600 text-xs">
                         {achievement.description}
                       </p>
                     )}
@@ -224,32 +224,32 @@ export default function Crisp({ resumeData }) {
       icon: <FaCertificate />,
       available: certificates?.length > 0,
       content: (
-        <section className="mb-6 resume-section">
-          <h2 className="text-lg font-bold text-slate-800 mb-3 border-b border-slate-200 pb-2">Certifications</h2>
+        <section className="mb-4 resume-section">
+          <h2 className="text-base font-bold text-slate-800 mb-2 border-b border-slate-200 pb-1">Certifications</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {certificates?.map((cert, index) => (
-              <div key={index} className="bg-white p-4 border border-slate-200 flex flex-col h-full">
+              <div key={index} className="bg-white p-3 border border-slate-200 flex flex-col h-full">
                 <div className="flex-1">
                   <div className="flex justify-between items-start">
-                    <h3 className="text-base font-medium text-slate-800">{cert.name}</h3>
-                    <span className="text-xs py-0.5 px-2 bg-slate-100 text-slate-600 whitespace-nowrap rounded">
+                    <h3 className="text-xs font-medium text-slate-800">{cert.name}</h3>
+                    <span className="text-xs py-0.5 px-1.5 bg-slate-100 text-slate-600 whitespace-nowrap rounded">
                       {cert.date}
                     </span>
                   </div>
                   
-                  <p className="text-blue-600 text-sm mt-1">{cert.issuer}</p>
+                  <p className="text-blue-600 text-xs">{cert.issuer}</p>
                 </div>
                 
                 {cert.url && (
-                  <div className="mt-2 text-right">
+                  <div className="mt-1 text-right">
                     <a
                       href={ensureHttps(cert.url)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800 transition-colors"
+                      className="inline-flex items-center gap-1 text-xs text-blue-600 hover:text-blue-800 transition-colors"
                     >
-                      <FaLink size={10} /> View Certificate
+                      <FaLink size={8} /> View
                     </a>
                   </div>
                 )}
@@ -275,27 +275,27 @@ export default function Crisp({ resumeData }) {
   return (
     <div className="bg-slate-50 min-h-full font-sans text-slate-700 relative">
       {/* Header with personal info */}
-      <header className="py-8 bg-blue-600 text-white">
-        <div className="max-w-5xl mx-auto px-6">
+      <header className="py-5 bg-blue-600 text-white">
+        <div className="max-w-4xl mx-auto px-4">
           <div className="text-center">
-            <h1 className="text-3xl md:text-4xl font-bold mb-2">
+            <h1 className="text-2xl md:text-3xl font-bold mb-1">
               {personalInfo?.name || "Your Name"}
             </h1>
             
             {personalInfo?.title && (
-              <h2 className="text-xl md:text-2xl font-light mb-6 opacity-90">
+              <h2 className="text-lg md:text-xl font-light mb-3 opacity-90">
                 {personalInfo.title}
               </h2>
             )}
             
             {/* Contact Details */}
-            <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 max-w-2xl mx-auto">
+            <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 max-w-2xl mx-auto">
               {personalInfo?.email && (
                 <a
                   href={`mailto:${personalInfo.email}`}
-                  className="flex items-center text-white/90 hover:text-white px-3 py-1.5"
+                  className="flex items-center text-white/90 hover:text-white px-2 py-1 text-sm"
                 >
-                  <FaEnvelope className="mr-2" />
+                  <FaEnvelope className="mr-1" size={12} />
                   <span>{personalInfo.email}</span>
                 </a>
               )}
@@ -303,16 +303,16 @@ export default function Crisp({ resumeData }) {
               {personalInfo?.phone && (
                 <a
                   href={`tel:${personalInfo.phone}`}
-                  className="flex items-center text-white/90 hover:text-white px-3 py-1.5"
+                  className="flex items-center text-white/90 hover:text-white px-2 py-1 text-sm"
                 >
-                  <FaPhone className="mr-2" />
+                  <FaPhone className="mr-1" size={12} />
                   <span>{personalInfo.phone}</span>
                 </a>
               )}
               
               {personalInfo?.location && (
-                <span className="flex items-center text-white/90 px-3 py-1.5">
-                  <FaMapMarkerAlt className="mr-2" />
+                <span className="flex items-center text-white/90 px-2 py-1 text-sm">
+                  <FaMapMarkerAlt className="mr-1" size={12} />
                   <span>{personalInfo.location}</span>
                 </span>
               )}
@@ -322,9 +322,9 @@ export default function Crisp({ resumeData }) {
                   href={ensureHttps(personalInfo.linkedin)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center text-white/90 hover:text-white px-3 py-1.5"
+                  className="flex items-center text-white/90 hover:text-white px-2 py-1 text-sm"
                 >
-                  <FaLinkedin className="mr-2" />
+                  <FaLinkedin className="mr-1" size={12} />
                   <span>LinkedIn</span>
                 </a>
               )}
@@ -334,9 +334,9 @@ export default function Crisp({ resumeData }) {
                   href={ensureHttps(personalInfo.github)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center text-white/90 hover:text-white px-3 py-1.5"
+                  className="flex items-center text-white/90 hover:text-white px-2 py-1 text-sm"
                 >
-                  <FaGithub className="mr-2" />
+                  <FaGithub className="mr-1" size={12} />
                   <span>GitHub</span>
                 </a>
               )}
@@ -346,29 +346,29 @@ export default function Crisp({ resumeData }) {
       </header>
 
       {/* Section Selector - Right side panel */}
-      <div className="fixed top-24 right-4 z-10 p-3 bg-white rounded-lg shadow border border-slate-200 w-48 print:hidden">
-        <h3 className="text-sm font-bold text-slate-700 flex items-center mb-3 pb-2 border-b border-slate-100">
-          <FaStream className="mr-2 text-blue-500" />
+      <div className="fixed top-20 right-2 z-10 p-2 bg-white rounded-lg shadow border border-slate-200 w-40 print:hidden">
+        <h3 className="text-xs font-bold text-slate-700 flex items-center mb-2 pb-1 border-b border-slate-100">
+          <FaStream className="mr-1 text-blue-500" size={10} />
           Resume Sections
         </h3>
-        <div className="space-y-1.5 max-h-[70vh] overflow-y-auto">
+        <div className="space-y-1 max-h-[60vh] overflow-y-auto">
           {availableSections.map((section) => (
             <button
               key={section.id}
               onClick={() => handleSectionClick(section.id)}
-              className={`flex items-center w-full px-3 py-2 rounded-md transition-all text-sm ${
+              className={`flex items-center w-full px-2 py-1.5 rounded-md transition-all text-xs ${
                 sectionOrder.includes(section.id)
                   ? 'bg-slate-100 text-slate-400 cursor-default'
                   : 'bg-white hover:bg-slate-50 text-slate-700 hover:text-blue-600'
               }`}
               disabled={sectionOrder.includes(section.id)}
             >
-              <span className={`mr-2 ${sectionOrder.includes(section.id) ? 'text-slate-400' : 'text-blue-500'}`}>
+              <span className={`mr-1.5 ${sectionOrder.includes(section.id) ? 'text-slate-400' : 'text-blue-500'}`}>
                 {section.icon}
               </span>
               <span>{section.label}</span>
               {sectionOrder.includes(section.id) && (
-                <span className="ml-auto w-5 h-5 flex items-center justify-center rounded-full bg-slate-200 text-slate-500 text-xs font-bold">
+                <span className="ml-auto w-4 h-4 flex items-center justify-center rounded-full bg-slate-200 text-slate-500 text-xs font-bold">
                   {sectionOrder.indexOf(section.id) + 1}
                 </span>
               )}
@@ -378,7 +378,7 @@ export default function Crisp({ resumeData }) {
           {sectionOrder.length > 0 && (
             <button
               onClick={resetSections}
-              className="w-full mt-4 px-3 py-2 bg-white hover:bg-slate-50 text-slate-600 rounded-md transition-all text-sm border border-slate-200"
+              className="w-full mt-2 px-2 py-1.5 bg-white hover:bg-slate-50 text-slate-600 rounded-md transition-all text-xs border border-slate-200"
             >
               Reset All
             </button>
@@ -387,7 +387,7 @@ export default function Crisp({ resumeData }) {
       </div>
 
       {/* Main Content Area */}
-      <main className="max-w-5xl mx-auto px-6 py-8" ref={contentRef}>
+      <main className="max-w-4xl mx-auto px-4 py-5" ref={contentRef}>
         {/* Display sections in the order they were clicked */}
         {sectionOrder.length > 0 ? (
           sectionOrder.map(sectionId => {
@@ -400,8 +400,8 @@ export default function Crisp({ resumeData }) {
             );
           })
         ) : (
-          <div className="text-center py-12 border-2 border-dashed border-slate-200 rounded-lg bg-white print:hidden">
-            <p className="text-slate-500">
+          <div className="text-center py-8 border-2 border-dashed border-slate-200 rounded-lg bg-white print:hidden">
+            <p className="text-slate-500 text-sm">
               Select sections from the panel to build your resume
             </p>
           </div>
@@ -409,7 +409,7 @@ export default function Crisp({ resumeData }) {
         
         {/* For print - show all sections in default order if nothing is selected */}
         {sectionOrder.length === 0 && (
-          <div className="hidden print:block space-y-6">
+          <div className="hidden print:block space-y-4">
             {availableSections.map(section => (
               <div key={section.id}>{section.content}</div>
             ))}
@@ -417,7 +417,7 @@ export default function Crisp({ resumeData }) {
         )}
 
         {/* Page numbers for print only */}
-        <div className="hidden print:block text-right text-xs text-slate-400 pt-4 border-t border-slate-200 mt-8">
+        <div className="hidden print:block text-right text-xs text-slate-400 pt-3 border-t border-slate-200 mt-4">
           <span className="print-page-number"></span>
         </div>
       </main>
@@ -426,20 +426,20 @@ export default function Crisp({ resumeData }) {
       <style jsx global>{`
         @media print {
           @page {
-            margin: 0.5in;
+            margin: 0.4in;
             size: letter portrait;
           }
           
           html, body {
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
-            font-size: 95%;
+            font-size: 92%;
           }
           
           .resume-section {
             break-inside: avoid;
             page-break-inside: avoid;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
           }
           
           .page-break-inside-avoid {
@@ -469,12 +469,12 @@ export default function Crisp({ resumeData }) {
         }
         
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
+          from { opacity: 0; transform: translateY(8px); }
           to { opacity: 1; transform: translateY(0); }
         }
         
         .animate-fadeIn {
-          animation: fadeIn 0.3s ease-out forwards;
+          animation: fadeIn 0.2s ease-out forwards;
         }
       `}</style>
     </div>

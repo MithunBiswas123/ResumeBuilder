@@ -109,6 +109,40 @@ export default function Elegant({ resumeData }) {
               </p>
             </section>
           )}
+          {/* Education - Now with the same styling as Experience */}
+{education?.length > 0 && (
+  <section>
+    <h2 className="text-2xl font-normal text-purple-700 mb-4 pb-1 border-b border-purple-200 flex items-center">
+      Education
+    </h2>
+    <div className="space-y-5">
+      {education.map((edu, index) => (
+        <div key={index} className="relative pl-6">
+          <div className="absolute top-1 left-0 w-3 h-3 rounded-full border-2 border-purple-400 bg-white"></div>
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-1">
+            <h3 className="font-semibold text-lg text-gray-800">
+              {edu.degree}
+            </h3>
+            <div className="text-sm text-gray-600 italic mt-1 sm:mt-0">
+              {edu.startDate} — {edu.endDate || "Present"}
+            </div>
+          </div>
+          
+          <p className="font-medium text-purple-700 text-sm mb-2">
+            {edu.school}
+            {edu.location && <span className="text-gray-600"> • {edu.location}</span>}
+          </p>
+          
+          {edu.description && (
+            <p className="text-gray-700 leading-relaxed">
+              {edu.description}
+            </p>
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+)}
           
           {/* Experience */}
           {experience?.length > 0 && (
@@ -207,7 +241,7 @@ export default function Elegant({ resumeData }) {
             </section>
           )}
           
-          {/* Education */}
+          {/* Education
           {education?.length > 0 && (
             <section className="bg-white p-5 rounded-lg shadow-sm border border-gray-100">
               <h2 className="text-xl font-normal text-purple-700 mb-3 pb-2 border-b border-purple-100">
@@ -234,7 +268,7 @@ export default function Elegant({ resumeData }) {
                 ))}
               </div>
             </section>
-          )}
+          )} */}
           
           {/* Certifications */}
           {certificates?.length > 0 && (

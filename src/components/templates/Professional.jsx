@@ -33,10 +33,10 @@ export default function Professional({ resumeData }) {
   } = resumeData || {};
 
   return (
-    <div className="bg-white w-full h-full px-8 py-10 font-serif text-gray-800">
+    <div className="bg-white w-full h-full px-8 py-5 font-serif text-gray-800">
       {/* Header with improved styling */}
-      <header className="text-center border-b-2 border-gray-300 pb-5 mb-8">
-        <h1 className="text-4xl font-bold uppercase tracking-wider">
+      <header className="text-center border-b-2 border-gray-300 pb-5 mb-3">
+        <h1 className="text-3xl font-bold uppercase tracking-wider">
           {personalInfo?.name || "Your Name"}
         </h1>
         {personalInfo?.title && (
@@ -44,7 +44,7 @@ export default function Professional({ resumeData }) {
         )}
 
         {/* Contact info with consistent styling */}
-        <div className="mt-6 flex flex-wrap justify-center gap-6 text-sm">
+        <div className="mt-4 flex flex-wrap justify-center gap-6 text-sm">
           {personalInfo?.email && (
             <div className="flex items-center">
               <FaEnvelope className="mr-2 text-gray-600" />
@@ -91,7 +91,7 @@ export default function Professional({ resumeData }) {
       {/* Summary */}
       {personalInfo?.summary && (
         <section className="mb-7">
-          <h2 className="text-xl font-bold uppercase border-b border-gray-300 pb-1 mb-4 flex items-center">
+          <h2 className="text-md font-bold uppercase border-b border-gray-300  mb-2 flex items-center">
             <FaUser className="mr-2 text-gray-600 text-lg" />
             Professional Summary
           </h2>
@@ -102,7 +102,7 @@ export default function Professional({ resumeData }) {
       {/* Experience - Enhanced with icons and improved layout */}
       {experience?.length > 0 && (
         <section className="mb-7">
-          <h2 className="text-xl font-bold uppercase border-b border-gray-300 pb-1 mb-4 flex items-center">
+          <h2 className="text-md font-bold uppercase border-b border-gray-300 mb-2 flex items-center">
             <FaBriefcase className="mr-2 text-gray-600 text-lg" />
             Experience
           </h2>
@@ -127,7 +127,7 @@ export default function Professional({ resumeData }) {
       {/* Education - Enhanced with icons */}
       {education?.length > 0 && (
         <section className="mb-7">
-          <h2 className="text-xl font-bold uppercase border-b border-gray-300 pb-1 mb-4 flex items-center">
+          <h2 className="text-md font-bold uppercase border-b border-gray-300  mb-2 flex items-center">
             <FaGraduationCap className="mr-2 text-gray-600 text-lg" />
             Education
           </h2>
@@ -154,7 +154,7 @@ export default function Professional({ resumeData }) {
         {/* Skills - Improved presentation with badges */}
         {skills?.length > 0 && (
           <section className="mb-7">
-            <h2 className="text-xl font-bold uppercase border-b border-gray-300 pb-1 mb-4 flex items-center">
+            <h2 className="text-md font-bold uppercase border-b border-gray-300  mb-2 flex items-center">
               <FaTools className="mr-2 text-gray-600 text-lg" />
               Skills
             </h2>
@@ -174,7 +174,7 @@ export default function Professional({ resumeData }) {
         {/* Achievements - New Section with icons */}
         {achievements?.length > 0 && (
           <section className="mb-7">
-            <h2 className="text-xl font-bold uppercase border-b border-gray-300 pb-1 mb-4 flex items-center">
+            <h2 className="text-md font-bold uppercase border-b border-gray-300  mb-2 flex items-center">
               <FaTrophy className="mr-2 text-gray-600 text-lg" />
               Achievements
             </h2>
@@ -201,13 +201,13 @@ export default function Professional({ resumeData }) {
       {/* Projects - Enhanced layout with cards */}
       {projects?.length > 0 && (
         <section className="mb-7">
-          <h2 className="text-xl font-bold uppercase border-b border-gray-300 pb-1 mb-4 flex items-center">
+          <h2 className="text-md font-bold uppercase border-b border-gray-300  mb-2 flex items-center">
             <FaCode className="mr-2 text-gray-600 text-lg" />
             Projects
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {projects.map((project, index) => (
-              <div key={index} className="border border-gray-200 rounded-md p-4 hover:shadow-md transition-shadow">
+              <div key={index} className="border border-gray-200 rounded-md p-2 hover:shadow-md transition-shadow">
                 <div className="flex justify-between items-start">
                   <h3 className="font-bold text-lg">{project.title}</h3>
                   {project.link && (
@@ -243,7 +243,7 @@ export default function Professional({ resumeData }) {
       {/* Certificates - Unified styling with other sections */}
       {certificates?.length > 0 && (
         <section className="mb-7">
-          <h2 className="text-xl font-bold uppercase border-b border-gray-300 pb-1 mb-4 flex items-center">
+          <h2 className="text-md font-bold uppercase border-b border-gray-300  mb-2 flex items-center">
             <FaCertificate className="mr-2 text-gray-600 text-lg" />
             Certifications
           </h2>

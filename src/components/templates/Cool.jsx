@@ -137,25 +137,7 @@ export default function Duotone({ resumeData }) {
           </div>
         )}
 
-        {/* Skills Section */}
-        {skills?.length > 0 && (
-          <div className="mb-8">
-            <h2 className="text-sm uppercase tracking-wider mb-4 border-b border-pink-200 pb-2 font-bold text-gray-700">
-              Skills
-            </h2>
-            
-            <div className="flex flex-wrap gap-2">
-              {skills.map((skill, index) => (
-                <span 
-                  key={index} 
-                  className="px-3 py-1 bg-white text-gray-700 text-xs rounded-full border border-pink-200 shadow-sm"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
+        
 
         {/* Certifications Section */}
         {certificates?.length > 0 && (
@@ -189,6 +171,26 @@ export default function Duotone({ resumeData }) {
               {personalInfo.summary}
             </p>
           </section>
+        )}
+
+        {/* Skills Section */}
+        {skills?.length > 0 && (
+          <div className="mb-8">
+            <h2 className="text-sm uppercase tracking-wider mb-4 border-b border-pink-200 pb-2 font-bold text-gray-700">
+              Skills
+            </h2>
+            
+            <div className="flex flex-wrap gap-2">
+              {skills.map((skill, index) => (
+                <span 
+                  key={index} 
+                  className="px-3 py-1 bg-white text-gray-700 text-xs rounded-full border border-pink-200 shadow-sm"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
         )}
 
         {/* Experience Section */}

@@ -169,7 +169,7 @@ export default function Zinc({ resumeData }) {
             <h2 className="text-lg font-semibold text-zinc-800 ml-3">Projects</h2>
           </div>
           
-          <div className="pl-11 space-y-5">
+          <div className="pl-11 space-y-3 grid md:grid-cols-2 gap-3">
             {projects?.map((project, index) => (
               <div key={index} className="page-break-inside-avoid">
                 <div className="mb-2 flex items-start justify-between">
@@ -225,7 +225,7 @@ export default function Zinc({ resumeData }) {
             <h2 className="text-lg font-semibold text-zinc-800 ml-3">Achievements</h2>
           </div>
           
-          <div className="pl-11 space-y-4">
+          <div className="pl-11 space-y-3 grid md:grid-cols-2 gap-3">
             {achievements?.map((achievement, index) => (
               <div key={index} className="page-break-inside-avoid">
                 <div className="mb-1 flex items-start justify-between">

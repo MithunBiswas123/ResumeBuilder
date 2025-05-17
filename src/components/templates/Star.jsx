@@ -120,7 +120,7 @@ export default function Star({ resumeData }) {
         <section className="mb-4 resume-section">
           <h2 className="section-heading">PROJECTS</h2>
           
-          <div className="space-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {projects?.map((project, index) => (
               <div key={index} className="page-break-inside-avoid">
                 <div className="flex justify-between items-baseline mb-1">
@@ -164,7 +164,7 @@ export default function Star({ resumeData }) {
         <section className="mb-4 resume-section">
           <h2 className="section-heading">ACHIEVEMENTS</h2>
           
-          <div className="space-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {achievements?.map((achievement, index) => (
               <div key={index} className="page-break-inside-avoid">
                 <div className="flex justify-between items-baseline mb-1">
@@ -204,7 +204,7 @@ export default function Star({ resumeData }) {
         <section className="mb-4 resume-section">
           <h2 className="section-heading">CERTIFICATIONS</h2>
           
-          <div className="space-y-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {certificates?.map((cert, index) => (
               <div key={index}>
                 <div className="flex justify-between items-baseline">
@@ -245,37 +245,37 @@ export default function Star({ resumeData }) {
 
   return (
     <div className="bg-white min-h-full font-sans text-gray-800 relative p-6 md:p-8">
-      {/* Header with personal info */}
-      <header className="mb-6 text-center border-b border-gray-200 pb-4">
-        <h1 className="text-2xl font-bold mb-1">
+      {/* Header with enhanced bold styling */}
+      <header className="mb-8 text-center border-b-2 border-gray-300 pb-5">
+        <h1 className="text-3xl font-extrabold mb-2 tracking-tight">
           {personalInfo?.name || "Your Name"}
         </h1>
         
         {personalInfo?.title && (
-          <h2 className="text-lg text-gray-600 mb-3">
+          <h2 className="text-xl font-medium text-gray-700 mb-4">
             {personalInfo.title}
           </h2>
         )}
         
-        {/* Contact Details */}
-        <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-sm">
+        {/* Contact Details - enhanced */}
+        <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm font-medium">
           {personalInfo?.email && (
             <a href={`mailto:${personalInfo.email}`} className="contact-link">
-              <FaEnvelope className="inline mr-1" size={12} />
+              <FaEnvelope className="inline mr-1" size={14} />
               {personalInfo.email}
             </a>
           )}
           
           {personalInfo?.phone && (
             <a href={`tel:${personalInfo.phone}`} className="contact-link">
-              <FaPhone className="inline mr-1" size={12} />
+              <FaPhone className="inline mr-1" size={14} />
               {personalInfo.phone}
             </a>
           )}
           
           {personalInfo?.location && (
             <span className="contact-item">
-              <FaMapMarkerAlt className="inline mr-1" size={12} />
+              <FaMapMarkerAlt className="inline mr-1" size={14} />
               {personalInfo.location}
             </span>
           )}
@@ -287,7 +287,7 @@ export default function Star({ resumeData }) {
               rel="noopener noreferrer"
               className="contact-link"
             >
-              <FaLinkedin className="inline mr-1" size={12} />
+              <FaLinkedin className="inline mr-1" size={14} />
               LinkedIn
             </a>
           )}
@@ -299,34 +299,37 @@ export default function Star({ resumeData }) {
               rel="noopener noreferrer"
               className="contact-link"
             >
-              <FaGithub className="inline mr-1" size={12} />
+              <FaGithub className="inline mr-1" size={14} />
               GitHub
             </a>
           )}
         </div>
       </header>
 
-      {/* Section Selector - Top panel */}
-      <div className="bg-gray-50 p-3 rounded-lg border border-gray-200 mb-6 print:hidden">
-        <h3 className="text-sm font-medium mb-2">Add sections to your resume:</h3>
-        <div className="flex flex-wrap gap-2">
+      {/* Section Selector - Always visible in top right corner */}
+      <div className="fixed top-4 right-4 z-50 print:hidden bg-white rounded-lg shadow-sm border border-gray-200 p-2.5 w-auto">
+        <h3 className="text-xs font-semibold text-gray-700 mb-1.5 pb-1 border-b border-gray-100">
+          Add sections:
+        </h3>
+        <div className="flex flex-wrap gap-1.5">
           {availableSections.map((section) => (
             <button
               key={section.id}
               onClick={() => handleSectionClick(section.id)}
-              className={`inline-flex items-center px-3 py-1.5 text-sm rounded ${
+              className={`flex items-center px-2 py-1 text-xs rounded ${
                 sectionOrder.includes(section.id)
-                  ? 'bg-gray-200 text-gray-400 cursor-default'
-                  : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-100'
+                  ? 'bg-gray-100 text-gray-400 cursor-default'
+                  : 'text-gray-700 hover:bg-gray-50 border border-gray-200'
               }`}
               disabled={sectionOrder.includes(section.id)}
+              title={section.label}
             >
-              <span className={`mr-1.5 ${sectionOrder.includes(section.id) ? 'text-gray-400' : 'text-gray-500'}`}>
+              <span className={sectionOrder.includes(section.id) ? 'text-gray-400' : 'text-gray-600'}>
                 {section.icon}
               </span>
-              {section.label}
+              <span className="ml-1">{section.label.substring(0,4)}</span>
               {sectionOrder.includes(section.id) && (
-                <span className="ml-1.5 w-4 h-4 flex items-center justify-center rounded-full bg-gray-300 text-gray-600 text-xs">
+                <span className="ml-1 w-3.5 h-3.5 flex items-center justify-center rounded-full bg-gray-200 text-gray-600 text-[10px]">
                   {sectionOrder.indexOf(section.id) + 1}
                 </span>
               )}
@@ -336,7 +339,7 @@ export default function Star({ resumeData }) {
           {sectionOrder.length > 0 && (
             <button
               onClick={resetSections}
-              className="inline-flex items-center px-3 py-1.5 text-sm border border-gray-200 rounded bg-white text-gray-700 hover:bg-gray-100"
+              className="px-2 py-1 bg-white text-red-600 hover:bg-red-50 rounded border border-red-100 text-xs"
             >
               Reset
             </button>
@@ -360,7 +363,7 @@ export default function Star({ resumeData }) {
         ) : (
           <div className="text-center py-8 border border-dashed border-gray-200 rounded print:hidden">
             <p className="text-gray-500">
-              Select sections from above to build your resume
+              Select sections from the top right to build your resume
             </p>
           </div>
         )}
@@ -380,7 +383,7 @@ export default function Star({ resumeData }) {
         </div>
       </main>
       
-      {/* Simple styles */}
+      {/* Simple styles with enhanced styling for contact links */}
       <style jsx global>{`
         .section-heading {
           font-size: 0.9rem;
@@ -393,8 +396,9 @@ export default function Star({ resumeData }) {
         }
         
         .contact-link {
-          color: #4B5563;
+          color: #374151;
           transition: color 0.15s;
+          font-weight: 500;
         }
         
         .contact-link:hover {
@@ -403,7 +407,8 @@ export default function Star({ resumeData }) {
         }
         
         .contact-item {
-          color: #4B5563;
+          color: #374151;
+          font-weight: 500;
         }
         
         /* Print Styles */

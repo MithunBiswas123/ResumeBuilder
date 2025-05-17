@@ -840,7 +840,7 @@ export default function ResumeForm({
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-1">
-                    School
+                    School / Collage
                   </label>
                   <input
                     type="text"
@@ -854,7 +854,7 @@ export default function ResumeForm({
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                <div>
+                {/* <div>
                   <label className="block text-sm font-medium mb-1">
                     Location
                   </label>
@@ -866,7 +866,7 @@ export default function ResumeForm({
                     }
                     className="w-full p-2 border rounded-md"
                   />
-                </div>
+                </div> */}
                 <div>
                   <label className="block text-sm font-medium mb-1">
                     Start Date
@@ -1114,7 +1114,7 @@ export default function ResumeForm({
                 ></textarea>
               </div>
 
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <label className="block text-sm font-medium mb-1">
                   Technologies
                 </label>
@@ -1129,7 +1129,7 @@ export default function ResumeForm({
                   className="w-full p-2 border rounded-md"
                   placeholder="Enter technologies separated by commas (e.g. React, Node.js, MongoDB)"
                 />
-              </div>
+              </div> */}
 
               <div className="mb-4">
                 <label className="block text-sm font-medium mb-1">

@@ -1,3 +1,5 @@
+
+
 "use client";
 
 import {
@@ -27,233 +29,204 @@ export default function Modern({ resumeData }) {
   } = resumeData;
 
   return (
-    <div className="w-full h-full bg-white text-gray-800 flex flex-col">
-      {/* Header with accent color */}
-      <header className="bg-blue-600 text-white px-8 py-6">
-        <h1 className="text-3xl font-bold">
-          {personalInfo.name || "Your Name"}
-        </h1>
-        <h2 className="text-xl mt-1">
-          {personalInfo.title || "Professional Title"}
-        </h2>
+    <div className="w-full h-full bg-white text-white flex flex-col">
+      {/* Header with solid color instead of gradient */}
+      <header className="bg-purple-800 text-white px-8 py-6">
+  <div className="max-w-4xl mx-auto">
+    <h1 className="text-3xl font-bold tracking-tight text-white">
+      {personalInfo.name || "Your Name"}
+    </h1>
+    <h2 className="text-xl mt-1 font-light tracking-wide text-white!important">
+      {personalInfo.title || "Professional Title"}
+    </h2>
 
-        <div className="mt-4 flex flex-wrap gap-4 text-sm">
-          {personalInfo.email && (
-            <div className="flex items-center">
-              <FaEnvelope className="mr-2" />
-              {personalInfo.email}
-            </div>
-          )}
-          {personalInfo?.linkedin && (
-            <a
-              href={ensureHttps(personalInfo.linkedin)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center text-white hover:text-gray-200"
-            >
-              <FaLinkedin className="mr-2" />
-              <span>LinkedIn</span>
-            </a>
-          )}
+          <div className="mt-6 flex flex-wrap gap-5 text-sm">
+            {personalInfo.email && (
+              <div className="flex items-center group">
+                <div className="p-2 rounded-full bg-purple-600 group-hover:bg-purple-500 transition-colors">
+                  <FaEnvelope className="text-white" />
+                </div>
+                <span className="ml-2">{personalInfo.email}</span>
+              </div>
+            )}
+            
+         
+            
+            {personalInfo?.linkedin && (
+              <a
+                href={ensureHttps(personalInfo.linkedin)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center text-white hover:text-purple-200 group"
+              >
+                <div className="p-2 rounded-full bg-purple-600 group-hover:bg-purple-500 transition-colors">
+                  <FaLinkedin className="text-white" />
+                </div>
+                <span className="ml-2">LinkedIn</span>
+              </a>
+            )}
 
-          {personalInfo?.github && (
-            <a
-              href={ensureHttps(personalInfo.github)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center text-white hover:text-gray-200"
-            >
-              <FaGithub className="mr-2" />
-              <span>GitHub</span>
-            </a>
-          )}
+            {personalInfo?.github && (
+              <a
+                href={ensureHttps(personalInfo.github)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center text-white hover:text-purple-200 group"
+              >
+                <div className="p-2 rounded-full bg-purple-600 group-hover:bg-purple-500 transition-colors">
+                  <FaGithub className="text-white" />
+                </div>
+                <span className="ml-2">GitHub</span>
+              </a>
+            )}
 
-          {personalInfo.phone && (
-            <div className="flex items-center">
-              <FaPhone className="mr-2" />
-              {personalInfo.phone}
-            </div>
-          )}
+            {personalInfo.phone && (
+              <div className="flex items-center group">
+                <div className="p-2 rounded-full bg-purple-600 group-hover:bg-purple-500 transition-colors">
+                  <FaPhone className="text-white" />
+                </div>
+                <span className="ml-2">{personalInfo.phone}</span>
+              </div>
+            )}
 
-          {personalInfo.location && (
-            <div className="flex items-center">
-              <FaMapMarkerAlt className="mr-2" />
-              {personalInfo.location}
-            </div>
-          )}
+            {personalInfo.location && (
+              <div className="flex items-center group">
+                <div className="p-2 rounded-full bg-purple-600 group-hover:bg-purple-500 transition-colors">
+                  <FaMapMarkerAlt className="text-white" />
+                </div>
+                <span className="ml-2">{personalInfo.location}</span>
+              </div>
+            )}
+          </div>
         </div>
       </header>
 
-      {/* Main content */}
-      <div className="flex flex-col p-8 flex-grow">
-        {/* Summary */}
-        {personalInfo.summary && (
-          <section className="mb-6">
-            <h2 className="text-lg font-bold text-blue-600 border-b border-blue-200 pb-1 mb-3">
-              PROFESSIONAL SUMMARY
-            </h2>
-            <p>{personalInfo.summary}</p>
-          </section>
-        )}
+      {/* Main content with two-column layout */}
+      <div className="flex flex-col md:flex-row p-8 gap-8 flex-grow max-w-6xl mx-auto w-full">
+        {/* Left column - 65% width */}
+        <div className="md:w-2/3">
+          {/* Summary */}
+          {personalInfo.summary && (
+            <section className="mb-5">
+              <h2 className="text-base font-bold text-purple-700 mb-4 relative pl-3 uppercase after:content-[''] after:absolute after:left-0 after:top-0 after:bottom-0 after:w-1 after:bg-purple-700">
+                PROFESSIONAL SUMMARY
+              </h2>
+              <p className="text-gray-700 leading-relaxed text-[15px]">{personalInfo.summary}</p>
+            </section>
+          )}
 
-        {/* Experience */}
-        {experience && experience.length > 0 && (
-          <section className="mb-6">
-            <h2 className="text-lg font-bold text-blue-600 border-b border-blue-200 pb-1 mb-3">
-              EXPERIENCE
-            </h2>
+          {/* Experience */}
+          {experience && experience.length > 0 && (
+            <section className="mb-5">
+              <h2 className="text-lg font-bold text-purple-700 mb-4 relative pl-3 uppercase after:content-[''] after:absolute after:left-0 after:top-0 after:bottom-0 after:w-1 after:bg-purple-700">
+                EXPERIENCE
+              </h2>
 
-            {experience.map((exp, index) => (
-              <div key={index} className="mb-4">
-                <div className="flex justify-between items-start">
-                  <h3 className="font-bold">{exp.position}</h3>
-                  <span className="text-gray-600 text-sm">
-                    {exp.startDate} - {exp.endDate || "Present"}
-                  </span>
+              {experience.map((exp, index) => (
+                <div key={index} className="mb-5 pb-1 border-b border-gray-200 last:border-0">
+                  <div className="flex justify-between items-start">
+                    <h3 className="font-bold text-gray-800">{exp.position}</h3>
+                    <span className="text-purple-600 text-sm font-medium bg-purple-50 px-3 py-1 rounded-full">
+                      {exp.startDate} - {exp.endDate || "Present"}
+                    </span>
+                  </div>
+                  <h4 className="text-gray-700 font-medium mt-1 mb-2">
+                    {exp.company}{exp.location && `, ${exp.location}`}
+                  </h4>
+                  <p className="text-gray-600">{exp.description}</p>
                 </div>
-                <h4 className="text-gray-700 italic mb-1">
-                  {exp.company}, {exp.location}
-                </h4>
-                <p className="text-sm">{exp.description}</p>
-              </div>
-            ))}
-          </section>
-        )}
+              ))}
+            </section>
+          )}
 
-        {/* Education */}
-        {education && education.length > 0 && (
-          <section className="mb-6">
-            <h2 className="text-lg font-bold text-blue-600 border-b border-blue-200 pb-1 mb-3">
-              EDUCATION
-            </h2>
+          {/* Education */}
+          {education && education.length > 0 && (
+            <section className="mb-5">
+              <h2 className="text-lg font-bold text-purple-700 mb-4 relative pl-3 uppercase after:content-[''] after:absolute after:left-0 after:top-0 after:bottom-0 after:w-1 after:bg-purple-700">
+                EDUCATION
+              </h2>
 
-            {education.map((edu, index) => (
-              <div key={index} className="mb-3">
-                <div className="flex justify-between items-start">
-                  <h3 className="font-bold">{edu.degree}</h3>
-                  <span className="text-gray-600 text-sm">
-                    {edu.startDate} - {edu.endDate || "Present"}
-                  </span>
-                </div>
-                <h4 className="text-gray-700 italic">
-                  {edu.school}, {edu.location}
-                </h4>
-                {edu.description && (
-                  <p className="text-sm mt-1">{edu.description}</p>
-                )}
-              </div>
-            ))}
-          </section>
-        )}
-
-        {/* certificate */}
-
-        {certificates?.length > 0 && (
-          <section className="mb-8 bg-blue-50 p-6 rounded-lg">
-            <h2 className="text-xl font-bold text-gray-800 mb-4 border-b-2 border-blue-200 pb-2 flex items-center">
-              <FaCertificate className="mr-3 text-blue-500" />
-              Certifications
-            </h2>
-
-            <div className="space-y-4">
-              {certificates.map((cert, index) => (
-                <div key={index} className="mb-4">
-                  <h3 className="text-lg font-semibold text-gray-800">
-                    {cert.name}
-                  </h3>
-
-                  <p className="text-blue-700 font-medium">
-                    {cert.issuer}
-                    {cert.credentialID && (
-                      <span className="text-gray-500 text-sm ml-2">
-                        ID: {cert.credentialID}
-                      </span>
-                    )}
-                  </p>
-
-                  <p className="text-gray-600 text-sm">
-                    {cert.date}
-                    {cert.expiration && ` • Valid until ${cert.expiration}`}
-                  </p>
-
-                  {cert.description && (
-                    <p className="text-gray-700 text-sm mt-1">
-                      {cert.description}
-                    </p>
+              {education.map((edu, index) => (
+                <div key={index} className="mb-5 pb-5 border-b border-gray-200 last:border-0">
+                  <div className="flex justify-between items-start">
+                    <h3 className="font-bold text-gray-800">{edu.degree}</h3>
+                    <span className="text-purple-600 text-sm font-medium bg-purple-50 px-3 py-1 rounded-full">
+                      {edu.startDate} - {edu.endDate || "Present"}
+                    </span>
+                  </div>
+                  <h4 className="text-gray-700 font-medium mt-1">
+                    {edu.school}{edu.location && `, ${edu.location}`}
+                  </h4>
+                  {edu.description && (
+                    <p className="text-gray-600 mt-2">{edu.description}</p>
                   )}
+                </div>
+              ))}
+            </section>
+          )}
 
-                  {cert.url && (
+          {/* Projects */}
+          {projects && projects.length > 0 && (
+            <section className="mb-5">
+              <h2 className="text-lg font-bold text-purple-700 mb-4 relative pl-3 uppercase after:content-[''] after:absolute after:left-0 after:top-0 after:bottom-0 after:w-1 after:bg-purple-700">
+                PROJECTS
+              </h2>
+
+              {projects.map((project, index) => (
+                <div key={index} className="mb-5 pb-5 border-b border-gray-200 last:border-0">
+                  <h3 className="font-bold text-gray-800">{project.title}</h3>
+                  {project.technologies && (
+                    <div className="flex flex-wrap gap-2 my-2">
+                      {project.technologies.map((tech, techIndex) => (
+                        <span 
+                          key={techIndex}
+                          className="text-xs font-medium text-purple-600 bg-purple-50 px-2 py-1 rounded"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  <p className="text-gray-600 mt-2">{project.description}</p>
+                  {project.link && (
                     <a
-                      href={ensureHttps(cert.url)}
+                      href={ensureHttps(project.link)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center text-blue-600 hover:text-blue-800 text-sm mt-2"
+                      className="inline-block mt-2 text-purple-600 hover:text-purple-800 font-medium"
                     >
-                      <FaCertificate className="mr-1" />
-                      <span>View Certificate</span>
+                      View Project →
                     </a>
                   )}
                 </div>
               ))}
-            </div>
-          </section>
-        )}
+            </section>
+          )}
+        </div>
 
-        {/* Achievements Section */}
-        {achievements && achievements.length > 0 && (
-          <section className="mb-6">
-            <h2 className="text-lg font-bold text-blue-600 border-b border-blue-200 pb-1 mb-3">
-              ACHIEVEMENTS
-            </h2>
-
-            {achievements.map((achievement, index) => (
-              <div key={index} className="mb-3">
-                <div className="flex justify-between items-start">
-                  <h3 className="font-bold">{achievement.title}</h3>
-                  {achievement.date && (
-                    <span className="text-gray-600 text-sm">
-                      {achievement.date}
-                    </span>
-                  )}
-                </div>
-                {achievement.organization && (
-                  <h4 className="text-gray-700 italic mb-1">
-                    {achievement.organization}
-                  </h4>
-                )}
-                {achievement.description && (
-                  <p className="text-sm">{achievement.description}</p>
-                )}
-              </div>
-            ))}
-          </section>
-        )}
-
-        <div className="flex flex-wrap gap-6">
+        {/* Right column - 35% width */}
+        <div className="md:w-1/3">
           {/* Skills */}
-          {/* Skills with visible categories */}
           {skills && skills.length > 0 && (
-            <section className="mb-6 flex-1 min-w-[200px]">
-              <h2 className="text-lg font-bold text-blue-600 border-b border-blue-200 pb-1 mb-3">
+            <section className="mb-5 bg-purple-50 p-1 rounded-lg shadow-sm">
+              <h2 className="text-lg font-bold text-purple-700 mb-4 uppercase border-b-2 border-purple-200 pb-2">
                 SKILLS
               </h2>
 
               {/* Check if skills are categorized or flat */}
-              {skills[0] &&
-              typeof skills[0] === "object" &&
-              "category" in skills[0] ? (
+              {skills[0] && typeof skills[0] === "object" && "category" in skills[0] ? (
                 // Categorized skills
-                <div className="space-y-3">
+                <div className="space-y-4">
                   {skills.map((skillCategory, categoryIndex) => (
-                    <div key={categoryIndex} className="mb-2">
-                      <h3 className="text-sm font-bold text-gray-700 bg-gray-100 inline-block px-2 py-0.5 rounded mb-2">
+                    <div key={categoryIndex} className="mb-3">
+                      <h3 className="text-sm font-bold text-purple-800 mb-2 uppercase">
                         {skillCategory.category}
                       </h3>
-                      <div className="flex flex-wrap gap-2 ml-1">
+                      <div className="flex flex-wrap gap-2">
                         {skillCategory.items.map((skill, skillIndex) => (
                           <span
                             key={skillIndex}
-                            className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
+                            className="bg-white text-purple-700 border border-purple-200 px-3 py-1 rounded-full text-sm"
                           >
                             {skill}
                           </span>
@@ -263,12 +236,12 @@ export default function Modern({ resumeData }) {
                   ))}
                 </div>
               ) : (
-                // Flat skills list (original implementation)
+                // Flat skills list
                 <div className="flex flex-wrap gap-2">
                   {skills.map((skill, index) => (
                     <span
                       key={index}
-                      className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
+                      className="bg-white text-purple-700 border border-purple-200 px-3 py-1 rounded-full text-sm"
                     >
                       {skill}
                     </span>
@@ -278,31 +251,83 @@ export default function Modern({ resumeData }) {
             </section>
           )}
 
-          {/* Projects */}
-          {projects && projects.length > 0 && (
-            <section className="mb-6 flex-1 min-w-[200px]">
-              <h2 className="text-lg font-bold text-blue-600 border-b border-blue-200 pb-1 mb-3">
-                PROJECTS
+          {/* Certificates */}
+          {certificates?.length > 0 && (
+            <section className="mb-5 bg-purple-50 p-6 rounded-lg shadow-sm">
+              <h2 className="text-lg font-bold text-purple-700 mb-4 uppercase border-b-2 border-purple-200 pb-2 flex items-center">
+                <FaCertificate className="mr-2 text-purple-600" />
+                Certifications
               </h2>
 
-              {projects.map((project, index) => (
-                <div key={index} className="mb-3">
-                  <h3 className="font-bold">{project.title}</h3>
-                  {project.technologies && (
-                    <p className="text-sm text-blue-600 mb-1">
-                      {project.technologies.join(" • ")}
+              <div className="space-y-4">
+                {certificates.map((cert, index) => (
+                  <div key={index} className="bg-white p-4 rounded-md shadow-sm">
+                    <h3 className="text-md font-semibold text-gray-800">
+                      {cert.name}
+                    </h3>
+
+                    <p className="text-purple-700 font-medium text-sm mt-1">
+                      {cert.issuer}
+                      {cert.credentialID && (
+                        <span className="text-gray-500 text-xs ml-2">
+                          ID: {cert.credentialID}
+                        </span>
+                      )}
+                    </p>
+
+                    <p className="text-gray-600 text-xs mt-1">
+                      {cert.date}
+                      {cert.expiration && ` • Valid until ${cert.expiration}`}
+                    </p>
+
+                    {cert.description && (
+                      <p className="text-gray-700 text-sm mt-2">
+                        {cert.description}
+                      </p>
+                    )}
+
+                    {cert.url && (
+                      <a
+                        href={ensureHttps(cert.url)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center text-purple-600 hover:text-purple-800 text-sm mt-2 font-medium"
+                      >
+                        <FaCertificate className="mr-1" />
+                        <span>View Certificate</span>
+                      </a>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Achievements */}
+          {achievements && achievements.length > 0 && (
+            <section className="mb-5 bg-purple-50 p-6 rounded-lg shadow-sm">
+              <h2 className="text-lg font-bold text-purple-700 mb-4 uppercase border-b-2 border-purple-200 pb-2 flex items-center">
+                <FaTrophy className="mr-2 text-purple-600" />
+                ACHIEVEMENTS
+              </h2>
+
+              {achievements.map((achievement, index) => (
+                <div key={index} className="mb-4 bg-white p-4 rounded-md shadow-sm">
+                  <div className="flex justify-between items-start">
+                    <h3 className="font-bold text-gray-800">{achievement.title}</h3>
+                  </div>
+                  {achievement.organization && (
+                    <h4 className="text-purple-700 font-medium text-sm mt-1">
+                      {achievement.organization}
+                    </h4>
+                  )}
+                  {achievement.date && (
+                    <p className="text-gray-500 text-xs mt-1">
+                      {achievement.date}
                     </p>
                   )}
-                  <p className="text-sm">{project.description}</p>
-                  {project.link && (
-                    <a
-                      href={ensureHttps(project.link)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-500 text-sm hover:text-gray-800"
-                    >
-                      View →
-                    </a>
+                  {achievement.description && (
+                    <p className="text-gray-600 text-sm mt-2">{achievement.description}</p>
                   )}
                 </div>
               ))}

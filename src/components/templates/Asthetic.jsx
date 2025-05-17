@@ -1,19 +1,16 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import {
   FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, 
-  FaCamera, FaLink, FaBriefcase, FaGraduationCap, FaTools,
+  FaLink, FaBriefcase, FaGraduationCap, FaTools,
   FaLaptopCode, FaTrophy, FaCertificate, FaUserAlt
 } from "react-icons/fa";
-
-const defaultImage = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='7' r='5' fill='%23475569'/%3E%3Cpath d='M12 13c-3.86 0-7 3.14-7 7h14c0-3.86-3.14-7-7-7z' fill='%23475569'/%3E%3C/svg%3E";
 
 export default function Asthetic({ resumeData }) {
   const { personalInfo, experience, education, skills, projects, achievements, certificates } =
     resumeData || {};
 
-  const [profileImage, setProfileImage] = useState(personalInfo?.photoUrl || defaultImage);
   const [sectionOrder, setSectionOrder] = useState([]);
   const contentRef = useRef(null);
   
@@ -22,23 +19,6 @@ export default function Asthetic({ resumeData }) {
     return url.startsWith("http") ? url : `https://${url}`;
   };
   
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    if (file && file.type.substr(0, 5) === "image") {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setProfileImage(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-  
-  useEffect(() => {
-    if (personalInfo?.photoUrl) {
-      setProfileImage(personalInfo.photoUrl);
-    }
-  }, [personalInfo?.photoUrl]);
-  
   const allSections = [
     { 
       id: 'summary', 
@@ -46,7 +26,7 @@ export default function Asthetic({ resumeData }) {
       icon: <FaUserAlt />,
       available: !!personalInfo?.summary,
       content: (
-        <section className="mb-5 resume-section">
+        <section className="mb-3 resume-section">
           <h2 className="text-sm uppercase tracking-wider font-semibold text-teal-800 mb-3 border-b border-teal-100 pb-1">About Me</h2>
           <div className="bg-white rounded shadow-sm p-4 border-l-4 border-teal-600">
             <p className="text-sm text-gray-700 leading-relaxed">{personalInfo?.summary}</p>
@@ -60,7 +40,7 @@ export default function Asthetic({ resumeData }) {
       icon: <FaBriefcase />,
       available: experience?.length > 0,
       content: (
-        <section className="mb-5 resume-section">
+        <section className="mb-3 resume-section">
           <h2 className="text-sm uppercase tracking-wider font-semibold text-teal-800 mb-3 border-b border-teal-100 pb-1">Professional Experience</h2>
           
           <div className="space-y-4">
@@ -95,7 +75,7 @@ export default function Asthetic({ resumeData }) {
       icon: <FaGraduationCap />,
       available: education?.length > 0,
       content: (
-        <section className="mb-5 resume-section">
+        <section className="mb-3 resume-section">
           <h2 className="text-sm uppercase tracking-wider font-semibold text-teal-800 mb-3 border-b border-teal-100 pb-1">Education</h2>
           
           <div className="space-y-3">
@@ -122,7 +102,7 @@ export default function Asthetic({ resumeData }) {
       icon: <FaTools />,
       available: skills?.length > 0,
       content: (
-        <section className="mb-5 resume-section">
+        <section className="mb-3 resume-section">
           <h2 className="text-sm uppercase tracking-wider font-semibold text-teal-800 mb-3 border-b border-teal-100 pb-1">Skills & Expertise</h2>
           
           <div className="bg-white rounded shadow-sm p-4">
@@ -146,7 +126,7 @@ export default function Asthetic({ resumeData }) {
       icon: <FaLaptopCode />,
       available: projects?.length > 0,
       content: (
-        <section className="mb-5 resume-section">
+        <section className="mb-3 resume-section">
           <h2 className="text-sm uppercase tracking-wider font-semibold text-teal-800 mb-3 border-b border-teal-100 pb-1">Projects</h2>
           
           <div className="grid md:grid-cols-2 gap-3">
@@ -200,7 +180,7 @@ export default function Asthetic({ resumeData }) {
       icon: <FaTrophy />,
       available: achievements?.length > 0,
       content: (
-        <section className="mb-5 resume-section">
+        <section className="mb-3 resume-section">
           <h2 className="text-sm uppercase tracking-wider font-semibold text-teal-800 mb-3 border-b border-teal-100 pb-1">Achievements</h2>
           
           <div className="space-y-3">
@@ -240,7 +220,7 @@ export default function Asthetic({ resumeData }) {
       icon: <FaCertificate />,
       available: certificates?.length > 0,
       content: (
-        <section className="mb-5 resume-section">
+        <section className="mb-3 resume-section">
           <h2 className="text-sm uppercase tracking-wider font-semibold text-teal-800 mb-3 border-b border-teal-100 pb-1">Certifications</h2>
           
           <div className="grid md:grid-cols-2 gap-3">
@@ -289,95 +269,73 @@ export default function Asthetic({ resumeData }) {
 
   return (
     <div className="bg-gray-50 min-h-full font-sans text-gray-700 relative">
-      {/* Header with personal info */}
-      <header className="bg-gradient-to-r from-teal-700 to-teal-900 text-white py-6">
+      {/* Header with personal info - Simplified without image */}
+      <header className="bg-gradient-to-r from-teal-700 to-teal-900 text-white py-4">
         <div className="max-w-4xl mx-auto px-4 md:px-6">
-          <div className="flex flex-col md:flex-row items-center gap-4">
-            {/* Profile Image with Upload */}
-            <div className="relative">
-              <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md">
-                <img 
-                  src={profileImage} 
-                  alt={personalInfo?.name || "Profile"} 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <label className="absolute bottom-0 right-0 bg-white p-1.5 rounded-full shadow-md cursor-pointer hover:bg-gray-100 transition-colors print:hidden">
-                <FaCamera className="w-3 h-3 text-teal-700" />
-                <input
-                  type="file"
-                  className="hidden"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                />
-              </label>
-            </div>
+          {/* Name and Details - Now centered */}
+          <div className="text-center">
+            <h1 className="text-2xl md:text-3xl font-bold tracking-wide mb-2">
+              {personalInfo?.name || "Your Name"}
+            </h1>
             
-            {/* Name and Details */}
-            <div className="text-center md:text-left md:flex-grow">
-              <h1 className="text-2xl md:text-3xl font-bold tracking-wide">
-                {personalInfo?.name || "Your Name"}
-              </h1>
-              
-              {personalInfo?.title && (
-                <h2 className="text-base md:text-lg font-light opacity-90 mt-1 mb-3">
-                  {personalInfo.title}
-                </h2>
+            {personalInfo?.title && (
+              <h2 className="text-base md:text-lg font-light opacity-90 mb-4">
+                {personalInfo.title}
+              </h2>
+            )}
+            
+            {/* Contact Details */}
+            <div className="flex flex-wrap justify-center gap-3 md:gap-5 text-sm">
+              {personalInfo?.email && (
+                <a
+                  href={`mailto:${personalInfo.email}`}
+                  className="flex items-center text-teal-100 hover:text-white transition-colors"
+                >
+                  <FaEnvelope className="mr-1.5" />
+                  <span>{personalInfo.email}</span>
+                </a>
               )}
               
-              {/* Contact Details */}
-              <div className="flex flex-wrap justify-center md:justify-start gap-3 md:gap-4 text-sm">
-                {personalInfo?.email && (
-                  <a
-                    href={`mailto:${personalInfo.email}`}
-                    className="flex items-center text-teal-100 hover:text-white transition-colors"
-                  >
-                    <FaEnvelope className="mr-1.5" />
-                    <span>{personalInfo.email}</span>
-                  </a>
-                )}
-                
-                {personalInfo?.phone && (
-                  <a
-                    href={`tel:${personalInfo.phone}`}
-                    className="flex items-center text-teal-100 hover:text-white transition-colors"
-                  >
-                    <FaPhone className="mr-1.5" />
-                    <span>{personalInfo.phone}</span>
-                  </a>
-                )}
-                
-                {personalInfo?.location && (
-                  <span className="flex items-center text-teal-100">
-                    <FaMapMarkerAlt className="mr-1.5" />
-                    <span>{personalInfo.location}</span>
-                  </span>
-                )}
-                
-                {personalInfo?.linkedin && (
-                  <a
-                    href={ensureHttps(personalInfo.linkedin)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center text-teal-100 hover:text-white transition-colors"
-                  >
-                    <FaLinkedin className="mr-1.5" />
-                    <span>LinkedIn</span>
-                  </a>
-                )}
-                
-                {personalInfo?.github && (
-                  <a
-                    href={ensureHttps(personalInfo.github)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center text-teal-100 hover:text-white transition-colors"
-                  >
-                    <FaGithub className="mr-1.5" />
-                    <span>GitHub</span>
-                  </a>
-                )}
-              </div>
+              {personalInfo?.phone && (
+                <a
+                  href={`tel:${personalInfo.phone}`}
+                  className="flex items-center text-teal-100 hover:text-white transition-colors"
+                >
+                  <FaPhone className="mr-1.5" />
+                  <span>{personalInfo.phone}</span>
+                </a>
+              )}
+              
+              {personalInfo?.location && (
+                <span className="flex items-center text-teal-100">
+                  <FaMapMarkerAlt className="mr-1.5" />
+                  <span>{personalInfo.location}</span>
+                </span>
+              )}
+              
+              {personalInfo?.linkedin && (
+                <a
+                  href={ensureHttps(personalInfo.linkedin)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center text-teal-100 hover:text-white transition-colors"
+                >
+                  <FaLinkedin className="mr-1.5" />
+                  <span>LinkedIn</span>
+                </a>
+              )}
+              
+              {personalInfo?.github && (
+                <a
+                  href={ensureHttps(personalInfo.github)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center text-teal-100 hover:text-white transition-colors"
+                >
+                  <FaGithub className="mr-1.5" />
+                  <span>GitHub</span>
+                </a>
+              )}
             </div>
           </div>
         </div>
@@ -422,7 +380,7 @@ export default function Asthetic({ resumeData }) {
       </div>
 
       {/* Main Content Area */}
-      <main className="max-w-4xl mx-auto px-4 md:px-6 py-6" ref={contentRef}>
+      <main className="max-w-4xl mx-auto px-4 md:px-6 py-4" ref={contentRef}>
         {/* Display sections in the order they were clicked */}
         {sectionOrder.length > 0 ? (
           sectionOrder.map(sectionId => {

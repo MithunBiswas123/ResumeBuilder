@@ -47,7 +47,7 @@ export default function Berlin({ resumeData }) {
   return (
     <div className="bg-white min-h-full font-sans text-gray-800 print:text-sm">
       {/* Header with clean design */}
-      <header className="bg-indigo-600 text-white py-8">
+      <header className="bg-indigo-600 text-white py-6">
         <div className="max-w-5xl mx-auto px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Name and title */}
@@ -138,7 +138,7 @@ export default function Berlin({ resumeData }) {
       <main className="max-w-5xl mx-auto px-8 py-8" ref={contentRef}>
         {/* Skills section */}
         {skills?.length > 0 && (
-          <div className="resume-section mb-8">
+          <div className="resume-section mb-4">
             <h2 className="text-xl font-bold text-indigo-700 mb-4 pb-2 border-b border-gray-200">
               Skills
             </h2>
@@ -155,7 +155,7 @@ export default function Berlin({ resumeData }) {
         
         {/* Experience section */}
         {experience?.length > 0 && (
-          <div className="resume-section mb-8 page-break-inside-avoid">
+          <div className="resume-section mb-4 page-break-inside-avoid">
             <h2 className="text-xl font-bold text-indigo-700 mb-4 pb-2 border-b border-gray-200">
               Professional Experience
             </h2>
@@ -190,7 +190,7 @@ export default function Berlin({ resumeData }) {
         
         {/* Projects section */}
         {projects?.length > 0 && (
-          <div className="resume-section mb-8 page-break-inside-avoid">
+          <div className="resume-section mb-4 page-break-inside-avoid">
             <h2 className="text-xl font-bold text-indigo-700 mb-4 pb-2 border-b border-gray-200">
               Projects
             </h2>
@@ -240,7 +240,7 @@ export default function Berlin({ resumeData }) {
         )}
         
         {/* Two column layout for education and certifications */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-4">
           {/* Education column */}
           {education?.length > 0 && (
             <div className="resume-section page-break-inside-avoid">
@@ -400,8 +400,8 @@ export default function Berlin({ resumeData }) {
           }
           
           /* Adjust spacing for print */
-          .mb-8 {
-            margin-bottom: 1.5rem !important;
+          .mb-4 {
+            margin-bottom: 1rem !important;
           }
           
           .p-4 {
