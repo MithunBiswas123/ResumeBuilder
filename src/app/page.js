@@ -484,6 +484,7 @@ import IconHover from "@/components/IconHover";
 import { FileText, PenTool, Download } from "react-feather";
 import dynamic from "next/dynamic";
 import ScrollReveal from "@/components/ScrollReveal";
+// import AtsChecker from "@/ATS/Page";
 const ResumeAccordion = dynamic(
   () => import("@/components/ResumeAccordion"),
   {
@@ -732,6 +733,7 @@ function page() {
             </div>
           </ScrollReveal>
           <ResumeAccordion />
+          {/* <AtsChecker /> */}
         </div>
         </div>
       </div>
