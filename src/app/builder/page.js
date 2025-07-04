@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, Suspense } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import { useSearchParams } from 'next/navigation';
 import ResumeForm from '@/components/ResumeForm';
@@ -10,7 +10,7 @@ import ResumePreview from '@/components/ResumePreview';
 import TemplateSelector from '@/components/TemplateSelector';
 import AISuggestionPanel from '@/components/AISuggestionPanel';
 
-export default function Builder() {
+function BuilderContent() {
   const searchParams = useSearchParams();
   
   const [resumeData, setResumeData] = useState({
@@ -115,5 +115,13 @@ export default function Builder() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function Builder() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <BuilderContent />
+    </Suspense>
   );
 }

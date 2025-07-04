@@ -9,7 +9,6 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 export default function useResumeData() {
   // Initialize your API key - store this in environment variables for production
   const API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
-  const genAI = new GoogleGenerativeAI(API_KEY);
 
   const [resumeData, setResumeData] = useState({
     personalInfo: {
@@ -36,6 +35,7 @@ export default function useResumeData() {
     }
 
     try {
+      const genAI = new GoogleGenerativeAI(API_KEY);
       const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
       // Create prompt based on resume content
