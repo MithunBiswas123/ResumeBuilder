@@ -1,3 +1,70 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Node modules
+node_modules/
+
+# Build output
+.next/
+.next-standalone/
+out/
+build/
+
+# Testing
+coverage/
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Env files
+.env
+.env.local
+.env.*.local
+
+# VS Code
+.vscode/
+.history/
+
+# Misc
+*.swp
+*.swo
+*.tmp
+.tmp/
+
+# Yarn/PNPM/NPM caches
+.yarn/*
+!.yarn/releases
+yarn.lock
+pnpm-lock.yaml
+package-lock.json
+
+# Next.js cache
+.next/cache/
+
+# Vercel/Netlify
+.vercel/
+.netlify/
+
+# TypeScript
+*.tsbuildinfo
+
+# Images generated during dev
+public/*.map
+
+# IDEs
+.idea/
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
