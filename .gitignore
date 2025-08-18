@@ -46,9 +46,6 @@ Thumbs.db
 # Yarn/PNPM/NPM caches
 .yarn/*
 !.yarn/releases
-yarn.lock
-pnpm-lock.yaml
-package-lock.json
 
 # Next.js cache
 .next/cache/
